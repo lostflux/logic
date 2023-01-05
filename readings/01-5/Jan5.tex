@@ -1,0 +1,64 @@
+\title{\Huge{Math 71: Algebra\\Groups of Small Order}}
+\author{\Large{Amittai Siavava}}
+\date{\Large{\today}}
+% \documentclass[11pt, reqno]{amsart}
+\documentclass{memoir}
+
+\input{../../common/macros.tex}
+\usepackage[backend=bibtex,style=science]{biblatex}
+\geometry{top=0.75in,left=2in,bottom=0.75in,right=0.80in}
+\bibliography{main.bib}
+\pgfplotsset{compat=1.18}
+
+\pagestyle{fancy}                         % fancy (allow headers, footers)
+\fancyhf{}                                % clear all header/footer settings.
+\cfoot{\thepage}                          % set page-numbers in footer.
+% \lhead{\textit{\textbf{ Amittai, S}}}   % set name in header, left.
+% \rhead{\textsc{Math 71: Algebra}}       % set class name in header, right.
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+
+
+\newcounter{problem}
+\setcounter{problem}{0}
+
+\renewcommand{\theenumi}{\alph{enumi}}
+
+\begin{document}
+
+\setlength{\headheight}{13.0pt}
+\setlength{\footskip}{15.0pt}
+
+\begin{vplace}[0.7]
+  I am intrigued by the abstract formulation of `language'
+  as a set of symbols and rules that allow us to communicate
+  and reason about the world or specific aspects of it.
+  One of my other classes (theory of computation) is also
+  starting with an abstract look at language, albeit from
+  the perspective of trying to understand computation
+  and derive computing machines.
+  
+  From Wednesday's class,
+  I was somewhat unsure why we deduced the equivalence
+  of \crim{$A$ only if $B$} to \crim{$A \leftarrow B$}.
+  I am `if' and `if and only if' but
+  had never encountered `only if' on its own ---
+  but after reading through the material again,
+  I now understand the equivalence.
+
+  On the assigned reading,
+  Given any set of sentences $\tau$,
+  we say that \crim{$\varnothing \models \tau$}
+  (on page 23).
+  Is it also logically valid to say that \crim{$\tau \models \varnothing$}?
+  (Since if we have a valid set of rules
+  and add no further restrictions,
+  the rules remain valid)?
+  Could we therefore say any set of rules $\tau$ is
+  \emph{tautologically equivalent} to the empty set?
+\end{vplace}
+\bigskip
+\end{document}
