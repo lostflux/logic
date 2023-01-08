@@ -1,0 +1,31 @@
+
+\begin{problem}
+  Give three sentences in English together with translations into our formal language. The sentences should be chosen so as to have an interesting structure, and the translations should each contain 15 or
+  more symbols.
+\end{problem}
+\begin{Answer}
+  \flushleft{\textbf{Building Blocks}}
+  \begin{enumroman}
+    \item $S$: ``It is snowing.''
+    \item $C$: ``I am wearing a coat.''
+    \item $O$: ``I am outdoors.''
+    \item $F$: ``I am freezing.''
+    \item $H$: ``I run into the house.''
+    \item $G$: ``I am going to get sick.''
+  \end{enumroman}
+
+  \flushleft{\textbf{Sentences}}
+  \begin{enumroman}
+    \item ``It is snowing and I am outdoors; if I am not wearing a coat
+      then I am freezing and I must run into the house or I am going to get sick.''
+      \[ ((S \land O) \rightarrow ((\lnot C) \rightarrow  (F \land (H \lor G)))) \]
+  
+    \item ``If it is snowing and I am outdoors and I am wearing a coat,
+      I am not going to get sick if I do not run into the house.''
+      \[ (\ ((S \land O) \land C) \ \rightarrow \ ((\lnot H) \rightarrow (\lnot G)) \ ) \]
+
+    \item ``If I am outdoors and it is snowing, I can run into the house only if I am not sick.''
+      \[ (\ (O \land S) \rightarrow (H \leftarrow (\lnot G))) \]
+    \end{enumroman}
+\end{Answer}
+  

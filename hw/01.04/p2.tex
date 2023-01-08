@@ -1,0 +1,66 @@
+\setcounter{problem}{4}
+
+\begin{problem}
+  Suppose that $\alpha$ is a wff not containing the negation symbol $\lnot$.
+  Show that the length of $\alpha$ (i.e., the number of symbols in the string) is odd.
+
+  \begin{Answer}
+    We can prove that the length of $\alpha$ is odd by induction
+    on the number of sentence symbols in $\alpha$.
+
+    \textbf{\flushleft Base Case}~\label{base-case}
+    
+    Suppose $\alpha$ has a single sentence symbol.
+    Recall that $\alpha$ may not have the negation symbol $\lnot$.
+    For $\alpha$ to contain a single sentence symbol
+    and be a wff, it may not have any of the binary connectives
+    $\land$, $\lor$, $\rightarrow$, or $\leftrightarrow$, as those
+    would necessitate the inclusion of a second sentence symbol to retain the well-formulation.
+    Therefore, the wff must have a length of $1$ (since all connectives are disallowed).
+
+    \textbf{\flushleft Inductive Step}
+
+    Let $\alpha_n$ be a wff containing $n$ sentence symbols,
+    and having arbitrary length $l$ without loss of generality.
+    Consider the addition of a new sentence symbol $\beta$ to $\alpha_n$
+    to yield a new wff, $\alpha_{n+1}$, containing $n+1$ sentence symbols.
+
+    \begin{enumroman}
+      \item In the simplest case, $\beta$ is adjoined to the end
+        (or beginning) of $\alpha_n$
+        using a connective  \\ $* \in \{ \land,\ \lor,\ \rightarrow,\ \leftrightarrow \}$,
+      and the resulting phrase is wrapped in parentheses,
+      resulting in the wff \\ \crim{$\alpha_{n+1}~=~(\alpha_n~*~\beta)$}
+which has two additional parentheses,
+      one additional connective, and one additional sentence symbol.
+      Therefore, $\alpha_{n+1}$ has length $l+4$.
+
+      \item
+      In the more complicated case, $\beta$ is embedded into a subwff $\gamma$ of $\alpha_n$.
+      However, the length of $\gamma$ changes by $4$ as in case (a) above.
+      
+    \end{enumroman}
+
+    \noindent
+    Since the length of $\alpha_1$ is known (as shown in the base case),
+    we can recursively define the length of $\alpha_n$
+    for any number of sentence symbols $n$.
+    
+    \begin{align*}
+      \calL(n) = \begin{cases}
+        1 \quad &\text{if $n = 1$} \\
+        \calL(n-1) + 4 \quad &\text{otherwise}
+      \end{cases}
+    \end{align*}
+    In unrolling the recursion, the length function
+    becomes $\calL(n) = 4(n-1) + 1$ \\ (or~$\calL(n+1)= 4n + 1$).
+    We see that:
+    \begin{enumalph}
+      \item $\calL(n)$ is odd for all $n \geq 1$, since we have
+        the addition of $1$ to \crim{$4(n-1)$} which is always even or zero.
+      \item The ratio of sentence symbols in a wff ($n+1$) to its length ($4n + 1$)
+        is always greater than $1/4$, since
+        \[ \frac{n + 1}{4n + 1} > \frac{n+1}{4n+4} = 1/4 \]
+    \end{enumalph}
+  \end{Answer}
+\end{problem}
