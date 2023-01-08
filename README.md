@@ -1,3 +1,3 @@
 # latex
 
-My $\LaTeX$ base template
+Math 69: Logic
