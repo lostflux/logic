@@ -20,92 +20,55 @@
 
 \flushleft{\textbf{Comments}}
 
-I also  read through the part on recursions and
-I thought the recursive definitions of well-formed formulas
-as $n$-ary functions taking in $n$
-arguments (each of which may be a function applied to its arguments)
-made a lot of sense.
+I did not have any questions or confusions about the reading,
+but I also found the section on switching circuits to be very interesting
+since I've seen them show up in Computer Architecture.
+Will we be reviewing that section later, or is
+not relevant to our study of logic?
+\\
+Just for fun I built a simple circuit implementing exclusive-or
+from basic AND and OR gates, but the modeling program also supports
+exclusive-or as a built-in gate (and much more complicated logic and computing circuits)
 
-On the other hand, polish notation without parenthesizing
-the arguments felt more complicated than the infix notation we
-have been using thus far. I understand how it reduces ambiguity,
-but I found it more tasking to process and mentally parse the wffs written in polish notation.
+If classmates are interested I would be happy to demo
+how to model logic as with logisim.
 
-\flushleft{\textbf{Questions}}
+\includegraphics*[height=14cm,keepaspectratio]{xor.png}
 
-In the section about $0$-ary connectives,
-we say that $\top$ and $\bot$ can be thought of as
-the constants $T$ and $F$ having $\overline{v}(\bot) = F$ and $\overline{v}(\top) = T$
-for every $v$.
-Wouldn't we get a contradiction if we have a function that negates $v$?
-For instance, if $w = \lnot v$ for some function $v$,
-doesn't $\overline{w}(\bot) = \lnot \overline{v}(\bot)$ imply that
-$\overline{w}(\bot) = T$?
-
+\newpage
 \flushleft{\textbf{Exercises}}\\
-\begin{problem}
-  Let G be the following three-place Boolean function.
-  \begin{align*}
-    G(F, F, F) &= T,&
-    G(T, F, F) &= T,\\
-    G(F, F, T) &= T,&
-    G(T, F, T) &= F,\\
-    G(F, T, F) &= T,&
-    G(T, T, F) &= F,\\
-    G(F, T, T) &= F,&
-    G(T, T, T) &= F.
-  \end{align*}
-  \begin{enumalph}
-    \item Find a wff using at most the connectives $\land, \lor$, and $\lnot$,
-      that realizes $G$.
-      \begin{Answer}
-        Truth table for $G$:
+  \begin{problem}
+    Give an example of a set $S$ of wffs such that
+    every two-element subset of $S$ is satisfiable
+    but $S$ is not satisfiable.
+    \emph{
+      (It is possible to do this with $S$ having exactly 3 elements,
+      but it is okay if your set is bigger.)}
+  \end{problem}
+  \begin{Answer}
+    Let $S$ be a set of $3$ wffs such that two wffs are independent of each other
+    but the third wff places a condition on the first two wffs,
+    such as:
+    \[S = \{ \alpha, \beta, \lnot(\alpha \land \beta)\}.\]
+    with the two-element subsets
+    \begin{align*}
+      S_1 &= \{ \alpha, \beta \} \\
+      S_2 &= \{ \alpha, \lnot(\alpha \land \beta) \} \\
+      S_3 &= \{ \beta, \lnot(\alpha \land \beta) \}
+    \end{align*}
+    \\
+    Then, $S$ is not satisfiable
+    (since setting $\alpha = T$ and $\beta = T$ violates the third wff).\\
+    However, each of the subsets $S_1, S_2, S_3$ is satisfiable.
+    \\\\
+    \textbf{Another example:}
 
-        \begin{tabular}{ c c c c }
-          $\alpha$ & $\beta$ & $\gamma$ & $G(\alpha, \beta, \gamma)$ \\
-          \bottomrule
-          $T$ & $T$ & $T$ & $F$ \\
-          \midrule
-          $T$ & $T$ & $F$ & $F$ \\
-          \midrule
-          $T$ & $F$ & $T$ & $F$ \\
-          \midrule
-          $T$ & $F$ & $F$ & $T$ \\
-          \midrule
-          $F$ & $T$ & $T$ & $F$ \\
-          \midrule
-          $F$ & $T$ & $F$ & $T$ \\
-          \midrule
-          $F$ & $F$ & $T$ & $T$ \\
-          \midrule
-          $F$ & $F$ & $F$ & $T$ \\
-          \toprule
-        \end{tabular}
-        \\ \\
-        $G(\alpha, \beta, \gamma)$ always disagrees with the majority
-        of $\alpha$, $\beta$, and $\gamma$.
-        
-        \noindent
-        That is, 
-        \[ 
-          G(\alpha, \beta, \gamma ) = 
-            \lnot (
-              (\alpha \land \beta ) \lor (\alpha \land \gamma )
-              \lor (\beta \land \gamma )
-            )
-        \]
-
-      \end{Answer}
-    \item Then find such a wff in which connective symbols occur at not more than $5$ places.
-      \begin{Answer}
-        \[ G(\alpha, \beta, \gamma) = \lnot(\# \alpha \beta \gamma)\]
-
-        Using only $\land, \lor, \lnot$:
-
-        \[ G(\alpha, \beta, \gamma) = \lnot(\;(\alpha \land (\beta \lor \gamma))\; \lor \; (\beta \land \gamma))\]
-      \end{Answer}
-  \end{enumalph}
-\end{problem}
-% \end{vplace}
+    \begin{align*}
+      S &= \{ \lnot \alpha, \lnot \beta, (\alpha \lor \beta)\} \\
+      S_1 &= \{ \lnot \alpha, \lnot \beta \} \\
+      S_2 &= \{ \lnot \alpha, (\alpha \lor \beta) \} \\
+      S_3 &= \{ \lnot \beta, (\alpha \lor \beta) \}  \\
+    \end{align*}
+  \end{Answer}
 \bigskip
 \end{document}

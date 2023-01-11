@@ -1,0 +1,82 @@
+
+\begin{problem}
+  \begin{enumalph}
+    \item Is $(((P \lto Q) \lto P) \lto P)$ a tautology?
+      \begin{Answer}
+        Yes. Let's start by constructing a simple truth table for
+        the connective $(\lto)$.\\
+        \begin{center}
+          \begin{tabular}{c c c}
+            \bottomrule
+            $\alpha$ & $\beta$ & $\alpha \lto \beta$\\
+            \midrule
+            $T$ & $T$ & $T$\\
+            \midrule
+            $T$ & $F$ & $F$\\
+            \midrule
+            $F$ & $T$ & $T$\\
+            \midrule
+            $F$ & $F$ & $T$\\
+            \toprule\\    
+          \end{tabular}
+        \end{center}
+        Suppose $\vbar(\crim{((P \lto Q) \lto P)} \lto \zaff{P}) = F$.\\
+        From the truth table, we can infer that $v((P \lto Q) \lto P) = T$ and $v(P) = F$.\\
+        But if $\vbar((P \lto Q) \lto P) = T$ and $v(P) = F$,
+        then $\vbar(P \lto Q) = F$.\\
+        However, if $v(P) = F$ implies that $\vbar(P \lto Q) = T$
+        irrespective of the value of $Q$, which contradicts the deduction that $\vbar(P \lto Q) = F$.
+        \\\\
+        Therefore, $\vbar(((P \lto Q) \lto P) \lto P) = T$ for all possible values of $P$ and $Q$.
+      \end{Answer}
+    \item Define $\sigma_k$ recursively as follows:
+      \begin{align*}
+        \sigma_0 &= (P \lto Q) \\
+        \sigma_{k+1} &= (\phi_k \lto P).
+      \end{align*}
+      For which values of $k$ is $\sigma_k$ a tautology?
+      \emph{Note: Part A corresponds to $k=2$.}
+      \begin{Answer}
+        We can prove that $\sigma_k$ whenever (and only when) $k$ is a non-zero positive integer
+        by induction on $k$.
+        
+        \noindent
+        \textbf{Base Cases:}
+        \begin{enumroman}
+          \item $k=0$:
+            $\sigma_0 = (P \lto Q)$ is not a tautology, since $\vbar(P \lto Q) = F$
+              whenever $v(P) = T$ and $v(Q) = F$.
+          \item $k=1$: $\sigma_0 \lto P$ is also not a tautology;
+            if $v(P) = F$, then $\vbar(\sigma_0) = T$ and $\vbar(\sigma_0 \lto P) = F$.
+          \item However, $\sigma_2$ is a tautology (see part (a) for proof).
+        \end{enumroman}
+        \textbf{Inductive Step:}
+        
+          \noindent
+          Suppose $\sigma_k$ is a tautology,
+          then  $\vbar(\sigma_k) = T$ for all values of $P$ and $Q$.
+          
+          \step
+          First, consider $\sigma_{k+1} = (\sigma_k \lto P)$.
+          Since $\sigma_k$ is a tautology, $\sigma_{k+1} = (T \lto v(P))$.
+          Therefore, $\sigma_{k+1} = T$ whenever $v(P) = T$, and $\sigma_{k+1} = F$
+          whenever $v(P) = F$ (or, $\sigma_{k+1}) = v(P)$.
+          When $v(P) = F$, $\sigma_{k+1} = F$, therefore $\sigma_{k+1}$ is not a tautology.
+          
+          \step
+          Next, consider $\sigma_{k+2} = (\sigma_{k+1} \lto P)$.
+          As demonstrated above, whenever $\sigma_k$ is a tautology,
+          we have that $\sigma_{k+1} = v(P)$.
+          This means $\sigma_{k+2} = (v(P) \lto P)$, which evaluates to $T$
+          for all possible values of $P$.
+          Therefore, $\sigma_{k+2}$ is a tautology.
+
+          \step
+          By induction, we can conclude that whenever $\sigma_k$ is a tautology,
+          then $\sigma_{k+1}$ is not a tautology, but $\sigma_{k+2}$ is a tautology.
+          Since the first tautology in the sequence is $\sigma_2$,
+          the set of tautologies will be the set $\{ \sigma_n \mid n \in \{2, 4, 6, 8, \ldots \} \}$
+          --- that is, $\sigma_n$ is a tautology whenever $n$ is an even positive integer.
+      \end{Answer}
+  \end{enumalph}
+\end{problem}

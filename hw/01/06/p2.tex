@@ -1,0 +1,60 @@
+
+\begin{problem}
+  \emph{Recall that $\Sigma ; \alpha = \Sigma \cup \{ \alpha \}$,
+  the set $\Sigma$ together with the one possibly new member $\alpha$.}
+  \\
+  Show that the following hold:
+  \begin{enumalph}
+    \item $\Sigma ; \alpha \models \beta \iff \Sigma \models (\alpha \lto \beta)$.
+    \begin{Answer}
+      \begin{enumroman}
+        \item $\Sigma ; \alpha \models \beta \implies \Sigma \models (\alpha \lto \beta)$
+        
+          \step
+          Suppose $\Sigma ; \alpha \models \beta$.
+          Let $v$ be a truth assignment satisfying $\Sigma$.
+
+          \step
+          If $\vbar(\alpha) = T$, then $v$ satisfies $\Sigma ; \alpha$
+          (since $v$ already satisfies $\Sigma$), and $\Sigma ; \alpha \models \beta$,
+          implying that $\vbar(\beta) = T$.
+          Therefore, $\vbar(\alpha \lto \beta) = (T \lto T) = T$.
+
+          \step
+          If $\vbar(\alpha) = F$, then $\vbar(\alpha \lto \beta) = (F \lto \vbar(\beta)) = T$.
+
+        \step
+        \item $\Sigma ; \alpha \models \beta \backimplies \Sigma \models (\alpha \lto \beta)$
+        
+          \step
+          Suppose $\Sigma \models (\alpha \lto \beta)$ but $\Sigma ; \alpha \nmodels \beta$.
+
+          \step
+          Let $v$ be a truth assignment satisfying $\Sigma$.
+          Suppose $\vbar(\alpha) = T$.
+          \begin{itemize}
+            \item First, we can note that
+              $\vbar(\alpha) = T$ implies that $v$ satisfies $\Sigma ; \alpha$,
+              which further implies that $\vbar(\beta) = F$, since $\Sigma ; \alpha \nmodels \beta$.
+            \item Next, since $\Sigma \models (\alpha \to \beta)$,
+              $\vbar(\alpha) = T$ implies $\vbar(\beta) = T$. This is a contradiction.
+          \end{itemize}
+        Therefore, it must be the case that $\Sigma \models (\alpha \lto \beta) \implies \Sigma ; \alpha \models \beta $
+      \end{enumroman}
+    \end{Answer}
+    \item $\alpha \models \backmodels \beta \iff \models (\alpha \leftrightarrow \beta)$.  
+    \begin{Answer}
+      Let $v$ be any truth assignment to $\alpha$ and $\beta$
+      satisfying the wff $\alpha \models \backmodels \beta$. Then:
+      \begin{itemize}
+        \item $\vbar(\beta) = T$ whenever $\vbar(\alpha) = T$ (since $\alpha \models \beta)$.
+        \item $\vbar(\alpha) = T$ whenever $\vbar(\beta) = T$ (since $\beta \models \alpha)$.
+        \item Consequently, $\lnot (\vbar(\alpha)) \leftrightarrow \lnot (\vbar(\beta))$,
+        implying that $\vbar(\alpha \leftrightarrow \beta) = T$.
+      \end{itemize}
+      Therefore, any truth assignment to $\alpha$ and $\beta$
+      satisfying the wff $\alpha \models \backmodels \beta$ also satisfies
+      $\models (\alpha \leftrightarrow \beta)$.
+    \end{Answer}
+  \end{enumalph}
+\end{problem}
