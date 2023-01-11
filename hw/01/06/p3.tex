@@ -7,59 +7,43 @@
     \item If either $\Sigma \models \alpha$ or $\Sigma \models \beta$,
       then $\Sigma \models (\alpha \lor \beta)$.
       \begin{Answer}
-        Yes.
-        \\
+        True.
         
-        \begin{enumroman}
-          \item Note that if $\Sigma \models \alpha$ then $\Sigma ; \alpha$ is finitely satisfiable.
-            Similarly, if $\Sigma \models \beta$ then $\Sigma ; \beta$ is finitely satisfiable.~\label{cor:5.1}
-          \item However, if $\Sigma \nmodels (\alpha \lor \beta)$
-            then $\Sigma ; (\alpha \lor \beta)$ is \emph{not} finitely satisfiable.~\label{cor:5.2}
-          \item Suppose that either $\Sigma \models \alpha$ or $\Sigma \models \beta$,
-            but $\Sigma \nmodels (\alpha \lor \beta)$.
-            By finite satisfiability,
-            either there exists some finite subset
-            $\Sigma_\alpha \subseteq \Sigma$ such that $\Sigma_\alpha ; \alpha$ is satisfiable,
-            or there exists some finite subset $\Sigma_\beta \subseteq \Sigma$
-            such that $\Sigma_\beta ; \beta$ is satisfiable.
-          \item Let $\Sigma_\gamma = \Sigma_\alpha \cup \Sigma_\beta$
-            (substituting the empty set for any nonexisting set),\\
-            then either $\Sigma_\gamma ; \alpha$ is satisfiable or $\Sigma_\gamma ; \beta$ is satisfiable,
-            implying that $\Sigma_\gamma ; (\alpha \lor \beta)$ is satisfiable.
-          \item But if $\Sigma_\gamma ; (\alpha \lor \beta)$ is satisfiable,
-            and $\Sigma_\gamma \subseteq \Sigma$, then $\Sigma ; (\alpha \lor \beta)$ is finitely satisfiable.~\label{cor:5.3}
-          \item Comparing step (b) and step (e), we see a clear contradiction,
-            implying that whenever either $\Sigma \models \alpha$ or $\Sigma \models \beta$,
-            it must be the case that $\Sigma \models (\alpha \lor \beta)$.
-        \end{enumroman}
+        \step
+        Suppose $\Sigma \models \alpha$, and let $v$ be any truth assignment satisfying $\Sigma$.
+        Then $\vbar(\alpha) = T$, which implies that $\vbar(\alpha \lor \beta)
+        = (T \lor \vbar(\beta)) = T$.
+
+        \noindent
+        Therefore, $\Sigma \models \alpha \implies \Sigma \models (\alpha \lor \beta)$.
+
+        \step
+        In the alternate case, suppose $\Sigma \models \beta$,
+        and let $v$ be a truth assignment satisfying $\Sigma$.
+        Then $\vbar(\beta)~=~T$, which implies that $\vbar(\alpha \lor \beta)
+        = (\vbar(\alpha) \lor T) = T$.
+
+        \noindent
+        Therefore, $\Sigma \models \beta \implies \Sigma \models (\alpha \lor \beta)$.
       \end{Answer}
     \item If $\Sigma \models (\alpha \lor \beta)$, then either $\Sigma \models \alpha$
       or $\Sigma \models \beta$.
       \begin{Answer}
-        Yes.
-        \\
-        
-        \begin{enumroman}
-          \item Note that if $\Sigma \models (\alpha \lor \beta)$ then $\Sigma ; (\alpha \lor \beta)$ is finitely satisfiable.~\label{cor:5.4}
-          \item However, if $\Sigma \nmodels \alpha$ and $\Sigma \nmodels \beta$,
-            then $\Sigma ; \alpha$ and $\Sigma ; \beta$ are \emph{not} finitely satisfiable.~\label{cor:5.5}
-          \item Suppose that $\Sigma \models (\alpha \lor \beta)$,
-            but $\Sigma \nmodels \alpha$ and $\Sigma \nmodels \beta$.
-            By finite satisfiability,
-            either there exists some finite subset
-            $\Sigma_\alpha \subseteq \Sigma$ such that $\Sigma_\alpha ; \alpha$ is satisfiable,
-            or there exists some finite subset $\Sigma_\beta \subseteq \Sigma$
-            such that $\Sigma_\beta ; \beta$ is satisfiable.
-          \item Let $\Sigma_\gamma = \Sigma_\alpha \cup \Sigma_\beta$
-            (substituting the empty set for any nonexisting set),\\
-            then either $\Sigma_\gamma ; \alpha$ is satisfiable or $\Sigma_\gamma ; \beta$ is satisfiable,
-            implying that $\Sigma_\gamma ; (\alpha \lor \beta)$ is satisfiable.
-          \item But if $\Sigma_\gamma ; (\alpha \lor \beta)$ is satisfiable,
-            and $\Sigma_\gamma \subseteq \Sigma$, then $\Sigma ; (\alpha \lor \beta)$ is finitely satisfiable.~\label{cor:5.6}
-          \item Comparing step (b) and step (e), we see a clear contradiction,
-            implying that whenever $\Sigma \models (\alpha \lor \beta)$,
-            it must be the case that either $\Sigma \models \alpha$ or $\Sigma \models \beta$.
-        \end{enumroman}
+        True.
+
+        \step
+        Suppose $\Sigma \models (\alpha \lor \beta)$ but $\Sigma \nmodels \alpha$ and $\Sigma \nmodels \beta$.
+
+        \noindent
+        Let $v$ be any truth assignment satisfying $\Sigma$, then:
+        \begin{itemize}
+          \item $\vbar(\alpha \lor \beta) = T$ since $\Sigma \models (\alpha \lor \beta)$,
+            which implies that either $\vbar(\alpha) = T$ or $\vbar(\beta) = T$.
+          \item $\vbar(\alpha) = F$ since $\Sigma \nmodels \alpha$.
+          \item $\vbar(\beta) = F$ since $\Sigma \nmodels \beta$.
+        \end{itemize}
+        This is a clear contradiction, thus it must be the case that either
+        $\Sigma \models \alpha$ or $\Sigma \models \beta$ whenever $\Sigma \models (\alpha \lor \beta)$.
       \end{Answer}
   \end{enumalph}
 \end{problem}

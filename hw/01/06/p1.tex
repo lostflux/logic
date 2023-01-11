@@ -4,7 +4,9 @@
     \item Is $(((P \lto Q) \lto P) \lto P)$ a tautology?
       \begin{Answer}
         Yes. Let's start by constructing a simple truth table for
-        the connective $(\lto)$.\\
+        the connective $(\lto)$.
+
+        \step
         \begin{center}
           \begin{tabular}{c c c}
             \bottomrule
@@ -20,14 +22,25 @@
             \toprule\\    
           \end{tabular}
         \end{center}
-        Suppose $\vbar(\crim{((P \lto Q) \lto P)} \lto \zaff{P}) = F$.\\
-        From the truth table, we can infer that $v((P \lto Q) \lto P) = T$ and $v(P) = F$.\\
-        But if $\vbar((P \lto Q) \lto P) = T$ and $v(P) = F$,
-        then $\vbar(P \lto Q) = F$.\\
-        However, if $v(P) = F$ implies that $\vbar(P \lto Q) = T$
-        irrespective of the value of $Q$, which contradicts the deduction that $\vbar(P \lto Q) = F$.
-        \\\\
-        Therefore, $\vbar(((P \lto Q) \lto P) \lto P) = T$ for all possible values of $P$ and $Q$.
+        Let $v$ be a truth assignment, and suppose
+        $\vbar(((P \lto Q) \lto P) \crim{\lto} \zaff{P}) = F$.
+
+        \noindent
+        From the second row of the truth table, we can infer that $\vbar((P \lto Q) \lto P) = T$ and $\vbar(P) = F$.
+
+        \noindent
+        But if $\vbar((P \lto Q) \crim{\lto} P) = T$ and $v(P) = F$,
+        then we can infer from the fourth row of the truth table that $\vbar(P \lto Q) = F$.
+
+        \noindent
+        However, since we earlier inferred that $v(P) = F$,
+        the truth table tells us that $\vbar(P \lto Q) = T$
+        irrespective of the value of $Q$.
+        This contradicts the deduction that $\vbar(P \lto Q) = F$.
+        
+        \step
+        Therefore, it must be that $\vbar(((P \lto Q) \lto P) \lto P) = T$
+        for any truth assignment to $P$ and $Q$.
       \end{Answer}
     \item Define $\sigma_k$ recursively as follows:
       \begin{align*}
