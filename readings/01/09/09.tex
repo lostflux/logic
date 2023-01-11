@@ -1,0 +1,111 @@
+% \documentclass[11pt, reqno]{amsart}
+\documentclass[english, 11pt]{amsart}
+
+\input{../../../common/macros.tex}
+\usepackage[backend=bibtex,style=science]{biblatex}
+\bibliography{main.bib}
+\pgfplotsset{compat=1.18}
+
+\pagestyle{fancy}                         % fancy (allow headers, footers)
+\fancyhf{}                                % clear all header/footer settings.
+\cfoot{\thepage}                          % set page-numbers in footer.
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\begin{document}
+
+\setlength{\headheight}{13.0pt}
+\setlength{\footskip}{15.0pt}
+
+\input{cover}
+
+\flushleft{\textbf{Comments}}
+
+I also  read through the part on recursions and
+I thought the recursive definitions of well-formed formulas
+as $n$-ary functions taking in $n$
+arguments (each of which may be a function applied to its arguments)
+made a lot of sense.
+
+On the other hand, polish notation without parenthesizing
+the arguments felt more complicated than the infix notation we
+have been using thus far. I understand how it reduces ambiguity,
+but I found it more tasking to process and mentally parse the wffs written in polish notation.
+
+\flushleft{\textbf{Questions}}
+
+In the section about $0$-ary connectives,
+we say that $\top$ and $\bot$ can be thought of as
+the constants $T$ and $F$ having $\overline{v}(\bot) = F$ and $\overline{v}(\top) = T$
+for every $v$.
+Wouldn't we get a contradiction if we have a function that negates $v$?
+For instance, if $w = \lnot v$ for some function $v$,
+doesn't $\overline{w}(\bot) = \lnot \overline{v}(\bot)$ imply that
+$\overline{w}(\bot) = T$?
+
+\flushleft{\textbf{Exercises}}\\
+\begin{problem}
+  Let G be the following three-place Boolean function.
+  \begin{align*}
+    G(F, F, F) &= T,&
+    G(T, F, F) &= T,\\
+    G(F, F, T) &= T,&
+    G(T, F, T) &= F,\\
+    G(F, T, F) &= T,&
+    G(T, T, F) &= F,\\
+    G(F, T, T) &= F,&
+    G(T, T, T) &= F.
+  \end{align*}
+  \begin{enumalph}
+    \item Find a wff using at most the connectives $\land, \lor$, and $\lnot$,
+      that realizes $G$.
+      \begin{Answer}
+        Truth table for $G$:
+
+        \begin{tabular}{ c c c c }
+          $\alpha$ & $\beta$ & $\gamma$ & $G(\alpha, \beta, \gamma)$ \\
+          \bottomrule
+          $T$ & $T$ & $T$ & $F$ \\
+          \midrule
+          $T$ & $T$ & $F$ & $F$ \\
+          \midrule
+          $T$ & $F$ & $T$ & $F$ \\
+          \midrule
+          $T$ & $F$ & $F$ & $T$ \\
+          \midrule
+          $F$ & $T$ & $T$ & $F$ \\
+          \midrule
+          $F$ & $T$ & $F$ & $T$ \\
+          \midrule
+          $F$ & $F$ & $T$ & $T$ \\
+          \midrule
+          $F$ & $F$ & $F$ & $T$ \\
+          \toprule
+        \end{tabular}
+        \\ \\
+        $G(\alpha, \beta, \gamma)$ always disagrees with the majority
+        of $\alpha$, $\beta$, and $\gamma$.
+        
+        \noindent
+        That is, 
+        \[ 
+          G(\alpha, \beta, \gamma ) = 
+            \lnot (
+              (\alpha \land \beta ) \lor (\alpha \land \gamma )
+              \lor (\beta \land \gamma )
+            )
+        \]
+
+      \end{Answer}
+    \item Then find such a wff in which connective symbols occur at not more than $5$ places.
+      \begin{Answer}
+        \[ G(\alpha, \beta, \gamma) = \lnot(\# \alpha \beta \gamma)\]
+
+        Using only $\land, \lor, \lnot$:
+
+        \[ G(\alpha, \beta, \gamma) = \lnot(\;(\alpha \land (\beta \lor \gamma))\; \lor \; (\beta \land \gamma))\]
+      \end{Answer}
+  \end{enumalph}
+\end{problem}
+% \end{vplace}
+\bigskip
+\end{document}
