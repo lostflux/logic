@@ -1,0 +1,67 @@
+% \documentclass[11pt, reqno]{amsart}
+\documentclass[english, 11pt]{amsart}
+
+\input{../../../common/macros.tex}
+\usepackage[backend=bibtex,style=science]{biblatex}
+\bibliography{main.bib}
+\pgfplotsset{compat=1.18}
+
+\pagestyle{fancy}                         % fancy (allow headers, footers)
+\fancyhf{}                                % clear all header/footer settings.
+\cfoot{\thepage}                          % set page-numbers in footer.
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\begin{document}
+
+\setlength{\headheight}{13.0pt}
+\setlength{\footskip}{15.0pt}
+
+\input{cover}
+% \newpage
+% \flushleft{\textbf{Exercises}}\\
+  \begin{problem}
+    Is the set of wffs that are not tautologies decidable?
+    Explain briefly.
+  \end{problem}
+  \begin{Answer}
+    Yes, the set is decidable.
+    
+    \step
+    Since the set of all tautologies is decidable
+    (Taking the set of all tautologies
+    as the tautological implications of the empty set,
+    then Theorem $17$C and Corollary $17$D tell us that
+    the tautological implications of a finite set are decidable).
+    Let $T$ be the list of all tautologies, then
+    the set of all wffs that are not tautologies is
+    \[
+      U = \{ x : x \text{ is a wff and } x \notin T \}.  
+    \]
+    Since $T$ is decidable:
+    \begin{itemize}
+      \item We can always evaluate whether a wff is in $T$,
+        thus determine if it is not in $U$.
+      \item We can always evaluate whether a wff is not in $T$,
+        thus determine if it is in $U$.
+    \end{itemize}
+    Therefore, $U$ is decidable.
+
+  \end{Answer}
+    \step
+    \begin{blockcolor}
+      \begin{center}\textbf{Questions} \end{center}
+
+      \step
+      If we had an infinite set $\Sigma$,
+      then it may be semidecidable, then we may not
+      be able to determine if a wff is not in the set.
+      In this case, would it be correct to infer that the set of all wffs
+      that are not tautological consequences of $\Sigma$
+      is not decidable?
+
+      \step
+      In general, is it always true to say that the complement of a
+      decidable set is decidable?
+    \end{blockcolor}
+\bigskip
+\end{document}
