@@ -1,0 +1,64 @@
+% \documentclass[11pt, reqno]{amsart}
+\documentclass[english, 11pt]{amsart}
+
+\input{../../../common/macros.tex}
+\usepackage[backend=bibtex,style=science]{biblatex}
+\bibliography{main.bib}
+\pgfplotsset{compat=1.18}
+
+\pagestyle{fancy}                         % fancy (allow headers, footers)
+\fancyhf{}                                % clear all header/footer settings.
+\cfoot{\thepage}                          % set page-numbers in footer.
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\begin{document}
+
+\setlength{\headheight}{13.0pt}
+\setlength{\footskip}{15.0pt}
+
+\input{cover}
+  \begin{problem}
+    Assume that we have a language with the following parameters:
+    \begin{itemize}
+      \item $\forall$, intended to mean ``for all things'';
+      \item $N$, intended to mean ``is a number'';
+      \item $I$, intended to mean ``is interesting'';
+      \item $<$, intended to mean ``is less than'';
+      \item and $0$, a constant symbol intended to denote zero.
+    \end{itemize}
+  Translate into this language the English sentences listed below.
+  
+  \step
+  \emph{If the English sentence is ambiguous,
+        you will need more than one translation.}
+
+  \begin{enumalph}
+    \setcounter{enumi}{1}
+    % \item Zero is less than any number.
+    % \begin{Answer}
+    %   \[
+    %     \forall x \left( Nx \to (0 < x) \right)
+    %   \]
+    % \end{Answer}
+    \item If any number is interesting, then zero is interesting.
+    \begin{Answer}
+      \[
+        \forall x \left( Nx \to Ix \right) \to I0
+      \]
+    \end{Answer}
+  \end{enumalph}
+\end{problem}
+    \step
+    \begin{blockcolor}
+      \begin{center}\textbf{Questions} \end{center}
+
+      \step
+      I am somewhat confused about free variables.
+      I understand the example and recursive explanation of
+      what free variables are ---
+      but I do not understand the context around free variables.
+      Is it ``free'' because it is singular (i.e. not declared in some way
+      before use, like in $y$ in $\forall x\ x \in x y$)?
+    \end{blockcolor}
+\bigskip
+\end{document}
