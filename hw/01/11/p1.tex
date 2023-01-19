@@ -1,0 +1,32 @@
+\begin{problem}
+  Show that from the corollary to the compactness theorem
+  we can prove the compactness theorem itself
+  (far more easily than we can starting from scratch).
+
+  \begin{blockcolor}
+    \textbf{Compactness Theorem:} A set of wffs is satisfiable
+    iff every finite subset is satisfiable.
+
+    \textbf{Corollary:} If $\Sigma \models \tau$, then there exists
+    a finite subset $\Sigma_0$ such that $\Sigma_0 \models \set{\tau}$
+  \end{blockcolor}
+\end{problem}
+\begin{Answer}
+  % Suppose every finite subset $\Sigma_0 \subseteq \Sigma$ is satisfiable.
+
+  \step
+  For each element $\alpha \in \Sigma$, fix a finite set
+  $\Sigma_\alpha \subseteq \Sigma$ such that $\alpha \in \Sigma_\alpha$.
+  Since $\alpha \in \Sigma_\alpha$, $\Sigma_\alpha \cup \set{\lnot \alpha}$
+  is not satisfiable, so $\Sigma_\alpha \models \alpha$.
+  Therefore, any truth assignment $v$ that satisfies $\Sigma_\alpha$
+  must assign $v(\alpha) = T$.
+
+  \step
+  If every such subset $\Sigma_\alpha$ is satisfiable
+  for all elements $\alpha \in \Sigma$, then there exists a truth assignment
+  $v$ such that $v(\alpha) = T$ for all $\alpha \in \Sigma$,
+  implying that $\Sigma$ is satisfiable.
+
+\end{Answer}
+

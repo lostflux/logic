@@ -1,0 +1,25 @@
+\documentclass[12pt]{amsart}
+
+% Include the macros file from `../common'
+\input{../../../common/macros.tex}
+
+\pagestyle{fancy}                       % fancy (allow headers, footers)
+\fancyhf{}                              % clear all header/footer settings.
+\cfoot{\thepage}                        % set page-numbers in footer.
+\lhead{\textit{\textbf{ Amittai, S}}}   % set name in header, left.
+\rhead{\textsc{Math 69:\@ Logic}}         % set class name in header, right.
+
+\renewcommand{\theenumi}{\alph{enumi}}
+
+\begin{document}
+\setlength{\headheight}{13.0pt}
+\setlength{\footskip}{13.0pt}
+\input{cover.tex}
+
+% PROBLEM 1
+\setcounter{problem}{7}
+\input{p1}
+
+\vfill
+
+\end{document}

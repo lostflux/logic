@@ -1,0 +1,22 @@
+\begin{problem}
+  \begin{enumalph}
+    \setcounter{enumi}{1}
+      \item Explain why the intersection of two effectively
+      enumerable sets is again effectively enumerable.
+      \begin{Answer}
+        Suppose $A$ and $B$ are two effectively enumerable sets, then:
+        \begin{enumroman}
+          \item We can list members of $A$ (by definition of effective
+            enumeration), and every member of $A$ will eventually
+            be listed.
+          \item We can list members of $B$ in the same manner.
+        \end{enumroman}
+
+        \step
+        Since all members of $A \cap B$ are members of both $A$ and $B$,
+        we can list members of $A \cap B$ by listing members of $A$,
+        listing members of $B$,
+        and comparing which elements show up in both listings.
+      \end{Answer}
+  \end{enumalph}
+\end{problem}

@@ -1,0 +1,56 @@
+\begin{problem}
+  In 1977, it was proved that every planar mapcan be colored with four colors.
+  Of course, the definition of ``map'' requires that
+  there be only finitely many countries.
+  But extending the concept, suppose we have an infinite
+  (but countable) planar map with countries $C_1, C_2, C_3, \ldots$.
+  Prove that this infinite planar map can still be colored with four colors.
+  
+  \step
+  Suggestion:
+  \begin{enumroman}
+    \item Partition the sentence symbols into four parts.
+    One sentence symbol, for example, can be used to translate,
+    ``Country C7 is colored red.''
+    \item
+    Form a set $\Sigma_1$ of wffs that say, for example,
+    $C_7$ is exactly one of the colors.
+    
+    \item
+    Form another set $\Sigma_2$ of wffs that say,
+    for each pair of adjacent countries, that they are not the same color.
+    
+    \item
+    Apply compactness to $\Sigma_1 \cup \Sigma_2$.
+  \end{enumroman}
+\end{problem}
+
+\begin{Answer}
+  First, we define constraints to ensure every country is colored.
+  Suppose we use the four colors red, green, blue, and yellow,
+  with the symbols $\alpha_{(n, 1)}$, $\alpha_{(n, 2)}$, $\alpha_{(n, 3)}$, and $\alpha_{(n, 4)}$
+  used to indicate that country $C_n$ is colored red, green, blue, or yellow
+  respectively.
+  
+  \step
+  We need to define constraints to ensure every country is colored:
+  \[ \Sigma_1 = \set{(\alpha_{(n, 1)} \lor \alpha_{(n, 2)} \lor \alpha_{(n, 3)} \lor \alpha_{(n, 4)}) : n \in \Z_{>0}}. \]
+
+  \step
+  We then need to ensure each country is only colored a single color:
+  \[ \Sigma_2 = \set{(\alpha_{(n, i)} \to \lnot\alpha_{(n, j)}) : n \in \Z_{>0}, 1 \le i < j \le 4}\]
+  
+  \step
+  Next, we need to make sure every pair of adjacent countries $C_a$ and $C_b$
+  are not colored the same color.
+  \[ \Sigma_3 = \set{(\alpha_{(a, i)} \to \lnot \alpha_{(b, i)}) : \text{$C_a$ and $C_b$ are adjacent}}.\]
+
+  \step
+  Let $\Sigma = \Sigma_1 \cup \Sigma_2 \cup \Sigma_3$.
+  As proven before, finite planar maps can be colored with four colors,
+  so $\Sigma$ is finitely satisfiable.
+  The compactness theorem tells us that $\Sigma$ is satisfiable iff $\Sigma$ is finitely satisfiable,
+  so it is possible to color every country in the infinite planar map.
+
+  
+\end{Answer}

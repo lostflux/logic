@@ -1,0 +1,55 @@
+\begin{problem}
+  Let $\Sigma$ be an effectively enumerable set of wffs.
+  Assume that for each wff $\tau$, either $\Sigma \models \tau$
+  or $\Sigma \models \lnot \tau$.
+  Show that the set of tautological consequences of $\Sigma$ is decidable.
+  \begin{enumalph}
+    \item Do this where ``or'' is interpreted in the exclusive sense:
+      either $\Sigma \models \tau$ or $\Sigma \models \lnot \tau$,
+      but not both.
+      \begin{Answer}
+        The compactness theorem tells us that if $\Sigma \models \tau$,
+        then there exists a finite subset $\Sigma_0$ such that $\Sigma_0 \models \set{\tau}$.
+        
+        \step
+        Since $\Sigma$ is effectively enumerable,
+        we can create an algorithm to list members of $\Sigma$,
+        where $\sigma_k$ is the $k$th member of $\Sigma$ to be listed.
+        We can then generate finite subsets of $\Sigma$ by taking an increasing set of the listed elements,
+        say \[
+          \Sigma_i = \begin{cases}
+            \varnothing& \text{ if $i = 0$. }\\
+            \Sigma_{i-1} \cup \set{\sigma_i} &\text{ otherwise. }
+          \end{cases}
+        \]
+
+        \step
+        For any arbitrary wff $\tau$, since either $\Sigma \models \tau$ or $\Sigma \models \lnot \tau$,
+        there \emph{must} be some finite $\Sigma_k \subseteq \Sigma$ such that either $\Sigma_k \models \set{\tau}$
+        or $\Sigma_k \models \set{\lnot \tau}$.
+        When we find such a subset, we can mark $\tau$ as a tautological consequence of $\Sigma$
+        or mark $\lnot \tau$ as a tautological consequence of $\Sigma$.
+        If the condition does not yet hold, we can keep growing our subset.
+      \end{Answer}
+    \item Do this where ``or'' is interpreted in the inclusive sense:
+      either $\Sigma \models \tau$ or $\Sigma \models \lnot \tau$,
+      or both.
+      \begin{Answer}
+        There are two scenarios: the exclusive case and the inclusive case.
+        In the exclusive case, we can proceed as in part $a$.
+        In the inclusive case, the compactness theorem tells us that:
+        \begin{enumroman}
+          \item There must exist a finite $\Sigma_1 \subseteq \Sigma$ such that $\Sigma_1 \models \tau$.
+          \item There must also exist a finite $\Sigma_2 \subseteq \Sigma$ such that $\Sigma_2 \models \lnot \tau$.
+        \end{enumroman}
+
+        \noindent
+        Take $\Sigma_3 = \Sigma_1 \cup \Sigma_2 \subseteq \Sigma$.
+        Then $\Sigma_3 \models \set{\tau}$ and $\Sigma_3 \models \set{\lnot \tau}$.
+
+        \noindent
+        Since no truth assignment may assign both $\tau$ and $\lnot \tau$,
+        $\Sigma$ is not satisfiable and we may infer anything from the set $\Sigma$.
+      \end{Answer}
+  \end{enumalph}
+\end{problem}

@@ -1,0 +1,27 @@
+\begin{problem}
+  Where $\Sigma$ is a set of wffs,
+  define a deduction from $\Sigma$ to be a finite sequence
+  $\alpha_0, \alpha_1, \ldots, \alpha_n$ of wffs
+  such that for each $k \le n$, either:
+  \begin{enumroman}
+    \item $\alpha_k$ is a tautology,
+    \item $\alpha_k \in \Sigma$, or
+    \item for some $i$ and $j$ less than $k$, $\alpha_i$ is $(\alpha_j \to \alpha_k)$.
+  \end{enumroman}
+  
+  \step
+  In case 3, one says that $\alpha_k$ is obtained by \emph{modus ponens}
+  from $\alpha_i$ and $\alpha_j$.
+  
+  \step
+  Give a deduction from the set $\set{ \lnot S \lor R, R \to P, S}$, the last component of which is $P$.
+\end{problem}
+\begin{Answer}
+  \begin{enumroman}
+    \item $(\lnot S \lor R) \in \Sigma$, implying $(S \to R$).~\label{item:1}
+    \item $R \to P \in \Sigma$.~\label{item:4}
+    \item $S \in \Sigma$.~\label{item:2}
+    \item Therefore, $R$ (by modus ponens on ~\ref{item:1} and ~\ref{item:2})~\label{item:3}.
+    \item Therefore, $P$ (by modus ponens on ~\ref{item:4} and ~\ref{item:3}).
+  \end{enumroman}
+\end{Answer}
