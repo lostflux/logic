@@ -1,0 +1,14 @@
+\begin{problem}[7]
+  Write down $4$ sentences for a language $\frakL$ such that
+  any structure $\frakU = \langle X, \le \rangle$
+  is a linear ordering if and only if it satisfies those four sentences.
+
+  \begin{Answer}
+    \begin{align*}
+      &\forall x Pxx &\text{ (reflexive) }\\
+      &\forall x \forall y \left( (Pxy \land Pyx) \to (x = y) \right) &\text{ (antisymmetric) }\\
+      &\forall x \forall y \forall z \left( (Pxy \land Pyz) \to Pxz \right) &\text{ (transitive) } \\
+      &\forall x \forall y \left( Pxy \lor Pyx \right) &\text{ (total) }\\
+    \end{align*}
+  \end{Answer}
+\end{problem}

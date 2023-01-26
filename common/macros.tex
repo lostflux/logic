@@ -9,6 +9,8 @@
 % URLs
 \usepackage{hyperref}
 
+\usepackage{xargs}
+
 % Sets
 \newcommand{\FF}{\mathbb{F}}
 \newcommand{\NN}{\mathbb{N}}
@@ -77,6 +79,34 @@
 \newcommand{\calX}{\mathcal{X}}
 \newcommand{\calY}{\mathcal{Y}}
 \newcommand{\calZ}{\mathcal{Z}}
+
+% Fraktur letters
+\newcommand{\frakA}{\mathfrak{A}}
+\newcommand{\frakB}{\mathfrak{B}}
+\newcommand{\frakC}{\mathfrak{C}}
+\newcommand{\frakD}{\mathfrak{D}}
+\newcommand{\frakE}{\mathfrak{E}}
+\newcommand{\frakF}{\mathfrak{F}}
+\newcommand{\frakG}{\mathfrak{G}}
+\newcommand{\frakH}{\mathfrak{H}}
+\newcommand{\frakI}{\mathfrak{I}}
+\newcommand{\frakJ}{\mathfrak{J}}
+\newcommand{\frakK}{\mathfrak{K}}
+\newcommand{\frakL}{\mathfrak{L}} 
+\newcommand{\frakM}{\mathfrak{M}}
+\newcommand{\frakN}{\mathfrak{N}}
+\newcommand{\frakO}{\mathfrak{O}}
+\newcommand{\frakP}{\mathfrak{P}}
+\newcommand{\frakQ}{\mathfrak{Q}}
+\newcommand{\frakR}{\mathfrak{R}}
+\newcommand{\frakS}{\mathfrak{S}}
+\newcommand{\frakT}{\mathfrak{T}}
+\newcommand{\frakU}{\mathfrak{U}}
+\newcommand{\frakV}{\mathfrak{V}}
+\newcommand{\frakW}{\mathfrak{W}}
+\newcommand{\frakX}{\mathfrak{X}}
+\newcommand{\frakY}{\mathfrak{Y}}
+\newcommand{\frakZ}{\mathfrak{Z}}
 
 % Boldface letters
 \newcommand{\ba}{\mathbf{a}}
@@ -171,7 +201,13 @@
 % Problem Counter
 \newenvironment{problem}[1][]%
 {%
-\stepcounter{problem}
+\ifx&#1&%
+  % #1 is empty
+  \stepcounter{problem}
+\else
+  % #1 is nonempty
+  \setcounter{problem}{#1}
+\fi
 \setcounter{section}{\value{problem}}
 \vspace{.2cm} \noindent {\center  \textbf{\\ Problem \arabic{problem}.\\}} {\noindent}~%
 }{%
@@ -405,7 +441,16 @@
 \DeclareRobustCommand\iff{\;\Longleftrightarrow\;}
 \DeclareRobustCommand\lto{\rightarrow}
 \DeclareRobustCommand\backimplies{\Longleftarrow}
+\newcommand{\bigland}{\bigwedge}
 
 \DeclareRobustCommand{\step}{\vspace{0.5em}\noindent}
 
 \DeclareRobustCommand{\set}[1]{\left\{#1\right\}}
+\DeclareRobustCommand{\vec}[1]{\left\langle #1 \right\rangle}
+
+\DeclareSymbolFont{CMsymbols}{OMS}{cmsy}{m}{n}
+\SetSymbolFont{CMsymbols}{bold}{OMS}{cmsy}{b}{n}
+\DeclareMathSymbol{\foralll}{\mathord}{CMsymbols}{"38}
+\DeclareMathSymbol{\existss}{\mathord}{CMsymbols}{"39}
+\renewcommand{\forall}{\foralll\;}
+\renewcommand{\exists}{\existss\;}

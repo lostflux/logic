@@ -1,0 +1,49 @@
+% \begin{problem}
+%   Prove Theorem 17F:
+%   \emph{
+%     A set of expressions is decidable iff
+%     both it and its complement 
+%     (relative to the set of all expressions)
+%     are effectively enumerable.
+%   }
+
+%   \step
+%   Remark: Two semidecision procedures make a whole.
+% \end{problem}
+% \begin{Answer}
+%   Let $\Sigma$ be a set of expressions,
+%   with $\Gamma$ as its complement.
+
+%   \step
+%   We first prove that if $\Sigma$ is decidable
+%   then both $\Sigma$ and $\Gamma$
+%   are effectively enumerable:
+
+%   \noindent
+%   Suppose $\Sigma$ is decidable, then we can always determine
+%   whether a wff $\alpha$ is in $\Sigma$ or is not in $\Sigma$.
+%   Therefore, we can implement an enumeration algorithm
+%   as follows:
+%   \begin{enumroman}
+%     \item Pick an arbitrary wff, $\beta$, that has not yet been listed as a member of $\Sigma$ or $\beta$.
+%     \item If $\beta \in \Sigma$, then list it as an element of $\Sigma$.
+%     \item However, if $\beta \not\in \Sigma$, then list it as an element of $\Gamma$.
+%     \item Repeat from step $1$.
+%   \end{enumroman}
+  
+%   \bigskip
+%   \step
+%   We then prove that if both $\Sigma$ and its complement,
+%   $\Gamma$, are effectively enumerable then $\Sigma$ is decidable.
+  
+%   \noindent
+%   Assume that both $\Sigma$ and $\Gamma$ are effectively enumerable.
+%   Then, by definition of effectively enumeration,
+%   we may list members of $\Sigma$ and non-members of $\Sigma$
+%   (i.e. members of $\Gamma$),
+%   and every member or non-member will eventually be listed in the appropriate category
+%   even if the enumeration might never end in the case of an infinite $\Sigma$ or $\Gamma$.
+%   Consequently, by checking the listed wffs we may always determine
+%   whether a wff $\beta$ is in $\Sigma$ or not in $\Sigma$, implying that $\Sigma$ is decidable.
+% \end{Answer}
+

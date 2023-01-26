@@ -1,0 +1,27 @@
+\setcounter{problem}{1}
+\begin{problem}
+  Assume that we have a language with the following parameters:
+  \begin{enumroman}
+    \item $\forall$, intended to mean, ``for all things'';
+    \item $N$, intended to mean ``is a number'';
+    \item $I$, intended to mean ``is interesting''; 
+    \item $<$, intended to mean ``is less than''; and
+    \item $0$, a constant symbol intended to denote zero.
+  \end{enumroman}
+
+  \step
+  Translate back into good English the wff 
+  \[ \forall x (Nx \to Ix \to \lnot \forall y(Ny \lto Iy \lto \lnot x < y)) \]
+  \begin{Answer}
+    Everything that is a number and is interesting is NOT greater than or equal to every interesting number.
+    
+    \step
+    Equivalently,
+    every interesting number is less than some interesting number.
+
+    \step
+    Equivalently,
+    for every interesting number, there exists
+    some interesting number that is less than it.
+  \end{Answer}
+\end{problem}

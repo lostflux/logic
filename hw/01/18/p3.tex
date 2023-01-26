@@ -1,0 +1,55 @@
+\setcounter{problem}{4}
+\begin{problem}
+  Translate each English sentence into the first-order language specified.
+  \emph{(
+    You may want to carry out the translation in several steps,
+    as in some of the examples.) Make full use of the notational
+    conventions and abbreviations to make the end result
+    as readable as possible.}
+
+    \step
+    Symbols:
+
+    \step
+    \begin{enumroman}
+      \item $\forall$, for all things;
+      \item $P$, is a person;
+      \item $T$, is a time;
+      \item $Fxy$, you can fool x at y.
+    \end{enumroman}
+    
+    \step
+    One or more of the above may be ambiguous,
+    in which case you will need more than one translation.
+  
+  \begin{enumalph}
+    \item You can fool some of the people all of the time.
+      \begin{Answer}
+        There exists a person you can fool all the time.
+        Equivalently, it is not the case that for all people,
+        you cannot fool them all the time.
+        \begin{align*}
+          \lnot \forall x (\lnot \forall t ((Px \land Ty) \lto Fxy))
+        \end{align*}
+      \end{Answer}
+    \item You can fool all of the people some of the time.
+      \begin{Answer}
+        There exists a time when you can fool all of the people.
+        Equivalently, it is not the case that for all times,
+        there exists a person that you cannot fool.
+        \begin{align*}
+          \lnot \forall t (\lnot \forall x ((Px \land Ty) \lto Fxy))
+        \end{align*}
+      \end{Answer}
+    \item You can’t fool all of the people all of the time.
+      \begin{Answer}
+        There exists a time when you cannot fool all of the people.
+        Equivalently, it is not the case that for all times,
+        you can fool all of the people.
+        \begin{align*}
+          \lnot \forall t (\forall x ((Px \land Ty) \lto Fxy))
+        \end{align*}
+
+      \end{Answer}
+  \end{enumalph}
+\end{problem}
