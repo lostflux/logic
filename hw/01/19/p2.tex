@@ -9,20 +9,46 @@ Prove that this function is well-defined.
 \step
 \emph{
   As you do this, at some point you are going to have to prove that two
-  wffs are tautologically equivalent.
-}
-  
-\step
-\emph{
+  wffs are tautologically equivalent.\\
   For this exercise, please do this by showing
   explicitly that any truth assignment that satisfies one of the formulas also
-  satisfies the other, and conversely.
-}
-
-\step
-\emph{
+  satisfies the other, and conversely.\\
   You may think it’s obvious that these wffs are tautologically equivalent.
   I agree, and after this proof, you can get away with saying so, or giving a
   more informal explanation, in similar circumstances.
 }
 \end{problem}
+\begin{Answer}
+%   Let $[\alpha]$ be an equivalence class with the members
+%   $\alpha_1, \alpha_2, \ldots, \alpha_n$,
+%   and let $[\beta]$ be an equivalence class with the members
+%   $\beta_1, \beta_2, \ldots, \beta_m$ for some $n, m \in \mathbb{Z}_{\ge 0}$.
+%   By definition of equivalence classes,
+%   $\alpha_i \equiv \alpha_j$ (so $\vbar(\alpha_i) = \vbar(\alpha_j))$ for all $i, j \in \{1, 2, \ldots, n\}$,
+%   and $\beta_i \equiv \beta_j$ (so $\vbar(\beta_i) = \vbar(\beta_j))$ for all $i, j \in \{1,\ldots, m\}$.
+%   This means that the value of $\vbar(\alpha \land \beta)$ is the same
+%   for all $\alpha \in [\alpha]$ and for all $\beta \in [\beta]$.
+%   Equivalently, $(\alpha_i \land \beta_k) \equiv (\alpha_j \land \beta_l)$
+%   for all $\alpha_i, \alpha_j \in [\alpha]$ and for all $\beta_k, \beta_l \in [\beta]$.
+
+  \step
+  Let $v$ be a truth assignment.\\
+  Suppose that $v(\alpha) = x \in \set{T, F}$, then $v(\alpha_i) = T$ for all $\alpha_i$ in the
+  equivalence relation $[\alpha]$.\\
+  Similarly, suppose that $v(\beta) = y \in \set{T, F}$, then $v(\beta_j) = T$ for all $\beta_j$ in the
+  equivalence relation $[\beta]$.
+  Then;
+  \begin{align*}
+    \vbar(\alpha_i \land \beta_j) = \vbar(\alpha \land \beta) = x \land y = \begin{cases}
+      T & \text{if } x = y = T \\
+      F & \text{ otherwise }
+    \end{cases}
+  \end{align*}
+
+  \step
+  Therefore, any truth assignment assigns the same value to
+  $(\alpha_i \land \beta_j)$ for all $\alpha_i \in [\alpha]$ and for all $\beta_j \in [\beta]$.
+  This tautological equivalence implies that 
+  hence $[\alpha_i] \bigland [\beta_j] = [\alpha_j \land \beta_l]$
+
+\end{Answer}

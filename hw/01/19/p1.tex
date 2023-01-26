@@ -5,3 +5,57 @@
   \[ \alpha \equiv \beta \iff \alpha \models \backmodels \beta, \]
   then $equiv$ is an equivalence relation on the set of wffs.
 \end{problem}
+\begin{Answer}
+  \begin{enumroman}
+    \item Show that $\equiv$ is reflexive.
+    
+    \step
+    Let $\alpha$ be a under some truth assignment $v$.
+
+    \step
+    If $\vbar(\alpha) = T$, then $\alpha \models \alpha$.
+    We also have that $\alpha \backmodels \alpha$ by the same argument.
+
+    \step
+    If $\vbar(\alpha) = F$, then $\alpha \models \models \alpha$
+    since we may conclude anything from a false statement.
+    The same argument applies to $\alpha \backmodels \alpha$
+    since the deduction itself is the assignment to $\alpha$,
+    and $\alpha$ has been assigned to $F$.
+    \emph{
+      If we were deducing a different variable, say $\gamma$,
+      then if $\vbar(\alpha) = F$, and $\vbar(\gamma) = T$,
+      we would have $\vbar(\alpha \models \gamma) = T$
+      but $\vbar(\gamma \models \alpha) = F$,
+      so $\vbar(\alpha \models \backmodels \gamma) = F$
+      and $\alpha \nequiv \gamma$.
+    }
+
+
+    \item
+      Show that $\equiv$ is symmetric.
+
+      \step
+      Let $\alpha \equiv \beta$ under some truth assignment $v$.
+      By definition, $\alpha \models \backmodels \beta$.
+      This implies that:
+      \begin{itemize}
+        \item if $\vbar(\alpha) = T$, then $\vbar(\beta) = T$;
+        \item if $\vbar(\alpha) = F$, then $\vbar(\beta) \ne T$,~\label{ref:tautological-equivalence:symmetric}
+          as that would imply $\vbar(\alpha \backmodels \beta) = F$.
+          Therefore, $\vbar(\beta) = F$.
+      \end{itemize}
+      Therefore, $\vbar(\alpha) = \vbar(\beta)$, so $\vbar(\beta \models \backmodels \alpha) = T$, and $\beta \equiv \alpha$.
+    \item
+      Show that $\equiv$ is transitive.
+
+      \step
+      Let $\alpha \equiv \beta$ and $\beta \equiv \gamma$ under some truth assignment $v$.
+      By definition, $\alpha \models \backmodels \beta$ and $\beta \models \backmodels \gamma$.
+      As shown in part \ref{ref:tautological-equivalence:symmetric},
+      If $\vbar(x \models \backmodels y) = T$, then $\vbar(x) = \vbar(y)$.
+      Therefore, $\vbar(\alpha) = \vbar(\beta)$ and $\vbar(\beta) = \vbar(\gamma)$,
+      implying that $\vbar(\alpha) = \vbar(\gamma)$.
+      Therefore, $\alpha \models \backmodels \gamma$, so $\alpha \equiv \gamma$.
+  \end{enumroman}
+\end{Answer}
