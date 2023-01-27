@@ -8,5 +8,76 @@
   
 \end{problem}
 \begin{Answer}
-  
+  \begin{claim}
+    $\equiv$ is an equivalence relation on $X$.
+
+    \begin{proof}
+      We need to show that $\equiv$ is reflexive, transitive, and symmetric.
+
+      \step
+      \textbf{Reflexivity:} $x \le x$ for all $x \in X$, so $x \equiv x$,
+        so the equivalence relation is reflexive.
+      
+      \step
+      \textbf{Transitivity:} For $x, y, z \in X$, suppose $x \equiv y$ and $y \equiv z$, then:
+      \begin{align}
+        x \equiv y &\iff (x \le y \land y \le x)~\label{eq:9.1} \\
+        y \equiv z &\iff (y \le z \land z \le y)~\label{eq:9.2} \\
+        ~\ref{eq:9.1} \land ~\ref{eq:9.2} &\iff (x \le z \land z \le x) \iff (x \equiv z)~\nonumber
+      \end{align}
+      \step
+      \textbf{Symmetry:} For $x, y \in X$, suppose $x \equiv y$, then:
+      \begin{align*}
+        x \equiv y &\iff (x \le y \land y \le x) \\
+        &\iff (y \le x \land x \le y) \\
+        &\iff (y \equiv x)
+      \end{align*}
+    \end{proof}
+  \end{claim}
+
+  \newpage
+  \begin{claim}~\label{claim:9.2}
+    $\le$ induces a well-defined relation on equivalence classes.
+    \begin{proof}
+      Let $x, y \in X$ such that $x \equiv y$.
+      Take any $z \in X$ without loss of generality.
+      If $z \equiv x$, then $z \equiv y$ since $x \equiv y$.
+      On the other hand, suppose $z \nequiv y$. Then it may not be the case that
+      $z \equiv x$, as that would imply that $x \equiv y$ (since $z \equiv x$ and $x \equiv y$).
+      This implies that, for any $z \in X$, either
+      (1) \green{$z \equiv x$, and $z \equiv x_i$ for all $x_i \equiv x$},
+      or (2) \crim{$z \nequiv x$, and $z \nequiv x_i$ for all $x_i \equiv x$}.
+      Therefore, $\le$ induces a well-defined relation on equivalence classes.
+    \end{proof}
+  \end{claim}
+  \begin{claim}
+    The induced relation is a partial ordering of $X/\equiv$.
+    \begin{proof}
+      We need to show that $\equiv$ is reflexive, transitive, and antisymmetric
+      when applied to equivalence classes of $x$.
+
+      \step
+      \textbf{Reflexivity:} Suppose $[x]$ and $[y]$ are equivalence classes on $X$.
+      Suppose $[x] \equiv [y]$.
+      Then $x_i \equiv y_j$ for all $x_i \in [x]$ and $y_j \in [y]$.
+      Since $\equiv$ is symmetric when applied to members of $X$,
+      $y_j \equiv x_i$ for all $x_i \in [x]$ and $y_j \in [y]$,
+      so $[x] \equiv [y]$ implies $[y] \equiv [x]$.
+
+      \step
+      \textbf{Transitivity:} Suppose $[x] \equiv [y]$ and $[y] \equiv [z]$.
+      Then $x_i \equiv y_j$ for all $x_i \in [x]$ and $y_j \in [y]$,
+      and $y_j \equiv z_k$ for all $y_j \in [y]$ and $z_k \in [z]$,
+      since $\equiv$ is transitive when applied to members of $X$.
+      Therefore, $x_i \equiv z_k$ for all $x_i \in [x]$ and $z_k \in [z]$,
+      so $[x] \equiv [z]$.
+
+      \step
+      \textbf{Antisymmetry:} Suppose $[x] \equiv [y]$ and $[y] \equiv [x]$.
+      As we saw in the proof to claim ~\ref{claim:9.2},
+      this implies that every $x_i \in [x]$ is equivalent to every $y_j \in [y]$,
+      so everything in $[x]$ is in the equivalence class
+      of everything in $[y]$, which is only possible if $[x] = [y]$.
+    \end{proof}
+  \end{claim}
 \end{Answer}

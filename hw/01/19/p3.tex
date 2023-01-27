@@ -29,12 +29,37 @@
   equivalence relation $[\beta]$.
   Then;
   \begin{align*}
-    \vbar(\alpha_i \models \beta_j) = \vbar(\alpha \models \beta) = x \models y = \begin{cases}
+    \vbar(\alpha_i \models \beta_j) = \vbar(\alpha \models \beta) = (x \models y) = \begin{cases}
       F & \text{ if } x = T \text{ and } y = F \\
       T & \text{ otherwise }
     \end{cases}
   \end{align*}
+  
+  \step
+  Since the value of $[\alpha] \models [\beta]$
+  is always the same as that of $\alpha \models \beta$,
+  the relation is well-defined.
+
+  \textbf{Proof of correctness:}
+  In our universe, suppose all people who live on Mars do not use electricity.
 
   \step
-  Therefore, if $
+  Let:
+  \begin{itemize}
+    \item $Mx$ mean ``Person x lives on Mars'', and
+    \item $Nx$ mean ``Person x does not use electricity''.
+  \end{itemize}
+  We can say that $Mx \models Nx$.
+
+  \step
+  Or, if person $x$ lives on Mars,
+  then $x$ does not use electricity.
+
+  \step
+  In extending this to equivalence classes,
+  let $[x]$ be the equivalence class of all people who live on Mars,
+  and let $[y]$ be the equivalence class of all people who do not use electricity.
+  Then any member of $[x]$ is a person who lives on Mars,
+  and they may not be using electricity, so we deduce $[y]$.
+  Therefore, $[x] \models [y]$.
 \end{Answer}
