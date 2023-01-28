@@ -1,0 +1,24 @@
+\begin{problem}
+This is a problem in sentential logic.
+
+\step
+Let $v$ be a truth assignment on the set of sentence symbols.
+For any wff $\alpha$, let;
+\begin{enumroman}
+  \item $f(\alpha)$ denote the number of occurrences of
+    $\iff$ in $\alpha$.
+  \item $g(\alpha)$ denote the number of occurrences in $\alpha$
+    of sentence symbols $A_i$ for which $v(A_i) = T$.
+\end{enumroman}
+For example, if $v(A_1) = T$ and $v(A_2) = F$,
+and $\alpha$ is $((A_1 \land A_2) \lto \lnot A_1)$,
+then $g(\alpha) = 2$.
+\begin{enumalph}
+  \item Give careful definitions of $f(\alpha)$ and $g(\alpha)$
+    by recursion on $\alpha$.
+  \item Prove (carefully and formally) by induction on $\alpha$
+    that if $\iff$ is the only connective symbol occurring in $\alpha$,
+    then $\vbar(\alpha) = T$ if and only if $f(\alpha)$ and $g(\alpha)$
+    have the opposite parity (i.e., one is even and the other is odd).
+\end{enumalph}
+\end{problem}
