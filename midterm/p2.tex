@@ -3,8 +3,8 @@
 
   \step
   Suppose that $\alpha$, $\beta$, and $\gamma$ are wffs
-  such that $\alpha \models \beta$ and $\alpha \models \lnot \gamma$.
-  Show that $\alpha \models \lnot \gamma$.
+  such that $\alpha \models \gamma$ and $\beta \models \lnot \gamma$.
+  Show that $\alpha \models \lnot \beta$.
 
   \step
   \emph{
@@ -14,3 +14,19 @@
     correct proof of this kind.
   }
 \end{problem}
+\begin{Answer}
+  Let $\alpha$ be a wff and $v$ be a truth assignment satisfying $\alpha$.
+  such that  $\vbar(\alpha) = T$.
+  Since $\alpha \models \gamma$, we also have that $\vbar(\gamma) = T$.
+
+  \step
+  Consider the truth assignment of $v$ on $\beta$.
+  There are two possible assignments; either $T$ or $F$.
+  Suppose $\vbar(\beta) = T$. Since $\beta \models \lnot \gamma$,
+  this implies that $\vbar(\lnot \gamma) = T$, so $\vbar(\gamma) = T$,
+  contradicting the deduction of $\gamma$ from the assignment $\vbar(\alpha) = T$.
+  Therefore, whenever a truth assignment $v$ satisfies $\alpha$,
+  it must also assign the value $F$ to $\beta$, i.e. it must satisfy $(\lnot \beta)$
+  in order to avoid a contradicting deduction of $\gamma$.
+\end{Answer}
+

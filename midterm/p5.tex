@@ -6,7 +6,40 @@
   and $Y$ is a decidable set of expressions.
   \begin{enumalph}
     \item Show that $X - Y$ is effectively enumerable.
+      \begin{Answer}
+        Since $X$ is effectively enumerable, we can write a program to list
+        all the elements of $X$, although the program may never halt.
+        On the other hand, $Y$ is decidable, so given any wff $\alpha$,
+        we can determine whether $\alpha$ is a member of $Y$.
+
+        \step
+        To determine the members of $X - Y$, we can proceed as follows:
+        \begin{enumroman}
+          \item List a member of $X$ that has not yet been listed.
+          \item Check whether the listed wff is a member of $Y$.
+            \begin{itemize}
+              \item If it is a member of $Y$, discard the wff.
+              \item If it is not a member of $Y$, list it as a member of $X - Y$.
+            \end{itemize}
+          \item Go to step (i).
+        \end{enumroman}
+        Since all members of $X - Y$ are members of $X$,
+        every such wff will be listed as a member of $X$,
+        therefore $X - Y$ is effectively enumerable.
+      \end{Answer}
     \item Suppose that $X$ is not decidable, and $X \subseteq Y$,
       show that $Y - X$ is not effectively enumerable.
+      \begin{Answer}
+        Since all decidable sets are effectively enumerable,
+        we can effectively list all the members of $Y$,
+        although an algorithm to do so may never halt.
+
+        \step
+        However, to determine that a member of $Y$ is a member of $Y - X$,
+        we must determine that they are not a member of $X$,
+        and $X$ is not decidable so we cannot do so. 
+        Therefore, we cannot determine whether listed members of $Y$ are members of $Y - X$,
+        and $Y - X$ is not effectively enumerable.
+      \end{Answer}
   \end{enumalph}
 \end{problem}

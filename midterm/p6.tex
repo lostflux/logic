@@ -15,28 +15,82 @@
   and omit parenthesis, include extra parentheses,
   and use other kinds or sizes of parentheses
   (such as $[ ]$ and ${}$) to enhance readability.
-
-  \step
   However, ``$(\forall \eps > 0)$,'' ``$\le$,'' and ``$\ne$'',
   for example, are not abbreviations we have defined.
-
-  \step
   You may, however, define your own abbreviations.
   For example, you may say something like:
   ``for any terms $t_1$ and $t_2$, let $t_1 > t_2$ be an abbreviation
   for the formula $t_2 < t_1$.
-
-  \step
   If you do this, be careful to be technically correct.
-  For example, do noart say
+  For example, do not say
   ``Let $\le$ be an abbreviation for $< \lor =$''.
   
-%   \step
-%   Let $\frakL$ be the language for first order logic that has equality,
-%   constant symbols $0$ and $r$, one-place function symbols $f$ and $a$,
-%   two-place function symbols $+$, $−$, and $\cdot$,
-%   and a two-place predicate symbol $<$. Translate the
-% parameters of this language as follows. Note: “Translate r as a real number”
-% means that r is the name of some specific real number, we just aren’t saying
-% which one; similarly for “translate f as a function.”
+  \step
+  Let $\frakL$ be the language for first order logic that has equality,
+  constant symbols $0$ and $r$, one-place function symbols $f$ and $a$,
+  two-place function symbols $+$, $-$, and $\cdot$,
+  and a two-place predicate symbol $<$.
+  Translate the parameters of this language as follows.
+  Note: ``Translate $r$ as a real number''
+  means that $r$ is the name of some specific real number,
+  we just aren’t saying which one; similarly for
+  ``translate $f$ as a function.''
+
+  \begin{table}[H]
+    \begin{tabular}{|l|l|}
+      \bottomrule
+      \textbf{Symbol} & \textbf{Translation} \\
+      \midrule
+      $\forall$ & for all real numbers \\
+      $0$ & zero \\
+      $r$ & a real number \\
+      $f$ & a function from $\R$ to $\R$ \\
+      $a$ & the absolute value function \\
+      $+$ & addition \\
+      $-$ & subtraction \\
+      $\cdot$ & multiplication \\
+      $<$ & less than \\
+      \toprule
+    \end{tabular}
+    \caption{Translation of symbols}
+  \end{table}
+
+  \step
+  \begin{enumalph}
+    \item Write down sentences that mean:
+      \begin{enumroman}
+        \item The function $f$ is strictly increasing.
+        \begin{Answer}
+          \[ \forall x \forall y (\; (x < y) \lto (f(x) < f(y))\;) \]
+        \end{Answer}
+        \item Every square is the absolute value of some number.
+        \begin{Answer}
+          \step
+          For any $x$, we define $x^2$ to be an abbreviation for $x \cdot x$.
+
+          \step
+          For any $x, y$, we define 
+
+          \[ \forall x \; ( \exists y (\lnot (((x^2 - ay) < 0) \lor ((ay - x^2) < 0)))) \]
+        \end{Answer}
+      \end{enumroman}
+    \item Translate the following sentences into English:
+      \begin{enumroman}
+        \item $\forall x \forall y (= fx\ fy \lto = x y)$
+          \begin{Answer}
+            If $f$ maps any two real numbers $x$ and $y$
+            to the same real number,
+            then $x$ and $y$ are equal.
+          \end{Answer}
+        \item $(\lnot \forall y (\lnot = fy\ r))$
+          \begin{Answer}
+            There is some real number $y$ such that $f$ maps $y$ to $r$.
+          \end{Answer}
+      \end{enumroman}
+    \item Write down the sentence of $\frakL$ meaning
+    \item ``$f$ is not continuous at $r$.''
+      \begin{Answer}
+        \[ \exists \eps \forall \delta \; ( \crim{((0 < \eps) \land (0 < \delta))} \lto (\crim{(\eps < (a\; f\; (x - \delta)))} \lor \crim{(\eps < (a\; f\; (x - \delta)))})) \]
+      \end{Answer}
+  \end{enumalph}
 \end{problem}

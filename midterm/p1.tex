@@ -1,24 +1,46 @@
 \begin{problem}
-This is a problem in sentential logic.
+  This is a problem in sentential logic.
 
-\step
-Let $v$ be a truth assignment on the set of sentence symbols.
-For any wff $\alpha$, let;
-\begin{enumroman}
-  \item $f(\alpha)$ denote the number of occurrences of
-    $\iff$ in $\alpha$.
-  \item $g(\alpha)$ denote the number of occurrences in $\alpha$
-    of sentence symbols $A_i$ for which $v(A_i) = T$.
-\end{enumroman}
-For example, if $v(A_1) = T$ and $v(A_2) = F$,
-and $\alpha$ is $((A_1 \land A_2) \lto \lnot A_1)$,
-then $g(\alpha) = 2$.
-\begin{enumalph}
-  \item Give careful definitions of $f(\alpha)$ and $g(\alpha)$
-    by recursion on $\alpha$.
-  \item Prove (carefully and formally) by induction on $\alpha$
-    that if $\iff$ is the only connective symbol occurring in $\alpha$,
-    then $\vbar(\alpha) = T$ if and only if $f(\alpha)$ and $g(\alpha)$
-    have the opposite parity (i.e., one is even and the other is odd).
-\end{enumalph}
+  \step
+  Let $v$ be a truth assignment on the set of sentence symbols.
+  For any wff $\alpha$, let;
+  \begin{enumroman}
+    \item $f(\alpha)$ denote the number of occurrences of
+      $\iff$ in $\alpha$.
+    \item $g(\alpha)$ denote the number of occurrences in $\alpha$
+      of sentence symbols $A_i$ for which $v(A_i) = T$.
+  \end{enumroman}
+  For example, if $v(A_1) = T$ and $v(A_2) = F$,
+  and $\alpha$ is $((A_1 \land A_2) \lto \lnot A_1)$,
+  then $g(\alpha) = 2$.
+  \begin{enumalph}
+    \item Give careful definitions of $f(\alpha)$ and $g(\alpha)$
+      by recursion on $\alpha$.
+      \begin{Answer}
+        \begin{align*}
+          f(\alpha) &=
+            \begin{cases}
+              0 & \text{if $\alpha$ is a sentence symbol} \\
+              f(\alpha_1) & \text{if $\alpha$ is $\lnot \alpha_1$ for some wffs $\alpha_1$ and $\alpha_2$} \\
+              f(\alpha_1) + f(\alpha_2) + 1 & \text{if $\alpha$ is $\alpha_1 \iff \alpha_2$ for some wffs $\alpha_1$ and $\alpha_2$} \\
+              f(\alpha_1) + f(\alpha_2) & \text{if $\alpha$ is $\alpha_1 \ast \alpha_2$ for some wffs $\alpha_1$ and $\alpha_2$} \\
+            \end{cases} \\
+          g(\alpha) &=
+            \begin{cases}
+              0 & \text{if $\alpha$ is a sentence symbol and $v(\alpha) = F$} \\
+              1 & \text{if $\alpha$ is a sentence symbol and $v(\alpha) = T$} \\
+              g(\alpha_1) & \text{if $\alpha$ is $\lnot \alpha_1$ for some wff $\alpha_1$} \\
+              g(\alpha_1) + g(\alpha_2) &
+                \text{if $\alpha$ is $\alpha_1 \ast \alpha_2$ where $\ast$ is a binary logical connective.}\\
+            \end{cases}
+        \end{align*}
+      \end{Answer}
+    \newpage
+    \item Prove (carefully and formally) by induction on $\alpha$
+      that if $\iff$ is the only connective symbol occurring in $\alpha$,
+      then $\vbar(\alpha) = T$ if and only if $f(\alpha)$ and $g(\alpha)$
+      have the opposite parity (i.e., one is even and the other is odd).
+      \begin{Answer}
+      \end{Answer}
+  \end{enumalph}
 \end{problem}

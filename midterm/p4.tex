@@ -3,10 +3,69 @@
   \[ (x_1, y_1) \equiv (x_2, y_2) \Iff x_1y_2 = x_2y_1. \]
   \begin{enumalph}
     \item Show that $\equiv$ is an equivalence relation on $(\N^+)^2$.
+      \begin{Answer}
+        \begin{enumroman}
+          \item \textbf{Reflexivity:}
+            By definition, $(x_1, y_1) \equiv (x_2, y_2)$ if and only if $x_1 y_2 = x_2y_1$.
+            For any arbitrary element $\alpha = (x, y)$, we always have that $x y = x y$
+            so $\alpha \equiv \alpha$.
+          \item \textbf{Symmetry:}
+            Let $\alpha = (x_1, y_1)$ and $\beta = (x_2, y_2)$
+            such that $\alpha \equiv \beta$, then $x_1 y_2 = x_2 y_1$.
+            Since moving the left-hand side of the equation to the right-hand side
+            and the right-hand side to the left-hand side does not change the equality,
+            we also have that $x_2 y_1 = x_1 y_2$ so $\beta \equiv \alpha$.
+          \item \textbf{Transitivity:}
+            Let $a = (x_1, y_1)$, $b = (x_2, y_2)$, and $c = (x_3, y_3)$
+            such that $a \equiv b$ and $b \equiv c$.
+            Then $x_1 y_2 = x_2 y_1$ and $x_2 y_3 = x_3 y_2$.
+            Therefore;
+            \begin{align*}
+              a \equiv b \Iff x_1 y_2 = x_2 y_1, \quad \text{so } \quad &\frac{x_1 y_2}{x_2 y_1} = 1 \\
+              b \equiv c \Iff x_2 y_3 = x_3 y_2, \quad \text{ so } \quad &\frac{x_2 y_3}{x_3 y_2} = 1 \\
+              &\Therefore \frac{x_1 y_2}{x_2 y_1} \cdot \frac{x_2 y_3}{x_3 y_2} = 1 \\
+              &\Therefore \frac{x_1 \crim{y_2} \zaff{x_2} y_3}{\zaff{x_2} y_1 x_3 \crim{y_2}} = 1\\
+              &\Therefore \frac{x_1 y_3}{x_3 y_1} = 1 \\
+              &\Therefore x_1 y_3 = x_3 y_1 \\
+              &\Therefore a \equiv c
+            \end{align*}
+        \end{enumroman}
+      \end{Answer}
+    \newpage
     \item Describe the equivalence class of $(3, 3)$
       (do this without mentioning the equivalence relation $\equiv$).
+      \begin{Answer}
+        The equivalence class of $(3, 3)$ is the set of all pairs $(x, y)$
+        such that $3x = 3y$.
+        This is the set of all pairs $(x, y)$ such that $x = y$.
+        \[ \set{(x, y) : x, y \in \N \text{ and } x = y}\]
+      \end{Answer} 
     \item Suppose that we try to define a function on equivalence classes by
       \[ f[(x, y)] = [(2x^2, 2y^2)]. \]
       Either show that this function is well-defined or show that it is not.
+      \begin{Answer}
+        This function is well-defined.
+        Let $a = (x_1, y_1)$ and $b = (x_2, y_2)$ be two elements chosen from the same
+        equivalence class without loss of generality,
+        then $x_1 y_2 = x_2 y_1$.
+
+        \step
+        Let $a' = f[a] = [(2x_1^2, 2y_1^2)]$ and $b' = f[b] = [(2x_2^2, 2y_2^2)]$.
+
+        \step
+        First, we show that $a' \equiv b'$, since $(2x_1^2) \cdot (2y_2^2) = (2x_2^2) \cdot (2y_1^2)$.
+        \begin{align*}
+          2x_1^2 \cdot 2y_2^2 &= 4x_1^2 y_2^2 \\
+          &= (2x_1y_2)^2 \\
+          &= (2x_2y_1)^2 \quad \quad \text{ since $x_1y_2 = x_2 y_1$}\\
+          &= 4x_2^2 y_1^2 \\
+          &= 2x_2^2 \cdot 2y_1^2
+        \end{align*}
+
+        \step
+        Therefore, whenever two elements $a$ and $b$ are in the same equivalence class,
+        we also have that $f[a] \equiv f[b]$.
+
+      \end{Answer}
   \end{enumalph}
 \end{problem}
