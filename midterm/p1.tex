@@ -21,17 +21,17 @@
           f(\alpha) &=
             \begin{cases}
               0 & \text{if $\alpha$ is a sentence symbol} \\
-              f(\alpha_1) & \text{if $\alpha$ is $\lnot \alpha_1$ for some wffs $\alpha_1$ and $\alpha_2$} \\
-              f(\alpha_1) + f(\alpha_2) + 1 & \text{if $\alpha$ is $\alpha_1 \iff \alpha_2$ for some wffs $\alpha_1$ and $\alpha_2$} \\
-              f(\alpha_1) + f(\alpha_2) & \text{if $\alpha$ is $\alpha_1 \ast \alpha_2$ for some wffs $\alpha_1$ and $\alpha_2$} \\
+              f(\alpha_1) & \text{if $\alpha$ is $(\lnot \alpha_1$) for some wff $\alpha_1$} \\
+              f(\alpha_1) + f(\alpha_2) + 1 & \text{if $\alpha$ is $(\alpha_1 \iff \alpha_2)$ for some wffs $\alpha_1$ and $\alpha_2$} \\
+              f(\alpha_1) + f(\alpha_2) & \text{if $\alpha$ is $(\alpha_1 \ast \alpha_2)$, where $\ast$ is a binary logical connective.} \\
             \end{cases} \\
           g(\alpha) &=
             \begin{cases}
               0 & \text{if $\alpha$ is a sentence symbol and $v(\alpha) = F$} \\
               1 & \text{if $\alpha$ is a sentence symbol and $v(\alpha) = T$} \\
-              g(\alpha_1) & \text{if $\alpha$ is $\lnot \alpha_1$ for some wff $\alpha_1$} \\
+              g(\alpha_1) & \text{if $\alpha$ is $(\lnot \alpha_1)$ for some wff $\alpha_1$} \\
               g(\alpha_1) + g(\alpha_2) &
-                \text{if $\alpha$ is $\alpha_1 \ast \alpha_2$ where $\ast$ is a binary logical connective.}\\
+                \text{if $\alpha$ is $(\alpha_1 \ast \alpha_2)$, where $\ast$ is a binary logical connective.}\\
             \end{cases}
         \end{align*}
       \end{Answer}
@@ -40,7 +40,69 @@
       that if $\iff$ is the only connective symbol occurring in $\alpha$,
       then $\vbar(\alpha) = T$ if and only if $f(\alpha)$ and $g(\alpha)$
       have the opposite parity (i.e., one is even and the other is odd).
-      \begin{Answer}
-      \end{Answer}
+
+      \step
+      \crim{(See next page.)}
+
+      \newpage
+      \begin{claim}
+        If $\alpha$ is a wff with no other connective symbols than $\iff$,
+        then $\vbar(\alpha) = T$ if and only if $f(\alpha)$ and $g(\alpha)$
+        have the opposite parity.
+
+        \begin{proof}
+          
+          Let $\alpha$ be a wff with no other connective symbols than $\iff$.
+          We shall prove by induction on the structure of $\alpha$.
+    
+          \step
+          \textbf{Base Case:} If $\alpha$ is a sentence symbol, then $f(\alpha) = 0$.
+            There are two cases:
+            \begin{enumroman}
+              \item If $v(\alpha) = T$, then $g(\alpha) = 1$, so $f(\alpha)$ and $g(\alpha)$
+                have opposing parity and the claim holds.
+              \item If $v(\alpha) = F$, then $g(\alpha) = 0$, so $f(\alpha)$ and $g(\alpha)$
+                have the same parity and the claim holds.
+            \end{enumroman}
+    
+          \step
+          \textbf{Inductive Step:}
+          If $\alpha$ is $(\alpha_1 \iff \alpha_2)$
+          for some wffs $\alpha_1$ and $\alpha_2$ and the claim is true for 
+          $\alpha_1$ and $\alpha_2$, we show that the claim is also true for $\alpha$.
+          There are $16$ possibilities:
+          \begin{table}[H]
+            \begin{tabular}{|c c c | c c c | c c c|}
+              \bottomrule
+              $f(\alpha_1)$ & $g(\alpha_1)$ & $\vbar(\alpha_1)$ &
+              $f(\alpha_2)$ & $g(\alpha_2)$ & $\vbar(\alpha_2)$ &
+              $f(\alpha_1 \iff \alpha_2)$ & $g(\alpha_1 \iff \alpha_2)$ & $\vbar(\alpha_1 \iff \alpha_2)$\\
+              \midrule
+              \green{even} & \green{even} & $F$ & \green{even} & \green{even} & $F$ & \crim{odd} & \green{even} & $T$ \\
+              \green{even} & \green{even} & $F$ & \green{even} & \crim{odd} & $T$ & \crim{odd} & \crim{odd} & $F$ \\
+              \green{even} & \green{even} & $F$ & \crim{odd} & \green{even} & $T$ & \green{even} & \green{even} & $F$ \\
+              \green{even} & \green{even} & $F$ & \crim{odd} & \crim{odd} & $F$ & \green{even} & \crim{odd} & $T$ \\
+              \green{even} & \crim{odd} & $T$ & \green{even} & \green{even} & $F$ & \crim{odd} & \crim{odd} & $F$ \\
+              \green{even} & \crim{odd} & $T$ & \green{even} & \crim{odd} & $T$ & \crim{odd} & \green{even} & $T$ \\
+              \green{even} & \crim{odd} & $T$ & \crim{odd} & \green{even} & $T$ & \green{even} & \crim{odd} & $T$ \\
+              \green{even} & \crim{odd} & $T$ & \crim{odd} & \crim{odd} & $F$ & \green{even} & \green{even} & $F$ \\
+              \crim{odd} & \green{even} & $T$ & \green{even} & \green{even} & $F$ & \green{even} & \green{even} & $F$ \\
+              \crim{odd} & \green{even} & $T$ & \green{even} & \crim{odd} & $T$ & \green{even} & \crim{odd} & $T$ \\
+              \crim{odd} & \green{even} & $T$ & \crim{odd} & \green{even} & $T$ & \crim{odd} & \green{even} & $T$ \\
+              \crim{odd} & \green{even} & $T$ & \crim{odd} & \crim{odd} & $F$ & \crim{odd} & \crim{odd} & $F$ \\
+              \crim{odd} & \crim{odd} & $F$ & \green{even} & \green{even} & $F$ & \green{even} & \crim{odd} & $T$ \\
+              \crim{odd} & \crim{odd} & $F$ & \green{even} & \crim{odd} & $T$ & \green{even} & \green{even} & $F$ \\
+              \crim{odd} & \crim{odd} & $F$ & \crim{odd} & \green{even} & $T$ & \crim{odd} & \crim{odd} & $F$ \\
+              \crim{odd} & \crim{odd} & $F$ & \crim{odd} & \crim{odd} & $F$ & \crim{odd} & \green{even} & $T$ \\
+              \toprule
+            \end{tabular}
+          \end{table}
+
+          \step
+          As we can infer from the table, 
+          $f(\alpha_1 \iff \alpha_2)$ and $g(\alpha_1 \iff \alpha_2)$
+          always have opposing parity whenever $\vbar(\alpha_1 \iff \alpha_2) = T$.
+        \end{proof}
+      \end{claim}
   \end{enumalph}
 \end{problem}

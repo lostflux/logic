@@ -4,4 +4,29 @@
   \step
   Show that the Compactness Theorem can be proven from 
   the Soundness Theorem and the Completeness Theorem.
+
+  \step
+  \textbf{Compactness Theorem:} If $\Sigma$ is an infinite set of wffs,
+  then $\Sigma$ is satisfiable if $\Sigma$ is finitely satisfiable.
+
+  \step
+  \textbf{Completeness Theorem:} If $\Gamma \models \alpha$ then $\Gamma \deduces \alpha$.
+
+  \step
+  \textbf{Soundness Theorem:} If $\Gamma \deduces \alpha$ then $\Gamma \models \alpha$. 
 \end{problem}
+\begin{Answer}
+  Let $\Sigma$ be an infinite set of wffs.\\
+  We aim to show that if $\Sigma$ is finitely satisfiable then it is satisfiable.
+  An easier route is to prove the contrapositive: if $\Sigma$ is not satisfiable,
+  then it is not finitely satisfiable.
+
+  \step
+  Suppose $\Sigma$ is not satisfiable, then $\Sigma \models (\sigma \land \lnot \sigma)$
+  for some wff $\sigma$. By the completeness theorem, $\Sigma \deduces (\sigma \land \lnot \sigma)$.
+  This implies that there exists a finite
+  $\Sigma_0 \subset \Sigma$, such that $\Sigma_0 \deduces (\sigma \land \lnot \sigma)$.
+  By the soundness theorem, we have that $\Sigma_0 \models (\sigma \land \lnot \sigma)$.
+  Therefore, $\Sigma_0$ is not satisfiable, hence $\Sigma$ cannot be finitely satisfiable
+  since $\Sigma_0$ is a subset of $\Sigma$.
+\end{Answer}

@@ -15,31 +15,46 @@
         \step
         To determine the members of $X - Y$, we can proceed as follows:
         \begin{enumroman}
-          \item List a member of $X$ that has not yet been listed.
-          \item Check whether the listed wff is a member of $Y$.
+          \item Start the algorithm to list members of $X$.
+          \item Each moment a member is listed, check whether the listed wff
+             is a member of $Y$ (since $Y$ is decidable).
             \begin{itemize}
               \item If it is a member of $Y$, discard the wff.
               \item If it is not a member of $Y$, list it as a member of $X - Y$.
             \end{itemize}
-          \item Go to step (i).
+          \item Repeat from step (i).
         \end{enumroman}
         Since all members of $X - Y$ are members of $X$,
         every such wff will be listed as a member of $X$,
         therefore $X - Y$ is effectively enumerable.
       \end{Answer}
+    \newpage
     \item Suppose that $X$ is not decidable, and $X \subseteq Y$,
       show that $Y - X$ is not effectively enumerable.
       \begin{Answer}
         Since all decidable sets are effectively enumerable,
         we can effectively list all the members of $Y$,
-        although an algorithm to do so may never halt.
+        although an program to do so may never halt.
 
         \step
+        We could have proceeded as above,
+        only swapping the roles of $X$ and $Y$.
         However, to determine that a member of $Y$ is a member of $Y - X$,
         we must determine that they are not a member of $X$,
-        and $X$ is not decidable so we cannot do so. 
-        Therefore, we cannot determine whether listed members of $Y$ are members of $Y - X$,
-        and $Y - X$ is not effectively enumerable.
+        and $X$ is not decidable so we cannot do so.
+        Therefore, even though we can list members of $Y$,
+        we cannot determine the membership of all such members in $Y - X$,
+        so $Y - X$ is not effectively enumerable.
+
+        \step
+        Note: the fact that both $X$ and $Y$ are effectively enumerable
+        does not help us in this case.
+        To effectively list all the members of $Y - X$,
+        we would have to somehow list all the members of $Y$,
+        list all the members of $X$, then compare the two.
+        However, the programs to list all the members of $Y$ and $X$
+        are not guaranteed to halt, so we cannot compare the two.
+
       \end{Answer}
   \end{enumalph}
 \end{problem}

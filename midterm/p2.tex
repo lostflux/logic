@@ -16,17 +16,17 @@
 \end{problem}
 \begin{Answer}
   Let $\alpha$ be a wff and $v$ be a truth assignment satisfying $\alpha$.
-  such that  $\vbar(\alpha) = T$.
-  Since $\alpha \models \gamma$, we also have that $\vbar(\gamma) = T$.
+  Then $\vbar(\alpha) = T$ and, since $\alpha \models \gamma$,
+  $\vbar(\gamma) = T$.
 
   \step
   Consider the truth assignment of $v$ on $\beta$.
   There are two possible assignments; either $T$ or $F$.
-  Suppose $\vbar(\beta) = T$. Since $\beta \models \lnot \gamma$,
-  this implies that $\vbar(\lnot \gamma) = T$, so $\vbar(\gamma) = T$,
-  contradicting the deduction of $\gamma$ from the assignment $\vbar(\alpha) = T$.
+  If $\vbar(\beta) = T$, then $\beta \models \lnot \gamma$ would imply that
+  $\vbar(\lnot \gamma) = T$ (so $\vbar(\gamma) = T$),
+  contradicting the deduction $\vbar(\gamma) = T$ from the assignment $\vbar(\alpha) = T$.
   Therefore, whenever a truth assignment $v$ satisfies $\alpha$,
-  it must also assign the value $F$ to $\beta$, i.e. it must satisfy $(\lnot \beta)$
-  in order to avoid a contradicting deduction of $\gamma$.
+  it must also assign the value $\vbar(\beta) = F$ (i.e. it must satisfy $(\lnot \beta)$)
+  to avoid a contradicting deduction of $\gamma$.
 \end{Answer}
 

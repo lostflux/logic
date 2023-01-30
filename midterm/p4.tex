@@ -4,6 +4,8 @@
   \begin{enumalph}
     \item Show that $\equiv$ is an equivalence relation on $(\N^+)^2$.
       \begin{Answer}
+        To prove that $\equiv$ is an equivalence relation on $(\N^+)^2$,
+        we need to show that it is reflexive, symmetric, and transitive.
         \begin{enumroman}
           \item \textbf{Reflexivity:}
             By definition, $(x_1, y_1) \equiv (x_2, y_2)$ if and only if $x_1 y_2 = x_2y_1$.
@@ -32,37 +34,40 @@
         \end{enumroman}
       \end{Answer}
     \newpage
-    \item Describe the equivalence class of $(3, 3)$
-      (do this without mentioning the equivalence relation $\equiv$).
+    \item Describe the equivalence class of $(3, 3)$\\
+      \emph{Do this without mentioning the equivalence relation `$\equiv$'.}
       \begin{Answer}
         The equivalence class of $(3, 3)$ is the set of all pairs $(x, y)$
         such that $3x = 3y$.
         This is the set
-        \[ \set{(x, y) : x, y \in \N \text{ and } x = y}\]
+        \[ \set{(x, y) : x, y \in \N^+ \text{ and } x = y}\]
       \end{Answer} 
     \item Suppose that we try to define a function on equivalence classes by
       \[ f[(x, y)] = [(2x^2, 2y^2)]. \]
       Either show that this function is well-defined or show that it is not.
       \begin{Answer}
-        This function is well-defined.
-        Let $a = (x_1, y_1)$ and $b = (x_2, y_2)$ be two elements chosen from the same
-        equivalence class without loss of generality,
-        then $x_1 y_2 = x_2 y_1$.
-
-        \step
-        Let $a' = f[a] = [(2x_1^2, 2y_1^2)]$ and $b' = f[b] = [(2x_2^2, 2y_2^2)]$.
-
-        \step
         \begin{claim}
-          $a' = b'$.
+          This function is well-defined.
+
           \begin{proof}
-            Since any two equivalence classes are either equal or disjoint,
-            we need to show that the representatives of $a'$ and $b'$ in
-            the same equivalence class.
+            To show that $f$ is well-defined on the equivalence classes,
+            we are going to show that any two members of an equivalence class
+            are mapped to elements of the same equivalence class
+            (although it may be different from the original equivalence class) ---
+            i.e.., that $f(a) \equiv f(b)$ whenever $a \equiv b$.
+            Since any two equivalence classes are always either equal or disjoint,
+            this implies that $f[a] = [f(a)] = [f(b)] = f[b]$.
 
             \step
-            That is, that $f( (x_1, y_1) ) \equiv f( (x_2, y_2) )$,
-            which comes down to showing that $2x_1^2 \cdot 2y_2^2 = 2x_2^2 \cdot 2y_1^2$.
+            Let $a = (x_1, y_1)$ and $b = (x_2, y_2)$ be two elements chosen from the same
+            equivalence class without loss of generality, then $x_1 y_2 = x_2 y_1$.
+    
+            \step
+            Let $[a'] = f[a] = [(2x_1^2, 2y_1^2)]$ and $[b'] = f[b] = [(2x_2^2, 2y_2^2)]$,
+            such that $a' = (2x_1^2, 2y_1^2)$ and $b' = (2x_2^2, 2y_2^2)$.
+
+            \step
+            To show that $[a'] = [b']$, we need to show that $a' \equiv b'$ as follows:
             \begin{align*}
               2x_1^2 \cdot 2y_2^2 &= 4x_1^2 y_2^2 \\
               &= (2x_1y_2)^2 \\
@@ -70,12 +75,14 @@
               &= 4x_2^2 y_1^2 \\
               &= 2x_2^2 \cdot 2y_1^2
             \end{align*}
+    
+            \step
+            Therefore, whenever $a$ and $b$ are in the same equivalence class,
+            $f[a] = f[b]$, so $f$ is well-defined.
+            
+            
           \end{proof}
         \end{claim}
-
-        \step
-        Therefore, whenever two elements $a$ and $b$ are in the same equivalence class,
-        then $f$ maps them to elements in the same equivalence class.
       \end{Answer}
   \end{enumalph}
 \end{problem}
