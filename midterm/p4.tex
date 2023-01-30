@@ -37,7 +37,7 @@
       \begin{Answer}
         The equivalence class of $(3, 3)$ is the set of all pairs $(x, y)$
         such that $3x = 3y$.
-        This is the set of all pairs $(x, y)$ such that $x = y$.
+        This is the set
         \[ \set{(x, y) : x, y \in \N \text{ and } x = y}\]
       \end{Answer} 
     \item Suppose that we try to define a function on equivalence classes by
@@ -53,19 +53,29 @@
         Let $a' = f[a] = [(2x_1^2, 2y_1^2)]$ and $b' = f[b] = [(2x_2^2, 2y_2^2)]$.
 
         \step
-        First, we show that $a' \equiv b'$, since $(2x_1^2) \cdot (2y_2^2) = (2x_2^2) \cdot (2y_1^2)$.
-        \begin{align*}
-          2x_1^2 \cdot 2y_2^2 &= 4x_1^2 y_2^2 \\
-          &= (2x_1y_2)^2 \\
-          &= (2x_2y_1)^2 \quad \quad \text{ since $x_1y_2 = x_2 y_1$}\\
-          &= 4x_2^2 y_1^2 \\
-          &= 2x_2^2 \cdot 2y_1^2
-        \end{align*}
+        \begin{claim}
+          $a' = b'$.
+          \begin{proof}
+            Since any two equivalence classes are either equal or disjoint,
+            we need to show that the representatives of $a'$ and $b'$ in
+            the same equivalence class.
+
+            \step
+            That is, that $f( (x_1, y_1) ) \equiv f( (x_2, y_2) )$,
+            which comes down to showing that $2x_1^2 \cdot 2y_2^2 = 2x_2^2 \cdot 2y_1^2$.
+            \begin{align*}
+              2x_1^2 \cdot 2y_2^2 &= 4x_1^2 y_2^2 \\
+              &= (2x_1y_2)^2 \\
+              &= (2x_2y_1)^2 \quad \quad \text{ since $x_1y_2 = x_2 y_1$}\\
+              &= 4x_2^2 y_1^2 \\
+              &= 2x_2^2 \cdot 2y_1^2
+            \end{align*}
+          \end{proof}
+        \end{claim}
 
         \step
         Therefore, whenever two elements $a$ and $b$ are in the same equivalence class,
-        we also have that $f[a] \equiv f[b]$.
-
+        then $f$ maps them to elements in the same equivalence class.
       \end{Answer}
   \end{enumalph}
 \end{problem}

@@ -88,9 +88,14 @@
           \end{Answer}
       \end{enumroman}
     \item Write down the sentence of $\frakL$ meaning
-    \item ``$f$ is not continuous at $r$.''
+      ``$f$ is not continuous at $r$.''
+      (Remember from calculus that $f$ is continuous at $r$ iff
+      $\lim_{x \to r} f(x) = f(r)$, and $\lim_{x \to b} F(x) = L$
+      iff for every $\eps > 0$ there is a $\delta > 0$ such that
+      whenever $x$ is within a distance $\delta$ of $b$
+      (and $x \ne b$) then $f(x)$ is within a distance $\eps$ of $L$.)
       \begin{Answer}
-        \[ \exists \eps \forall \delta \; ( \crim{((0 < \eps) \land (0 < \delta))} \lto (\crim{(\eps < (a\; f\; (x - \delta)))} \lor \crim{(\eps < (a\; f\; (x - \delta)))})) \]
+        \[ \exists \eps \forall \delta \; ( (\crim{(0 < \eps) \land (0 < \delta)}) \land (\crim{(\eps < (a\; (\green{f\; (r - \delta) - f(r)})))} \lor \crim{(\eps < (a\; (\green{f\; (r + \delta) - f(r)})))})) \]
       \end{Answer}
   \end{enumalph}
 \end{problem}
