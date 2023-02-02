@@ -1,0 +1,23 @@
+\begin{problem}[3]
+  Show that
+  \[
+    \set{\forall x (\alpha \to \beta), \forall x \alpha} \models \forall x \beta
+  \]
+\end{problem}
+\begin{Answer}
+  Let $\fA$ be a structure and $s$ be a function from $V$ to $\abs{\fA}$
+  such that $\models_{\fA} (\forall x(\alpha \to \beta(x)))[s]$
+  and $\models_{\fA} (\forall x \alpha)[s]$.
+
+  \step
+  For all $a \in \fA$, we can satisfy the conditions by sending $a$ to $x$.
+  That is:
+  \begin{align*}
+    \models_{\fA} (\forall x(\alpha \to \beta(x)))[s] \quad &\text{ gives us }
+    \quad \models_{\fA} (\alpha \to \beta)[s (a \mid x)] \\
+    \models_{\fA} (\forall x \alpha)[s] \quad &\text{ gives us } \quad
+    \models_{\fA} \alpha[s (a \mid x)] \\
+    \Therefore \models_{\fA} \beta[s (a \mid x)] \quad &\text{ by modus ponens }
+  \end{align*}
+  This condition holds for all $a \in \abs{\fA}$, so $\models_{\fA} \forall x \beta$.
+\end{Answer}

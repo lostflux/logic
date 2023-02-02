@@ -1,0 +1,28 @@
+\begin{problem}[11]
+  For each of the following relations, give a formula
+  which defines it in $(\N, +)$.
+
+  \emph{
+    The language is assumed to have equality and 
+    the parameters $\forall, +, \cdot$.
+  }
+
+  \begin{enumalph}
+    \item $\set{0}$.
+      \begin{Answer}
+        \[ f_1(x) = \forall y (x + y = y) \]
+      \end{Answer}
+    \item $\set{1}$.
+      \begin{Answer}
+        \[ f_2(x) = \forall y (x \cdot y = y) \]
+      \end{Answer}
+    \item $\set{\vector{m, n} : \text{ $n$ is the successor of $m$ in $\N$}}$.
+      \begin{Answer}
+        \[ f_3(m, n) = \exists x (\forall y(x \cdot y = y) \land (m + x = n)) \]
+      \end{Answer}
+    \item $\set{\vector{m, n} : \text{ $m < n$ in $\N$}}$.
+      \begin{Answer}
+        \[ f_4(m, n) = \exists x (\lnot \forall y(x + y = y) \land (m + x = n)) \]
+      \end{Answer}
+  \end{enumalph}
+\end{problem}

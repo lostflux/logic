@@ -1,0 +1,59 @@
+\begin{problem}[1]
+  \begin{enumalph}
+    \item Show that $\Gamma ; \alpha \models \phi$ iff $\Gamma \models (\alpha \to \phi)$.
+  \end{enumalph}
+\end{problem}
+\begin{Answer}
+  
+  \step
+  Let $\fA$ be a model for $\Gamma$ and let $s : V \to \abs{\fA}$
+  be a function such that $\fA$ satisfies $\Gamma$ with $s$.
+  Then $\models_{\fA} \gamma[s]$ for all $\gamma \in \Gamma$.
+  Then:
+
+  \step
+  ($\Rightarrow$)
+  We shall prove the right implication via the contrapositive,
+  i.e. if $\Gamma \not \models (\alpha \to \phi)$
+  then $\Gamma ; \alpha \not \models \phi$.
+
+  \step
+  Suppose $\Gamma \not \models (\alpha \to \phi)$.
+  Since $\fA$ satisfies $\Gamma$ with $s$
+  and $\Gamma \not \models (\alpha \to \phi)$,
+  it must be the case that $\sbar(\alpha) = T$ and $\sbar(\phi) = F$
+  so that $\sbar(\alpha \to \phi) = F$.
+  Therefore, $\fA$ satisfies $\Gamma ; \alpha$ with $s$,
+  but since $\fA$ does not satisfy $\phi$ with $s$,
+  it must be the case that $\Gamma ; \alpha \not \models \phi$.
+  
+  \bigskip
+  \bigskip
+  \step
+    ($\Leftarrow$)
+    We shall prove this directly, i.e. by showing that
+    if $\Gamma \models (\alpha \to \phi)$ then
+    $\Gamma ; \alpha \models \phi$.
+
+    \step
+    Suppose $\Gamma \models (\alpha \to \phi)$,
+    we show that it is always the case that $\Gamma ; \alpha \models \phi$.
+    \begin{enumroman}
+      \item If $\fA$ does not satisfy $\alpha$ with $s$, then
+        $\not \models_{\fA} \alpha[s]$. Therefore,
+        $\sbar(\alpha) = F$, so $\sbar(\alpha \to \phi) = T$
+        irrespective of the value of $\sbar(\phi)$,
+        so $\models_{\fA} (\alpha \to \phi)[s]$.
+        Since $\sbar(\alpha) = F$ and $a \to \phi$,
+        $\Gamma ; \alpha \models \phi$.
+      \item If $\fA$ satisfies $\alpha$ with $s$, then
+        $\models_{\fA} \alpha[s]$, so $\sbar(\alpha) = T$.
+        Therefore, $\sbar(\alpha \to \phi) = \sbar(\phi)$.
+        Since $\Gamma \models (\alpha \to \phi)$,
+        and $\fA$ satisfies $\Gamma$ with $s$,
+        then $\fA$ satisfies $\phi$ with $s$.
+        so $\models_{\fA} (\alpha \to \phi)[s]$.
+        Since $\sbar(\alpha) = T$ and $\sbar(\phi) = T$,
+        $\Gamma ; \alpha \models \phi$.
+    \end{enumroman}
+\end{Answer}

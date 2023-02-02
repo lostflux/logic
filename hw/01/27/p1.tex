@@ -1,0 +1,35 @@
+\begin{problem}[8]
+  Assume that $\Sigma$ is a set of sentences such that for any
+  sentence $\tau$, either $\Sigma \models \tau$ or $\Sigma \models \lnot \tau$.
+  Assume that $\frakA$ is a model of $\Sigma$.
+  
+  \step
+  Show that for any sentence $\tau$, we have $\models_{\frakA} \tau$
+  \emph{iff} $\Sigma \models \tau$.
+\end{problem}
+\begin{Answer}
+  Since $\fA$ is a model for $\Sigma$, $\fA$ must agree wth $\Sigma$
+  on all sentences in $\Sigma$.
+
+  \bigskip
+  \step
+  ($\Rightarrow$)
+  For any sentence $\tau$, suppose $\models_{\fA} \tau$.
+  Since $\fA$ is a model for $\Sigma$,
+  there must be a finite $\Sigma_0 \subseteq \Sigma$ such that
+  $\Sigma_0 \deduces \tau$.
+  This implies that $\Sigma_0 \models \tau$,
+  so $\Sigma \models \tau$.
+
+  \bigskip
+  \step
+  ($\Leftarrow$)
+  Now suppose $\not \models_{\fA} \tau$.
+  Since $\fA$ is a model for $\Sigma$,
+  this implies that no finite subset $\Sigma_0 \subseteq \Sigma$ can deduce $\tau$,
+  so $\Sigma_0 \not \deduces \tau$ implying $\Sigma_0 \not \models \tau$
+  for all $\Sigma_0 \in \calP(\Sigma)$.
+  However, if no finite subset of $\Sigma$ can deduce $\tau$,
+  then $\Sigma$ cannot deduce $\tau$. Therefore, $\Sigma \not \models \tau$.
+
+\end{Answer}
