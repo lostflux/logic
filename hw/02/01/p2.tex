@@ -1,0 +1,22 @@
+\begin{problem}[4]
+  Give a deduction (from $\emptyset$) of $\forall x \phi \to \exists x \phi$.
+
+  \step
+  \emph{Note: } You should not merely prove that such a deduction exists;
+    write out the entire deduction.
+\end{problem}
+\begin{Answer}
+  \begin{enumroman}
+    \item $(\forall x \lnot \phi \lto \lnot \phi) \lto (\phi \lto \lnot \forall x \lnot \phi)$ (Tautology)
+    \item $(\forall x \lnot \phi \lto \lnot \phi)$ (Axiom 2)
+    \item $(\phi \lto \lnot \forall x \lnot \phi)$ (Modus Ponens on (i), (ii))
+    \item $(\phi \lto \lnot \forall x \lnot \phi) \lto ((\lnot \forall x \lnot \phi \lto \exists x \phi) \lto (\phi \lto \exists x \phi))$ (Tautology)
+    \item $(\lnot \forall x \lnot \phi \lto \exists x \phi) \lto (\phi \lto \exists x \phi)$ (Modus Ponens on (iii), (iv))
+    \item $(\lnot \forall x \lnot \phi \iff \exists x \phi)$ (Axiom 5)
+    \item $(\phi \lto \exists x \phi)$ (Modus Ponens on (v), (vi))
+    \item $(\forall x \phi \to \phi) \lto ((\phi \lto \exists x \phi) \lto (\forall x \phi \lto \exists x \phi))$ (Tautology)
+    \item $\forall x \phi \lto \phi$ (Axiom 2)
+    \item $(\phi \lto \exists x \phi) \lto (\forall x \phi \lto \exists x \phi)$ (Modus Ponens on (viii), (ix))
+    \item $\forall x \phi \lto \exists x \phi$ (Modus Ponens on (vii), (x))
+  \end{enumroman}
+\end{Answer}

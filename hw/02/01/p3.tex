@@ -1,0 +1,58 @@
+\begin{problem}[9]
+  (Re-replacement lemma)
+  
+  \begin{enumalph}
+    \item Show by example that $(\phi^x_y)^y_x$ is not in general equal to $\phi$.
+      And that it is possible for both for $x$ to occur in $(\phi^x_y)^y_x$
+      at a place it did not occur in $\phi$, and for $x$ to occur in $\phi$
+      at a place it does not occur in $(\phi^x_y)^y_x$.
+
+      \begin{Answer}
+        Let $P$ be a one-place predicate symbol and $Q$ be a two-place predicate symbol.\\
+        Let $\phi = \forall y P x \lto Qxy$, then $\phi^x_y = \forall y Py \lto Pyy$ and
+        $(\phi^x_y)^y_x = \forall y Py \lto Qxx$
+        
+
+
+        \step
+        In the example above, we see one instance where $x$ occurs in $(\phi^x_y)^y_x$ at a position
+        where it does not occur at in $\phi$ (at $Qxx$ vs. $Qxy$)
+        and one instance where $x$ occurs in $\phi$ at a position
+        where it does not occur in $(\phi^x_y)^y_x$ (at $\forall y Px$ vs. $\forall y Py$).
+      \end{Answer}
+
+
+
+    \item Show that if $y$ does not  occur at all in $\phi$ then $x$ is substitutable
+      for $y$ in $\phi^x_y$ and that $(\phi^x_y)^y_x$ is equal to $\phi$.
+
+      \step
+      \emph{Suggestion: } Use induction on $\phi$.
+
+      \begin{Answer}
+        \step
+        \textbf{Base Case 1:} $\phi = \alpha$ for some variable or constant $\alpha$.\\
+        Then $\phi^x_y = \alpha^x_y = y$ if $\alpha = x$, or else $\alpha^x_y = \alpha$.
+        Therefore, $(\phi^x_y)^y_x = x$ iff $\alpha = x$ else $\alpha$,
+        meaning $(\phi^x_y)^y_x = \phi$ irrespective of whether $\alpha = x$.
+  
+        \step
+        \textbf{Base Case 2:} $\phi = P x_1 x_2 \ldots x_n$ for some $n$-place predicate symbol $p$.\\
+        Then $\phi^x_y = (P x_1 x_2 \ldots x_n)^x_y = P (x_1)^x_y (x_2)^x_y \ldots (x_n)^x_y$.\\
+        Therefore, $(\phi^x_y)^y_x = P ((x_1)^x_y)^y_x ((x_2)^x_y)^y_x \ldots ((x_n)^x_y)^y_x$. \\
+        Since $((x_k)^x_y)^y_x = x_k$ for all $k \in \{1, \ldots, n\}$
+        $(\phi^x_y)^y_x = P x_1 x_2 \ldots x_n = \phi$, so $(\phi^x_y)^y_x = \phi$.
+  
+        \step
+        \textbf{Inductive Step:} Let $\phi = (\beta \ast \gamma)$ for some $\beta$, $\gamma$,
+        and a connective $\ast$, and that $y$ does not occur in $\phi$.
+        Then $y$ must not occur in $\beta$ or $\gamma$.\\
+        By definition, $\phi^x_y = (\beta^x_y \ast \gamma^x_y)$
+        and $(\phi^x_y)^y_x = (\beta^x_y \ast \gamma^x_y)^y_x
+        = (\beta^x_y)^y_x \ast (\gamma^x_y)^y_x$.\\
+        By the inductive hypothesis, assume $(\beta^x_y)^y_x = \beta$ and $(\gamma^x_y)^y_x = \gamma$,
+        then $(\phi^x_y)^y_x = (\beta^x_y)^y_x \ast (\gamma^x_y)^y_x = \beta \ast \gamma = \phi$.
+      \end{Answer}
+      
+  \end{enumalph}
+\end{problem}

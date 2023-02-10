@@ -1,0 +1,74 @@
+\begin{problem}
+  Let $\calL$ be the language for first-order logic with two-place
+  predicate symbols $E$ and $P$ and one-place function symbol $f$.
+  (We are not assuming that $\calL$ has the equality symbol.
+  On the other hand, we are not ruling out the possibility that
+  $\calL$ has the equality symbol and/or any number of parameter symbols
+  in addition to $\forall$, $E$, $P$, and $f$.
+  Other symbols are not relevant to this question.)
+
+  \step
+  Suppose $A$ is a structure for $L$ that is a model of the sentence
+  \[ \forall xExx \]
+  and of every sentence of the form
+  \[
+    \forall x \forall y \forall z_1 \forall z_2 \ldots \forall z_n
+    (Exy \lto (\alpha \lto \alpha')).
+  \]
+  where $\alpha$ is an atomic formula with variables included among
+  $\set{x,y,z_1,z_2,\ldots,z_n}$, and $\alpha'$ is
+  obtained from $\alpha$ by replacing some
+  (possibly none, possibly some but not all, possibly all)
+  occurrences of $x$ by $y$.
+  Examples of sentences of this form are
+  \[ \forall x \forall y (Exy \lto (Exx \lto Eyx))
+  \text{ and }
+  \forall x \forall y \forall z (Exy \lto (Ez fx \lto Ez fy)).
+  \]
+  An example of a sentence \emph{not} of this form is
+  \[
+    \forall x \forall y \forall z (Exy \lto (Ez fy \lto Ez fx)).
+  \]
+
+  \step
+  Show that $E^\frakA$ is an equivalence relation on the universe $\abs{\frakA}$,
+  that $P^\frakA$ induces a well-defined relation on equivalence classes, and that $f^\frakA$
+  induces a well-defined function on equivalence classes.
+\end{problem}
+\begin{Answer}
+  Let $\frakA$ be a structure for $\calL$ that is a model of the sentence
+  \[ \forall xExx \]
+  and of every sentence of the form
+  \[
+    \forall x \forall y \forall z_1 \forall z_2 \ldots \forall z_n
+    (Exy \lto (\alpha \lto \alpha')).
+  \]
+  where $
+  alpha$ is an atomic formula with variables included among
+  $\set{x,y,z_1,z_2,\ldots,z_n}$, and $\alpha'$ is
+  obtained from $\alpha$ by replacing some
+  (possibly none, possibly some but not all, possibly all)
+  occurrences of $x$ by $y$.
+  Let $s : V \lto \abs{\frakA}$ be an assignment function such that
+  $\models_{\frakA} \forall x \forall y \forall z_1 \forall z_2 \ldots \forall z_n
+  (Exy \lto (\alpha \lto \alpha'))$.
+
+  \step
+  Let $a,b \in \abs{\frakA}$.
+  We will show that $a \equiv b$ if and only if $E^\frakA(a,b)$.
+  Suppose $a \equiv b$.
+  Then there exists $c \in \abs{\frakA}$ such that $a = c$ and $b = c$.
+  Since $a \equiv b$, we have that $E^\frakA(a,b)$.
+  Since $a = c$ and $b = c$, we have that $E^\frakA(a,c)$ and $E^\frakA(b,c)$.
+  Since $E^\frakA(a,c)$ and $E^\frakA(b,c)$, we have that $E^\frakA(c,c)$.
+  Since $E^\frakA(c,c)$, we have that $E^\frakA(a,b)$.
+
+  \step
+  Suppose $E^\frakA(a,b)$.
+  Then there exists $c \in \abs{\frakA}$ such that $a = c$ and $b = c$.
+  Since $E^\frakA(a,b)$, we have that $E^\frakA(a,c)$ and $E^\frakA(b,c)$.
+  Since $E^\frakA(a,c)$ and $E^\frakA(b,c)$, we have that $E^\frakA(c,c)$.
+  Since $E^\frakA(c,c)$, we have that $a = c$ and $b = c$.
+  Since $a = c$ and $b = c$, we have that $a \equiv b$.
+
+\end{Answer}

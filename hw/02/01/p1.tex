@@ -1,0 +1,79 @@
+\begin{problem}[3]
+  \begin{enumalph}
+    \item Let $\frakA$ be a structure and let $s : V \to \abs{\frakA}$.
+    Define a truth assignment on the set of prime formulas by
+    \[
+      v(\alpha) = T \quad \text{ iff } \quad \models_{\frakA} \alpha[s].
+    \]
+
+    \step
+    Show that for any formula (prime or not),
+    \[
+      \vbar(\alpha) = T \quad \text{ iff } \quad \models_{\frakA} \alpha[s].
+    \]
+
+    \step
+    \emph{Remark: } This result reflects the fact that $\lnot$ and $\to$ were treated
+    in Chapter 2 the same was as in Chapter 1.
+
+    \begin{Answer}
+      Since the set $\set{\lnot, \lto}$ is complete
+      we can construct any formula $\alpha$ from prime formulas $\alpha_1, \ldots, \alpha_n$
+      using some combination of $\lnot$ and $\lto$ connectives.
+      Suppose $\vbar(\alpha) = T$.
+      We prove by induction on the form of $\alpha$ that $\models_{\frakA} \alpha[s]$.
+      
+      \step
+      \textbf{Base Case:} $\alpha$ is prime.
+
+      \step
+      Then $\vbar(\alpha) = v(\alpha)$, so $\vbar(\alpha) = T$ iff $v(\alpha) = T$,
+      and $v(\alpha) = T$ iff $\models_{\frakA} \alpha[s]$.\\
+      Therefore, $\vbar(\alpha) = T$ iff $\models_{\frakA} \alpha[s]$
+
+      \step
+      \textbf{Inductive Step 1:} Suppose $\alpha = \lnot \alpha_1$ for some formula $\alpha_1$.
+      Then:
+      \begin{align*}
+        \vbar(\alpha) = \vbar(\lnot \alpha_1) &= \lnot \vbar(\alpha_1) \\
+        \vbar(\alpha) = T &\Iff \vbar{\alpha_1} = F  \\
+        \vbar(\alpha) = T &\Iff \not \models_{\frakA} \alpha_1[s] \\
+        \vbar(\alpha) = T &\Iff \models_\frakA \lnot \alpha_1[s] \\
+        \vbar(\alpha) = T &\Iff \models_\frakA \alpha[s]
+      \end{align*}
+
+      \step
+      \textbf{Inductive Step 2:} Suppose $\alpha = \alpha_1 \lto \alpha_2$ for some formulas $\alpha_1, \alpha_2$.
+      Then:
+      \begin{align*}
+        \vbar(\alpha) = \vbar(\alpha_1 \lto \alpha_2) &= \vbar(\alpha_1) \lto \vbar(\alpha_2) \\
+        \vbar(\alpha) = T &\Iff \vbar(\alpha_1) = F \text{ or } \vbar(\alpha_2) = T \\
+        \vbar(\alpha) = T &\Iff \not \models_{\frakA} \alpha_1[s] \text{ or } \models_{\frakA} \alpha_2[s] \\
+        \vbar(\alpha) = T &\Iff \models_{\frakA} (\alpha_1 \lto \alpha_2) [s] \\
+        \vbar(\alpha) = T &\Iff \models_{\frakA} \alpha[s]
+      \end{align*}
+
+      \step
+      Therefore, for all formulas $\alpha$, $\vbar(\alpha) = T$ iff $\models_{\frakA} \alpha[s]$.
+    \end{Answer}
+
+
+    \item Conclude that if $\Gamma$ tautologically implies $\phi$, then
+      $\Gamma$ logically implies $\phi$.
+
+      \begin{Answer}
+        Let $\frakA$, $s$, and $v$ be as defined above.
+        Suppose $\frakA$ satisfies all members of $\Gamma$ with $s$, then
+        $\vbar(\gamma) = T$ for all $\gamma \in \Gamma$.
+
+        \step
+        Since $\Gamma$ tautologically implies $\phi$, and $s$ satisfies all members of $\Gamma$,
+        we have that $\Gamma \models_\frakA \phi [s]$, so $\vbar(\phi) = T$.
+
+        \step
+        $\frakA$ and $s$ are arbitrary, so the same condition holds for any other
+        structure $\frakA$ and assignment function $s$ given $\frakA$ satisfies all members of
+        $\Gamma$ with $s$. Therefore, $\Gamma$ logically implies $\phi$.
+      \end{Answer}
+  \end{enumalph}
+\end{problem}

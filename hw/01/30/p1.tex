@@ -1,0 +1,28 @@
+\begin{problem}[5]
+  Show that the formula
+  \[ x = y \to P zfx \to P z fy  \]
+  (where $f$ is a one-place function symbol and $P$ is a two-place predicate symbol)
+  is valid.
+\end{problem}
+\begin{Answer}
+  Suppose the formula is not valid.
+  Then there exists some structure $\frakA$ and some variable assignment $s$ such that
+  $\not \models_{\frakA} x = y \to P zfx \to P z fy$,
+   meaning:
+  \begin{align}
+    \models_{\frakA} (x = y) [s] \\
+    \models_{\frakA} P zfx [s]~\label{eq:5a} \\
+    \not \models_{\frakA} P z fy [s] ~\label{eq:5b}
+  \end{align}
+  Since $\models_{\frakA} (x = y) [s]$, we have that $\sbar(x) = \sbar(y)$.
+
+  \step
+  However, since $\sbar(x) = \sbar(y)$, we have that $\sbar(fx) = \sbar(fy)$:
+  \[ \sbar(fx) = f^{\frakA}(\sbar(x)) = f^{\frakA}(\sbar(y)) = \sbar(fy). \]
+
+  \step
+  Therefore, $P z fx [s]$ and $P z fy [s]$ are logically equivalent,
+  so ~\ref{eq:5a} and ~\ref{eq:5b} are a contradiction,
+  meaning that the formula is valid and any structure which does not satisfy
+  the formula is inconsistent.
+\end{Answer}
