@@ -5,12 +5,21 @@
       Show that this class is $\text{EC}_{\Delta}$.
 
       \step
-      \emph{Hint:} Show that is is Mod Thm $\frakA$
+      \emph{Hint:} Show that it is Mod Thm $\frakA$
       \begin{Answer}
         By definition, two structures $\frakA$ and $\frakB$ are elementarily equivalent
-        if $\models_\frakA \phi \Iff \models_\frakB \phi$ for all formulas $\phi$.
-        Therefore, the elementary type of $\frakA$ is the class of all structures $\frakB$
-        such that 
+        if whenever $\models_\frakA \phi$, we also have that $\models_\frakB \phi$.
+        That is, whenever $\phi$ is tautologically implied by $\frakA$
+        then it is also tautologically implied by $\frakB$.
+
+        \step
+        Let $[\frakA]$ be the class of all structures elementarily
+        equivalent to $\frakA$,
+        and let Thm $\frakA$ be the set of all consequences of $\frakA$.
+        Then every structure $\frakB$ in $[\frakA]$ is a model of Thm $\frakA$,
+        since it must satisfy all the consequences of $\frakA$.
+        Therefore, $[\frakA] = \text{Mod Thm } \frakA$,
+        so it is $\text{EC}_{\Delta}$.
       \end{Answer}
 
     \item Call a class $\calK$ of structures \emph{elementarily closed} or ECL
@@ -19,9 +28,46 @@
       Show that any such class is a union of EC$_\Delta$ classes.
       (A class that is a union of EC$_\Delta$ classes is said to be an EC$_{\Delta \Sigma}$ class;
       this notation is derived from topology.)
+      \begin{Answer}
+        Let $K$ be an ECL class,
+        and $\frakA$ be a structure in $K$.
+        Since $\frakA \in K$, $K$ satisfies all the consequences of $\frakA$,
+        i.e. $\text{Mod Thm } \frakA \subseteq K$.
+
+        \step
+        Let $\frakB$ be an elementarily equivalent structure to $\frakA$.
+        This means that $\frakB$ is a model of Thm $\frakA$.
+        However, $K$ is elementarily closed, so
+        $\frakB$ must also be in $K$,
+        meaning $\text{Mod Thm }\frakB \subseteq K$.
+        
+        \step
+        By extension, every other structure $\frakD_i$ that is elementarily
+        equivalent to some structure $\frakD$ that belongs in $K$
+        must also belong in $K$.
+        Therefore;
+        \[ \mathcal{K} = \text{Mod Thm }\frakA \cup \text{Mod Thm }\frakB \cup \text{Mod Thm }\frakD_1 \cup \text{Mod Thm }\frakD_2 \cup \ldots \]
+        for every other structure $\frakD_i$ in $K$,
+        so it is EC$_{\Delta \Sigma}$.
+      \end{Answer}
 
     \item Conversely show that any class that is the union of EC$_\Delta$ classes
       is ECL.
+      \begin{Answer}
+        Let $K$ be a class that is EC$_{\Delta \Sigma}$.
+        Then
+        \[ K = \bigcup_{\frakA \text{ belongs in } K} \text{Mod Thm } \frakA. \]
+        Consequently, whenever a structure $\frakA$ belongs in $K$,
+        $\text{Mod Thm }\frakA \subseteq K$.
+        
+        \step
+        Take any structure $\frakB$ that is elementarily equivalent to $\frakA$,
+        then $\frakB$ tautologically implies the same set of consequences as $\frakA$,
+        i.e. $\text{Mod Thm }\frakB = \text{Mod Thm } \frakA$.
+        Therefore, $\text{Mod Thm }\frakB \subseteq K$
+        so $\frakB$ also belongs in $K$.
+        Therefore, $K$ is ECL.
+      \end{Answer}
     
 
   \end{enumalph}

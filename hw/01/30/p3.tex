@@ -8,7 +8,7 @@
   Other symbols are not relevant to this question.)
 
   \step
-  Suppose $A$ is a structure for $L$ that is a model of the sentence
+  Suppose $\frakA$ is a structure for $\calL$ that is a model of the sentence
   \[ \forall xExx \]
   and of every sentence of the form
   \[
@@ -36,39 +36,84 @@
   induces a well-defined function on equivalence classes.
 \end{problem}
 \begin{Answer}
-  Let $\frakA$ be a structure for $\calL$ that is a model of the sentence
-  \[ \forall xExx \]
-  and of every sentence of the form
-  \[
-    \forall x \forall y \forall z_1 \forall z_2 \ldots \forall z_n
-    (Exy \lto (\alpha \lto \alpha')).
-  \]
-  where $
-  alpha$ is an atomic formula with variables included among
-  $\set{x,y,z_1,z_2,\ldots,z_n}$, and $\alpha'$ is
-  obtained from $\alpha$ by replacing some
-  (possibly none, possibly some but not all, possibly all)
-  occurrences of $x$ by $y$.
-  Let $s : V \lto \abs{\frakA}$ be an assignment function such that
-  $\models_{\frakA} \forall x \forall y \forall z_1 \forall z_2 \ldots \forall z_n
-  (Exy \lto (\alpha \lto \alpha'))$.
-
+  Let $s$ be a variable assignment satisfying the conditions as stated.
+  Then:
   \step
-  Let $a,b \in \abs{\frakA}$.
-  We will show that $a \equiv b$ if and only if $E^\frakA(a,b)$.
-  Suppose $a \equiv b$.
-  Then there exists $c \in \abs{\frakA}$ such that $a = c$ and $b = c$.
-  Since $a \equiv b$, we have that $E^\frakA(a,b)$.
-  Since $a = c$ and $b = c$, we have that $E^\frakA(a,c)$ and $E^\frakA(b,c)$.
-  Since $E^\frakA(a,c)$ and $E^\frakA(b,c)$, we have that $E^\frakA(c,c)$.
-  Since $E^\frakA(c,c)$, we have that $E^\frakA(a,b)$.
+  \begin{enumalph}
+    \item $E^\frakA$ is an equivalence relation on the universe $\abs{\frakA}$.
+      \begin{enumroman}
+        \item $E$ is reflexive: This follows from the sentence $\forall x Exx$.
+        \item $E$ is symmetric:
+          Suppose $\models_\frakA Exy [s]$.
+          Take the following sentence, which is valid in $\frakA$:
+          \[ \forall x \forall y (Exy \lto (Exx \lto Eyx)). \]
+          Since we have that $\forall x Exx$,
+          for any such $x, y$ pair we have that:
+          \begin{itemize}
+            \item $\sbar(Exy) = T$
+            \item $\sbar(Exx) = T$
+          \end{itemize}
+          we can deduce $Eyx$ as follows:
+          \begin{align}
+            &Exy \quad \text{(from choice of $x$ and $y$)} ~\label{1} \\
+            &\forall x \forall y (Exy \lto (Exx \lto Eyx)) ~\label{2} \\
+            &(Exx \lto Eyx) \quad \text{(modus ponens on ~\ref{1} and ~\ref{2})} ~\label{3} \\
+            &Exx ~\label{4} \quad \text{(from the first sentence in the model)}\\
+            &Eyx  \quad \text{(modus ponens on ~\ref{3} and ~\ref{4})} ~\label{5}
+          \end{align}
+        \item Transitive:
+          the following sentence is valid in $\frakA$:
+          \begin{align}
+            \forall x \forall y \forall z (Exy \lto (Ez fx \lto Ez fy))~\label{eq:27.1}
+          \end{align}
+          \step
+          Let $\models_\frakA Exy [s]$ and take $z \in \abs{\frakA}$
+          such that $\models_\frakA Ezx$.
+          Define a one-place function $f : \abs{\frakA} \to \abs{\frakA}$ by
+          \[ f(a) = a \]
+          Then, sentence ~\ref{eq:27.1} is equivalent to
+          \[ \forall x \forall y \forall z (Exy \lto (Ezx \lto Ezy)). \]
+          Since $E$ is symmetric, this means whenever $\models_\frakA Eyx$ and
+          $\models_\frakA Exz$, then $\models_\frakA Eyz$, so $E$ is transitive.
+      \end{enumroman}
+    \item $P^\frakA$ is a well-defined relation on equivalence classes.
+    
+      \step
+      Let $x, y \in \abs{\frakA}$ such that $\models_\frakA E xy[s]$.
+      We show that $P^\frakA xa = P^\frakA ya$ for all $a \in \abs{\frakA}$.
 
-  \step
-  Suppose $E^\frakA(a,b)$.
-  Then there exists $c \in \abs{\frakA}$ such that $a = c$ and $b = c$.
-  Since $E^\frakA(a,b)$, we have that $E^\frakA(a,c)$ and $E^\frakA(b,c)$.
-  Since $E^\frakA(a,c)$ and $E^\frakA(b,c)$, we have that $E^\frakA(c,c)$.
-  Since $E^\frakA(c,c)$, we have that $a = c$ and $b = c$.
-  Since $a = c$ and $b = c$, we have that $a \equiv b$.
+      \step
+      Suppose not, then there exists some $z \in \abs{\frakA}$ such that
+      $\models_\frakA P xa[s]$ and $\not \models_\frakA P ya[s]$.
 
+      \step
+      Define a function $f : \abs{\frakA} \to \abs{\frakA}$ by
+      \[ f(n) = E a n, \]
+      then clearly $f(x) = T$ and $f(y) = F$, so $f(x) \ne f(y)$.
+
+      \step
+      However, we have the sentence
+      \[ \forall x \forall y \forall z (Exy \lto (Ez fx \lto Ez fy)), \]
+      which does not hold when
+    \item $f^\frakA$ is a well-defined function on equivalence classes.
+      
+      \step
+      Let $x, y \in \abs{\frakA}$ be such that $\models_\frakA Exy$.
+      First, $E^\frakA$ is symmetric, so $E^\frakA xy \iff E^\frakA yx$.
+
+      \step
+      We also have the sentence
+      $\forall x \forall y \forall z (Exy \lto (Ez fx \lto Ez fy))$
+      as a valid axiom.
+      But since $E^\frakA xy \iff E^\frakA yx$,
+      whenever the above formula is valid the same for $Eyx$ is also valid,
+      i.e. $\forall x \forall y \forall z (Eyx \lto (Ez fy \lto Ez fx))$.
+
+      \step
+      This means $\sbar(E z fx) = \sbar(E z fy)$ whenever $\sbar(E x y) = T$.
+      Since $E^\frakA$ is transitive, this means $E (fx) (fy) = T$,
+      therefore $f(x)$ and $f(y)$ are in the same equivalence class
+      whenever $x$ and $y$ are in the same equivalence class
+      so $f^\frakA$ is well-defined.
+  \end{enumalph}
 \end{Answer}
