@@ -1,0 +1,43 @@
+% \documentclass[11pt, reqno]{amsart}
+\documentclass[english, 12pt]{amsart}
+
+\input{~/latex-common/macros.tex}
+% \usepackage[backend=bibtex,style=science]{biblatex}
+\pgfplotsset{compat=1.18}
+
+\pagestyle{fancy}                         % fancy (allow headers, footers)
+\fancyhf{}                                % clear all header/footer settings.
+\cfoot{\thepage}                          % set page-numbers in footer.
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\begin{document}
+
+\setlength{\headheight}{13.0pt}
+\setlength{\footskip}{15.0pt}
+
+\input{cover}
+
+\begin{problem}
+  Is it possible to have a finite set of sentences Sigma in a first-order language
+  with the property that every model of Sigma is infinite?
+
+  \begin{Answer}
+    Yes.
+    If we define a two-place predicate symbol $\le$
+    to mean ``less than or equal to'',
+    The set
+    \[ \Sigma = \set{\forall x \exists y ((x \le y) \land \lnot (x = y))} \]
+    may not have a finite model
+    although the set itself contains a finite number of sentences.
+  \end{Answer}
+\end{problem}
+
+% \step
+% % \begin{blockcolor}
+%   \begin{center}\textbf{Questions} \end{center}
+
+%   \step
+%   I had no questions about the reading,
+%   but reviewing alphabetic variants would be helpful.
+\bigskip
+\end{document}
