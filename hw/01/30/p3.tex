@@ -47,73 +47,92 @@
           Suppose $\models_\frakA Exy [s]$.
           Take the following sentence, which is valid in $\frakA$:
           \[ \forall x \forall y (Exy \lto (Exx \lto Eyx)). \]
-          Since we have that $\forall x Exx$,
-          for any such $x, y$ pair we have that:
-          \begin{itemize}
-            \item $\sbar(Exy) = T$
-            \item $\sbar(Exx) = T$
-          \end{itemize}
-          we can deduce $Eyx$ as follows:
+          % Since we have that $\forall x Exx$,
+          % for any such $x, y$ pair we have that
+          % $\sbar(Exx) = T$. Therefore, the sentence reads
+          % \[ \forall x \forall y (Exy \lto (T \lto Eyx)). \]
+
+          % However, the sentence $(T \lto Eyx)$ is logically equivalent to
+          % $(Eyx)$, since$(T \lto Eyx) = T$ \emph{iff} $Eyx = T$.
+
+          % \step
+          % Consequently, we have that
+          % \[ \forall x \forall y (E xy \lto Eyx) \]
+          % \begin{itemize}
+          %   \item $\sbar(Exy) = T$
+          %   \item $\sbar(Exx) = T$
+          % \end{itemize}
+          We can deduce $Eyx$ as follows:
           \begin{align}
             &Exy \quad \text{(from choice of $x$ and $y$)} ~\label{1} \\
-            &\forall x \forall y (Exy \lto (Exx \lto Eyx)) ~\label{2} \\
-            &(Exx \lto Eyx) \quad \text{(modus ponens on ~\ref{1} and ~\ref{2})} ~\label{3} \\
-            &Exx ~\label{4} \quad \text{(from the first sentence in the model)}\\
-            &Eyx  \quad \text{(modus ponens on ~\ref{3} and ~\ref{4})} ~\label{5}
+            &\forall x \forall y (Exy \lto (Exx \lto Eyx)) \quad \text{(As derived above)} ~\label{2} \\
+            &Exy \lto (Exx \lto Eyx) \quad \text{(Generalization theorem on ~\ref{2})} ~\label{3} \\
+            &(Exx \lto Eyx) \quad \text{(modus ponens on ~\ref{1} and ~\ref{3})} ~\label{4} \\
+            &\forall x Exx ~\label{5} \quad \text{(first sentence in the model)}\\
+            &Exx \quad \text{(Generalization theorem on ~\ref{5})} ~\label{6} \\
+            &Eyx  \quad \text{(modus ponens on ~\ref{4} and ~\ref{6})} ~\label{7}
           \end{align}
+        \newpage
         \item Transitive:
           the following sentence is valid in $\frakA$:
           \begin{align}
-            \forall x \forall y \forall z (Exy \lto (Ez fx \lto Ez fy))~\label{eq:27.1}
+            \forall x \forall y \forall z (Exy \lto (Ezx \lto Ezy))~\label{eq:27.1}
           \end{align}
-          \step
-          Let $\models_\frakA Exy [s]$ and take $z \in \abs{\frakA}$
-          such that $\models_\frakA Ezx$.
-          Define a one-place function $f : \abs{\frakA} \to \abs{\frakA}$ by
-          \[ f(a) = a \]
-          Then, sentence ~\ref{eq:27.1} is equivalent to
-          \[ \forall x \forall y \forall z (Exy \lto (Ezx \lto Ezy)). \]
-          Since $E$ is symmetric, this means whenever $\models_\frakA Eyx$ and
-          $\models_\frakA Exz$, then $\models_\frakA Eyz$, so $E$ is transitive.
+          Since $E$ is symmetric;
+          the formula is logically equivalent to
+          \[ \forall x \forall y \forall z (\crim{Eyx} \lto (\crim{Exz} \lto \crim{Eyz})), \]
+          so $E^\frakA$ is transitive.
       \end{enumroman}
     \item $P^\frakA$ is a well-defined relation on equivalence classes.
     
       \step
       Let $x, y \in \abs{\frakA}$ such that $\models_\frakA E xy[s]$.
-      We show that $P^\frakA xa = P^\frakA ya$ for all $a \in \abs{\frakA}$.
+      We show that $E^\frakA (P xa) (P ya)$ for all $a \in \abs{\frakA}$.
 
       \step
       Suppose not, then there exists some $z \in \abs{\frakA}$ such that
-      $\models_\frakA P xa[s]$ and $\not \models_\frakA P ya[s]$.
+      $\lnot E^\frakA (P xa) (P ya)$, meaning $P xa$ and $P ya$ are not
+      in the same equivalence class.
+      However, we have a rule in our structure that
+      \[ \forall x \forall y \forall z_1 \forall z_2 \ldots \forall z_n
+      (Exy \lto (\alpha \lto \alpha')) \] where $\alpha'$ is obtained by
+      replacing none, some, or all occurrences of $x$ in $\alpha$ with $y$.
+      This means
+      \[ \forall x \forall y \forall z_1 \forall z_2 \ldots \forall z_n
+      (Exy \lto (P xa \lto P ya)) \] is a valid axiom in $\frakA$.
+      Since $E$ is symmetric, $Exy$ implies $Eyx$, so
+      we can also deduce that
+      \[ 
+        \forall x \forall y \forall z_1 \forall z_2 \ldots \forall z_n
+        (Eyx \lto (P ya \lto P xa)).
+      \]
 
       \step
-      Define a function $f : \abs{\frakA} \to \abs{\frakA}$ by
-      \[ f(n) = E a n, \]
-      then clearly $f(x) = T$ and $f(y) = F$, so $f(x) \ne f(y)$.
+      The two conditions only hold when $P ya$ and $P xa$
+      are in the same equivalence class.
 
-      \step
-      However, we have the sentence
-      \[ \forall x \forall y \forall z (Exy \lto (Ez fx \lto Ez fy)), \]
-      which does not hold when
     \item $f^\frakA$ is a well-defined function on equivalence classes.
       
       \step
       Let $x, y \in \abs{\frakA}$ be such that $\models_\frakA Exy$.
-      First, $E^\frakA$ is symmetric, so $E^\frakA xy \iff E^\frakA yx$.
+      % First, $E^\frakA$ is symmetric, so $E^\frakA xy \iff E^\frakA yx$.
 
       \step
-      We also have the sentence
-      $\forall x \forall y \forall z (Exy \lto (Ez fx \lto Ez fy))$
+      The sentence
+      \[ \forall x \forall y \forall z (Exy \lto (Ez fx \lto Ez fy)) \]
       as a valid axiom.
-      But since $E^\frakA xy \iff E^\frakA yx$,
-      whenever the above formula is valid the same for $Eyx$ is also valid,
-      i.e. $\forall x \forall y \forall z (Eyx \lto (Ez fy \lto Ez fx))$.
 
       \step
-      This means $\sbar(E z fx) = \sbar(E z fy)$ whenever $\sbar(E x y) = T$.
-      Since $E^\frakA$ is transitive, this means $E (fx) (fy) = T$,
-      therefore $f(x)$ and $f(y)$ are in the same equivalence class
-      whenever $x$ and $y$ are in the same equivalence class
-      so $f^\frakA$ is well-defined.
+      Since $E$ is symmetric, $Eyx$ is true whenever $Exy$ is true,
+      so the sentence
+      \[ \forall x \forall y \forall z (Eyx \lto (Ez fy \lto Ez fx)) \]
+      is also valid in $\frakA$.
+
+      \step
+      This means that whenever $E x y$ is satisfied,
+      $E z fx$ is satisfied if and only if $E z fy$ is satisfied,
+      so $fx$ and $fy$ are in the same equivalence class
+      and $f^\frakA$ is well-defined on equivalence classes.
+      
   \end{enumalph}
 \end{Answer}
