@@ -1,0 +1,22 @@
+\begin{problem}[10]
+  Show that
+  \[
+    \models_{\frakA}  \forall v_2\;  Q v_1 v_2 \dabs{c^{\frakA}} \quad \text{ iff } \quad \models_{\frakA}  \forall v_2 Q c v_2.
+  \]
+
+  \step
+  Here, $Q$ is a two-place predicate symbol and $c$ is a constant symbol.
+\end{problem}
+\begin{Answer}
+  Let $\frakA$ be a structure and $s : V \lto \abs{\frakA}$ be an assignment function
+  such that $\models_{\frakA} \forall v_2\;  Q v_1 v_2 \dabs{c^{\frakA}}$.
+
+  \step
+  \begin{align}
+    \models_{\frakA} \forall v_2\;  Q v_1 v_2 \dabs{c^{\frakA}}
+    &\Iff \models_{\frakA} Q v_1 v_2 [s(v_1 | c^\frakA, v_2 | a)] \text{ for all } a \in \frakA \\
+    &\Iff \text{ A deduction } \vector{c^\frak{A}, a} \text{ exists in $\frakA$ for all $a \in \abs{\frakA}$} \\
+    &\Iff \models_\frakA Q c v_2 [s(v_2 | a)] \\
+    &\Iff \models_\frakA \forall v_2 Q c v_2 \quad \text{(since $\frakA$ and $s$ are arbitrary)}
+  \end{align}
+\end{Answer}
