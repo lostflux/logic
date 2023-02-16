@@ -1,1 +1,47 @@
-\
+\begin{problem}
+  With the same definitions as in problem (2),
+  let $\frakB$ be the \emph{reduct} of $\frakB^*$ to a structure
+  for $\calL$. This means that:
+  \begin{align*}
+    \abs{\fB} &= \abs{\fB^*} \\
+    f^{\fB} &= f^{\fB^*} \\
+    P^\fB &= P^{\fB^*}
+  \end{align*}
+
+  \step
+  In other words, $\fB$ translates every parameter $\calL$
+  in exactly the same way as $\fB^*$.
+  It merely has no translation for $E$, since $E$ is not a symbol of
+  $\calL$. (Of course, $\fB$ must translate $=$ as equality).
+
+  \step
+  Because $\fB^*$ translated $E$ as equality, we can conclude that
+  for any wff $\alpha$ of $\calL$ and variable assignment $\sbar$
+  for $\fB$, since $\alpha^*$ is $\alpha$ with $E$ replaced by $=$,
+  \[ \fB \models \alpha [\sbar ] \Iff \fB^* \models \alpha^*[\sbar]. \]
+  This makes sense because $\fB$ and $\fB^*$ have the same universe,
+  so $\sbar$ is also a variable assignment for $\fB$.
+
+  \step
+  By problem (2),
+  \[ \fB^* \models \alpha [h \circ s] \Iff \fA^* \models \alpha^* [s], \]
+  and therefore
+  \[ \fB \models \alpha [h \circ s] \Iff \fA^8 \models \alpha^* [s]. \]
+
+  \step
+  We conclude that if $\Sigma$ is any set of formulas of $\calL$
+  including all the logical axioms in groups $5$ and $6$,
+  and the set $\Sigma^*$ (obtained by replacing $=$ with $E$
+  in every element of $Sigma$) is satisfiable
+  by some structure $\fA^*$ and variable assignment $s$,
+  then the original set $\Sigma$ is also satisfiable by the structure
+  $\fB$ and variable assignment $h \circ s$ as defined in problem (2).
+
+  \step
+  Using problem (1) and the further context, show that if every consistent
+  set of sentences in $\calL^*$ is satisfiable then every consistent set of
+  sentences in $\calL$ is satisfiable.
+  \begin{Answer}
+
+  \end{Answer}
+\end{problem}

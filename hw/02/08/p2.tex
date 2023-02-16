@@ -1,22 +1,28 @@
-\begin{problem}[10]
-  Show that
-  \[
-    \models_{\frakA}  \forall v_2\;  Q v_1 v_2 \dabs{c^{\frakA}} \quad \text{ iff } \quad \models_{\frakA}  \forall v_2 Q c v_2.
-  \]
+\begin{problem}[8]
+  Assume the language (with equality) has just the parameters
+  $\forall$ and $P$, where $P$ is a two-place predicate symbol.
+  Let $\fA$ be the structure with $\abs{\fA} = \Z$,
+  the set of the integers (positive, negative, zero)
+  and with $\vector{a, b} \in P^\fA$ iff $\abs{a - b}~=~1$.
 
   \step
-  Here, $Q$ is a two-place predicate symbol and $c$ is a constant symbol.
+  Thus, $\fA$ looks like an infinite graph:
+  \begin{align*}
+    \cdots
+    \longleftrightarrow \bullet
+    \longleftrightarrow \bullet
+    \longleftrightarrow \bullet
+    \longleftrightarrow \cdots
+  \end{align*}
+  Show that there is an elementarily equivalent structure $\fB$ that is not
+  connected (being \emph{connected} means that for every two members of
+  $\abs{\fB}$, there is a path between them. A path --- of length $n$ ---
+  is a sequence $\vector{p_0, p_1, \ldots, p_n}$ of elements of $\abs{\fB}$
+  such that $a = p_0$ and $b = p_n$ and $\vec{p_i, p_{i+1}} \in P^\fB$
+  for each $i$).
+
+  \step
+  Write down sentences saying $c$ and $d$ are far apart,
+  applying compactness.
+
 \end{problem}
-\begin{Answer}
-  Let $\frakA$ be a structure and $s : V \lto \abs{\frakA}$ be an assignment function
-  such that $\models_{\frakA} \forall v_2\;  Q v_1 v_2 \dabs{c^{\frakA}}$.
-
-  \step
-  \begin{align}
-    \models_{\frakA} \forall v_2\;  Q v_1 v_2 \dabs{c^{\frakA}}
-    &\Iff \models_{\frakA} Q v_1 v_2 [s(v_1 | c^\frakA, v_2 | a)] \text{ for all } a \in \frakA \\
-    &\Iff \text{ A deduction } \vector{c^\frak{A}, a} \text{ exists in $\frakA$ for all $a \in \abs{\frakA}$} \\
-    &\Iff \models_\frakA Q c v_2 [s(v_2 | a)] \\
-    &\Iff \models_\frakA \forall v_2 Q c v_2 \quad \text{(since $\frakA$ and $s$ are arbitrary)}
-  \end{align}
-\end{Answer}

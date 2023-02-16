@@ -1,32 +1,15 @@
-\begin{problem}[6]
-  Show that the formula $\theta$ is valid iff $\forall x \theta$ is valid.
+\begin{problem}[2]
+  Prove the equivalence of parts (a) and (b) of the completeness theorem.
+
+  \step
+  \emph{Suggestion: } $\Gamma \models \phi$ iff $\Gamma \cup \set{\lnot \phi}$
+    is unsatisfiable. And $\Delta$ is satisfiable iff $\Delta \ne \bot$,
+    where $\bot$ is some unsatisfiable, refutable formula
+    like $\lnot \forall x x = x$.
+    (Similarly, the soundness theorem is equivalent to the statement
+    that every satisfiable set of formulas is consistent.)
 \end{problem}
+
 \begin{Answer}
-  $\Longrightarrow$
 
-  \step
-  Suppose $\theta$ is valid, we show that $\forall x \theta$ is also valid.
-
-  \step
-  Let $\frakA$ be a structure and $s : V \lto \abs{\frakA}$ be an assignment function.
-  Since $\theta$ is valid, $\models_{\frakA} \theta [s]$.\\
-  Then for all $a \in \abs{\frakA}$, we have that $\models_{\frakA} \forall x \theta [s (x|a)]$.
-
-  \step
-  Since $s$ and $\frakA$ are arbitrary, it must be that $\models \forall x \theta$,
-  meaning $\forall x \theta$ is valid.
-
-  \step
-  $\Longleftarrow$
-
-  \step
-  Suppose $\forall x \theta$ is valid, we show that $\theta$ is also valid.
-
-  \step
-  Let $\frakA$ be a structure and $s : V \lto \abs{\frakA}$ be an assignment function.
-  Since $\forall x \theta$ is valid, we have that $\models_{\frakA} \forall x \theta [s]$.\\
-  Then $\models_{\frakA} \theta [s(x | s(x))]$.
-
-  \step
-  But $s(x | s(x)) = s$, so $\models_{\frakA} \theta [s]$, meaning $\theta$ is valid.
 \end{Answer}
