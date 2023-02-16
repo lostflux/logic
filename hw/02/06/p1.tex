@@ -14,7 +14,15 @@
       axiom in that group if and only if $\alpha^*$ is a logical axiom in
       that group?
       \begin{Answer}
-
+        Groups 5 and 6.
+      %   \begin{enumroman}
+      %     \item Group 1: True
+      %     \item Group 2: True
+      %     \item Group 3: True
+      %     \item Group 4: True
+      %     \item Group 5: True
+      %     \item Group 6: True
+      %   \end{enumroman}
       \end{Answer}
       
     \item This is a short answer problem.\\
@@ -25,14 +33,14 @@
           then $\alpha^*_1, \alpha^*_2, \ldots, \alpha^*_n$
           is a deduction from $\Sigma^*$ in the language $\calL^*$
           \begin{Answer}
-            
+            True
           \end{Answer}
         \item If $\alpha^*_1, \alpha^*_2, \ldots, \alpha^*_n$
           is a deduction from $\Sigma^*$ in the language $\calL^*$
           then $\alpha_1, \alpha_2, \ldots, \alpha_n$
           is a deduction from $\Sigma$ in the language $\calL$
           \begin{Answer}
-
+            False
           \end{Answer}
       \end{enumroman}
     \item Show that if $\Sigma$ is a consistent set of formulas in $\calL$
@@ -41,11 +49,41 @@
       \emph{Hint: } Recall that $\Sigma$ is inconsistent if there is
       some $\alpha$ such that $\Sigma \deduces \alpha$ and
       $\Sigma \deduces \lnot \alpha$.
+      \begin{Answer}
+        Suppose $\Sigma$ is consistent and $s$ is a variable assignment
+        that satisfies $\Sigma$, then $\sbar(\sigma) = T$ for all $\sigma \in \Sigma$.
+        Then there exists some deduction
+        $\vector{\alpha_1, \alpha_2, \ldots, \alpha_n}$ with $\alpha_n = \alpha$
+        and each $\alpha_i$ either occurring in $\Sigma$ or having some
+        $j, k < i$ such that $\Sigma \models \alpha_j$ and $\alpha_k$ is
+        $\alpha_j \lto \alpha_i$.
+        Therefore, the deduction $\vector{\alpha_1^*, \alpha_2^*, \ldots, \alpha_n^*}$
+        also exists in $\Sigma^*$ with $\alpha_n^* = \alpha^*$,
+        meaning $\Sigma^* \models \alpha^*$.
+
+        \step
+        Therefore, if $\Sigma$ is consistent and some truth assignment satisfies
+        all rules in $\Sigma$, then $\Sigma^*$ is also consistent.
+      \end{Answer}
 
     \item Show by example that it is possible for $\Sigma$ to be inconsistent
       but $\Sigma^*$ to be consistent.
       \begin{Answer}
+        Suppose both $\cL$ and $\cL^*$ contain two constant symbols $c_1$
+        and $c_2$ defined such that $c_1 \ne c_2$, and a variable symbol $x$.
+        Suppose $\Sigma$ contains the two sentences $a = c_2$ and $a = c_2$,
+        then $\Sigma$ is not consistent since it deduces two contradicting
+        results. For instance, if $\alpha$ is the assertion that $a = c_1$
+        then $\Sigma \models \alpha$ and $\Sigma \models \lnot \alpha$.
         
+        \step
+        On the other hand, if we change equality in $\cL$ with a predicate
+        symbol $E$ in $\cL^*$,
+        then $\Sigma^*$ contains the two sentences
+        $E a_i c_1$ and $E a_i c_2$. Thus, $\Sigma \models E a_i c_1$
+        and $\Sigma \models E a_i c_2$. However, there is no rule
+        in $\Sigma^*$ that says $\forall a (E a c_1 \lto \lnot E a c_2)$,
+        so $\Sigma^*$ is still consistent.
       \end{Answer}
   \end{enumalph}
 

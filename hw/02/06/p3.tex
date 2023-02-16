@@ -26,13 +26,13 @@
   By problem (2),
   \[ \fB^* \models \alpha [h \circ s] \Iff \fA^* \models \alpha^* [s], \]
   and therefore
-  \[ \fB \models \alpha [h \circ s] \Iff \fA^8 \models \alpha^* [s]. \]
+  \[ \fB \models \alpha [h \circ s] \Iff \fA^* \models \alpha^* [s]. \]
 
   \step
   We conclude that if $\Sigma$ is any set of formulas of $\calL$
   including all the logical axioms in groups $5$ and $6$,
   and the set $\Sigma^*$ (obtained by replacing $=$ with $E$
-  in every element of $Sigma$) is satisfiable
+  in every element of $\Sigma$) is satisfiable
   by some structure $\fA^*$ and variable assignment $s$,
   then the original set $\Sigma$ is also satisfiable by the structure
   $\fB$ and variable assignment $h \circ s$ as defined in problem (2).
@@ -41,7 +41,24 @@
   Using problem (1) and the further context, show that if every consistent
   set of sentences in $\calL^*$ is satisfiable then every consistent set of
   sentences in $\calL$ is satisfiable.
+  
   \begin{Answer}
+    We shall prove the contrapositive:
+    suppose some consistent set of sentences in $\calL$
+    is not satisfiable. Then there is some set $\Sigma$ of sentences
+    in $\calL^*$ that must not be satisfiable.
 
+    \step
+    Let $\gamma$ be a variable in $\calL$ that is not satisfied under an
+    assignment $s$, then $\fA^* \models \lnot a [s]$.
+
+    \step
+    Therefore, $\fB \models \lnot a [h \circ s]$.
+    By the compactness theorem, there exists some finite subset
+    of $\fB_0 \subseteq \abs{\fB}$ such that $\fB_0 \deduces \gamma$.
+    Then either $\fB_0$ contains $\lnot \gamma$ or $\fB_0$ contains
+    or deduces some formulae $\alpha$ and $\beta$
+    such that $\alpha$ = is $\beta \lto \gamma$.
+    so $\fB$ is also not satisfiable.
   \end{Answer}
 \end{problem}

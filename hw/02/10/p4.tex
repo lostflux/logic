@@ -1,3 +1,4 @@
+\def \seq {\Sigma_\equiv}
 \begin{problem}
   Suppose $\equiv$ is an equivalence relation on $C$. Define
   \[ \Sigma_\equiv = \set{ c_n = c_m \mid c_m \equiv c_n}
@@ -14,5 +15,42 @@
   such that $\fA^*$ and $\fB^*$ are isomorphic.
 \end{problem}
 \begin{Answer}
+  Suppose $\fA$ is a model for $\Sigma_\equiv$.
+  If $\fA$ satisfies $\Sigma_\equiv$ under some variable assignment
+  $s$, then for any two constant symbols $c_m$ and $c_n$,
+  \begin{enumroman}
+    \item If $\models_\fA c_m \equiv c_n [s]$,
+      then $\Sigma_\equiv$ contains a sentence
+      that says $c_m = c_n$. So, by definition of $\equiv_\fA$,
+      we also have that $c_m \equiv_\fA c_n$.
+    \item If $\models_\fA c_m \nequiv c_n [s]$,
+      then $\Sigma_\equiv$ contains a sentence that says $c_m \ne c_n$,
+      so $c_m \nequiv_\fA c_n$.
+  \end{enumroman}
+  Therefore, 
+  if $[c_i]_\equiv$ is the equivalence class of $c_i$ under $\equiv$,
+  and $[c_i]_{\equiv_\fA}$ is the equivalence class of $c_i$ under
+  $\equiv_\fA$, then $[c_i]_\equiv = [c_i]_{\equiv_\fA}$
+  since the two equivalence relations agree on any two constants being in
+  the same equivalence class or not being in the same class.
+  Therefore, $\equiv$ and $\equiv_\fA$ are the same relation.
+
+  \bigskip
+  Now, suppose $\fA$ and $\fB$ are models for $Cn \Sigma_\equiv$,
+  then $\equiv_\fA$ is the same same relation as $\equiv$, and $\equiv_\fB$
+  is also the same relation as $\equiv$, meaning $\equiv_\fA$ is the same
+  relation as $\equiv_\fB$.
+  Extend $\fA$ and $\fB$ to $\fA^*$ and $\fB^*$ respectively
+  by adding new, distinct symbols as in the proof of problem (2).
+  That is, for each $i \in \N$, we define $a_i$ to be a new symbol
+  that does not yet exist in $\abs{\fA}$, and $b_i$ to be a new
+  symbol that does not yet exist in $\abs{\fB}$.
+  We then define $\abs{\fA^*} = \abs{\fA} \cup \set{a_i \mid i \in \N}$
+  and $\abs{\fB^*} = \abs{\fB} \cup \set{b_i \mid i \in \N}$.
+  Then $\fA^*$ and $\fB^*$ are models for $Cn \Sigma_\equiv$,
+  $\fA^*$ is elementarily equivalent to $\fA$, $\fB^*$ is elementarily
+  equivalent to $\fB$, and $\fA^*$ is isomorphic to $\fB^*$
+  since they have the same cardinality and $\equiv_\fA$ is the same
+  relation as $\equiv_\fB$.
 
 \end{Answer}

@@ -11,10 +11,50 @@
   different theories.
 
   Since every complete theory of $\cL$ contains some $Cn \Sigma_\equiv$
-  (because every structure for $fL$ satisfies some $\Sigma_\equiv$),
+  (because every structure for $\fL$ satisfies some $\Sigma_\equiv$),
   problems (4) and (5) together describe all the complete theories of $\cL$.
 
 \end{problem}
 \begin{Answer}
+  First, $T$ must satisfy all the consequences of $\Sigma_\equiv$, i.e.
+  $Cn \Sigma_\equiv \subset T$, so the set of axioms of $T$ must contain all
+  the axioms in $\Sigma_\equiv$.
+  
+  One way to generate axioms for $T$ is by adding axioms to $\Sigma_\equiv$
+  that specify additional elements but do not alter the conditions that
+  $\Sigma_\equiv$ places on the constant symbols.
+
+  \step
+  For example:
+
+  \begin{enumroman}
+    \item $\Sigma_1 = \Sigma_\equiv \cup
+      \set{ \exists x_1 \forall c_i^\fA \lnot (x_1 = c_i^\fA) }$
+      specifies that $\abs{\fA}$ contains translations of
+      all the constant symbols and $\abs{\fA}$ also contains
+      at least one non-constant symbol.
+    \item $\Sigma_2 = \Sigma_1 \cup \set{
+      \exists x_1 \exists x_2 ( \lnot (x_1 = x_2) \land
+      \forall c_i (\lnot (x_1 = c_i) \land \lnot (x_2 = c_i)))}$
+      specifies that $\fA$ contains translation of the constant symbols
+      and it also contains at least two non-constant symbols.
+    \item Inductively, we define $\Sigma_n$ as follows:
+      \begin{align*}
+        \Sigma_n &= \Sigma_{n-1} \cup \set{
+          \exists x_1 \ldots \exists x_n
+          ( \lnot (x_1 = x_2) \land \ldots \land \lnot (x_{n-1} = x_n) \land
+          \forall c_i (\lnot (x_1 = c_i) \land \ldots \land
+          \lnot (x_n = c_i)))}
+      \end{align*}
+      
+      Define $x_n$ to be the new non-constant symbol
+      added at step $n$, then $\Sigma_n$ is countable.
+      It is also finite for all finite $n$.
+  \end{enumroman}
+  $\Sigma_1$ and $\Sigma_2$ are not isomorphic since they have different
+    cardinalities. Likewise, all such finite models of $\fA$ 
+    that have different cardinalities are not isomorphic and they
+    have different theories.
+
 
 \end{Answer}

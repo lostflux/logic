@@ -1,7 +1,7 @@
 \begin{problem}
   Suppose $\fA$ and $\fB$ are two structures for $\cL$, each of which is
   countable (or possibly finite).
-  Which of the following conditions conditions imply which others?
+  Which of the following conditions imply which others?
   In each case, either explain or give a counter-example.
   \begin{enumroman}
     \item $\fA$ is isomorphic to $\fB$.
@@ -10,5 +10,52 @@
   \end{enumroman}
 \end{problem}
 \begin{Answer}
-  
+  \begin{itemize}
+    \item (i) implies (ii) and (iii).\\
+      If $\fA$ is isomorphic to $\fB$ under some isomorphism $\psi$,
+      then $\psi(c_i^\fA) \equiv_\fB \psi(c_j^\fA)$$\fA$ whenever
+      $c_i^\fA \equiv_\fA c_j^\fA$ for every constant symbol,
+      and, similarly, $\psi(a_i) \equiv_\fB \psi(a_j)$ whenever
+      $a_i \equiv_\fA a_j$ symbol $a_i$ in $\abs{A}$ that is not in $C$.
+      Therefore, $\equiv_\fA$ and $\equiv_\fB$ are the same relation
+      since they agree on all elements in the universes of the structures.
+      Furthermore, whenever $\fA$ tautologically implies that
+      $\alpha \equiv_\fA \beta$ for some $\alpha, \beta \in \abs{\fA}$,
+      $\fB$ also tautologically implies that
+      $\psi(\alpha) \equiv_\fB \psi(\beta)$, so $\fA$ and $\fB$ are
+      elementarily equivalent.
+    \item (ii) implies (iii), but does not necessarily imply (i).\\
+      If $\fA$ is elementarily equivalent to $\fB$, then
+      $c_i \equiv_\fA c_j$ if and only if $c_i \equiv_\fB c_j$,
+      so $\equiv_\fA$ and $\equiv_\fB$ are the same relation.
+
+      However, $\fA$ and $\fB$ may not be isomorphic.
+
+      \step
+      If both $\fA$ and $\fB$ have a countably infinite set of non-constant
+      symbols, or they both have the same finite number of non-constant symbols,
+      then they are isomorphic (since there exists a bijection between
+      $\abs{\fA}$ and $\abs{\fB}$ that preserves the relation).
+
+      \step
+      If both $\fA$ and $\fB$ have a finite number of non-constant symbols
+      but the number of non-constant symbols in $\fA$ does not equal the
+      number of non-constant symbols in $\fB$,
+      or if one of $\fA$ has an infinite number of non-constant symbols
+      while the other has a finite number then there is no possible bijection
+      between the sets of non-constant symbols so $\fA$ cannot be isomorphic
+      to $\fB$.
+    \item (iii) implies (ii) but does not necessarily imply (i)\\
+      If $\equiv_\fA$ is the same relation as $\equiv_\fB$,
+      then $c_i \equiv_\fA c_j$ if and only if $c_i \equiv_\fB c_j$,
+      so $\fA$ and $\fB$ always agree on any two constant symbols
+      being in the same
+      equivalence class or being in different equivalence classes.
+      Therefore, $\fA$ and $\fB$ are elementarily equivalent.
+
+      However, as in the previous part, it is impossible for $\fA$ and $\fB$
+      to be isomorphic unless they either have the same number of non-constant
+      symbols or they both have a countably infinite set of non-constant symbols.
+
+  \end{itemize}
 \end{Answer}

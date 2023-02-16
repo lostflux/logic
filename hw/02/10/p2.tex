@@ -5,5 +5,45 @@
   then $\fA$ is isomorphic to $\fB$.
 \end{problem}
 \begin{Answer}
+  Since $\equiv A$ is the same relation as $\equiv B$,
+  $\fA$ and $\fB$ agree on which of the constants in $C$ name the same elements.
 
+  \step
+  Let $A = \set{a_1, a_2, \ldots, a_n, \ldots}$ be the set of countable
+  elements of $\fA$ that are not named by constant symbols,
+  and let $B = \set{b_1, b_2, \ldots, b_n, \ldots}$ be the set of countable
+  elements of $\fB$ that are not named by constant symbols.
+
+  \step
+  Define a bijection from $\abs{\fA}$ to $\abs{\fB}$ as follows:
+  \begin{align*}
+    \psi : \abs{\fA} &\to \abs{\fB} \\
+    c_n^\fA &\mapsto c_n^\fB \\
+    a_i &\mapsto b_i
+  \end{align*}
+
+  \step
+  Then $\psi$ is an isomorphism, since:
+  \[
+    c_n^\fA \equiv_\fA c_m^\fA \quad \quad \Iff \quad c_n^\fB \equiv_\fB c_m^\fB,
+  \]
+  but $c_n^\fB = \psi(c_n^\fA)$ and $c_m^\fB = \psi(c_m^\fA)$,
+  so
+  \[
+    c_n^\fA \equiv_\fA c_m^\fA \quad \Iff \quad \psi(c_n^\fA) \equiv_\fB \psi(c_m^\fA).
+  \]
+
+  \step
+  Since every element in $A$ and every element in $B$
+  is not named by any constant symbol, and each element is distinct from
+  all other elements in the set,
+  each $a \in A$ is in its own equivalence class and so is each $b \in B$.
+  $\psi$ matches element $a_i$ in $\fA$ to element $b_i$ in $\fB$,
+  so it guarantees that any element in $[a_i]$ maps to an element in $[b_i]$
+  (since $[a_i]$ only contains the single element $a_i$, and $\psi(a_i) = b_i$).
+  Therefore, $a_i \equiv_\fA a_j$ if and only if $b_i \equiv_\fB b_j$,
+  since in both cases it must be that $i = j$.
+
+  \step
+  Therefore $\psi$ is an isomorphism, and $\fA$ is isomorphic to $\fB$.
 \end{Answer}

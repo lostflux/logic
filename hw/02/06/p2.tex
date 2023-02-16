@@ -39,20 +39,63 @@
     \item Show that $h$ is a surjective homomorphism
     from $\frakA^*$ onto $\frakB^*$.
     \begin{Answer}
-
+      Let $b$ be an element in $\abs{\fB}$, then, from the definition
+      \[ \abs{\fB} = \set{[a] \mid a \in \abs{\fA^*}}, \]
+      $b = [a]$ for some $a \in \abs{\fA^*}$.
+      Since $h : \abs{\fA^*} \to \abs{\fB^*}$ is defined as
+      $h(a) = [a]$, for every $b \in \abs{\fB^*}$, there exists
+      some $a \in \abs{\fA^*}$ such that $h(a) = b$,
+      so $h$ is surjective.
     \end{Answer}
 
     \item Show that if $\alpha$ is any formula of $\calL$ and $s$
       is a variable assignment for $\abs{\frakA^*}$, then
       \[ \frakA^* \models \alpha^* [s] \Iff \models \alpha^* [h \circ s] \]
       \begin{Answer}
+        $\Longrightarrow$
 
+        \step
+        Suppose $\alpha$ is a formula in $\cL$ and $s$ is a variable assignment
+        for $\abs{\fA^*}$ such that $\fA^* \models \alpha^* [s]$.
+        Note that $h \circ s$ is the function that sends each element $x$
+        to the equivalence class $[\sbar(x)]$.
+
+        If $\fA^* \models \alpha^* [s]$, then $\sbar(\alpha^*) = T$,
+        so $a^* = [T]$, i.e.  $a^*$ under $h \circ s$ is in the equivalence class
+        of formulas that are always true.
+        This implies that $\alpha^*$ is a tautology in $\fB^*$ under
+        $h \circ s$, or $\models \alpha^* [h \circ s]$.
+
+        $\Longleftarrow$
+
+        \step
+        Suppose $\models \alpha^* [h \circ s]$.
+        Then $\alpha$ is a tautology under the assignment defined by
+        $h \circ s$. Therefore, $\alpha^* = [T]$ under $h \circ s$,
+        meaning $\sbar(\alpha^*) = T$, s0 $\fA^* \models \alpha^* [s]$.
       \end{Answer}
 
     \item Show that 
-      \[ E^{\frakB^*} = \set{([a], [b]) \in \abs{B^*} \times \abs{B^*}
+      \[ E^{\frakB^*} = \set{([a], [b]) \in \abs{\fB^*} \times \abs{\fB^*}
           \mid [a] = [b]} \]
       \begin{Answer}
+        $E^{\fA^*}$ is an equivalence relation, and $\fB$ is defined as
+        \[ \fB = \fA / E^{\fA^*} = \set{ [a] \mid a \in \abs{\fA^*}}. \]
+        Let $E^{\fB^*}$ be the translation of $E^{\fA^*}$ into $\fB^*$.
+        Then, for every $a, b \in \abs{\fA^*}$,
+        $E^\fA a b \Iff E^{\fB^*} [a] [b]$.
+        But since $E^{\fA^*}$ is an equivalence relation
+        (the same one used to define $\abs{\fB}$),
+        $E^{\fA^*} a b \Iff [x] = [y]$.
+        
+        \step
+        The translation $E^{\fB^*}$ is satisfied when the original equivalence
+        relation is satisfied, i.e. $\fB \models E^{\fB^*}$
+        if and only if $\fA \models E^{\fA^*}$,
+        and $\fA \models E^{\fA^*}$ if and only if
+        $(a, y) = T$ if and only if $[a] = [y]$.
+        Therefore, $E^{fB^*} = \set{([a], [b]) \in \abs{\fB^*} \times \abs{\fB^*}
+          \mid [a] = [b]}$.
 
       \end{Answer}
   \end{enumalph}

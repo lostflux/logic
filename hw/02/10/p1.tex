@@ -9,11 +9,36 @@
   \crim{
     \textbf{Compactness Theorem: } If $\Gamma \models \phi$,
     then for some finite $\Gamma_0 \subseteq \Gamma$,
-    $\Gamma_0 \models \phi$.\\
+    $\Gamma_0 \models \phi$.
   (In other words, a set $\Gamma$ has a model iff every finite subset
-  has a model)
+  has a model)\\
+  \textbf{Elementary equivalence: } Two structures $\fA$ and $\fB$ are
+  \emph{elementarily equivalent} if
+  $\quad \models_\fA \alpha \Iff \models_\fB \alpha$,
 }
 \end{problem}
 \begin{Answer}
+  Let $\fA$ be a \emph{finite} structure for $\cL$
+  such that $\abs{\fA} \ne \infty$.
 
+  \step
+  Define $\fB$ as such
+  \begin{enumroman}
+    \item Include translations of the constant symbols from
+      $C$ in $\abs{\fB}$. That is; for each $c_n \in C$,
+      $c_n^\fB \in \abs{\fB}$.\\
+      Whenever $c_m^\fA = c_n^\fA$, let $c_m^\fB = c_n^\fB$
+      so that  $c_m \equiv_\fB c_n$ if and only if $c_m =_\fA c_n$.
+    \item Define a new set of countably many elements
+      $B = \set{b_0, b_1, b_2, \ldots, b_n, \ldots}$ such that:
+      \begin{itemize}
+        \item $\forall i \forall j \lnot (b_i = c_j)$.
+        \item $\forall i \forall j (i = j \lor \lnot (b_i = b_j))$.
+      \end{itemize}
+    \item For each $b_i \in B$, let $b_i^\fB \in \abs{\fB}$.
+  \end{enumroman}
+
+  \step
+  Then $\fB$ is an infinite structure for $\cL$ that is elementarily
+  equivalent to $\fA$.
 \end{Answer}
