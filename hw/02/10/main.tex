@@ -16,12 +16,53 @@
 \setlength{\footskip}{14.0pt}
 \input{cover}
 
+\bigskip
+For this assignment, $\calL$ is the language of first-order logic with equality,
+countably many constant symbols, $c_0, c_1, \ldots, c_n, \ldots$, and no other
+predicate, constant, or function symbols.
+We will find all the complete theories of $\calL$.
+This is a single problem in five parts.
+You may use completeness, soundness, and compactness.
+
+If $\fA$ is a structure for $\calL$, define an equivalence relation on the set
+$C = \set{c_0, c_1, \ldots, c_n, \ldots }$ of constant symbols of $\calL$
+by \[ c_m \equiv_\fA c_n \Iff c_m^\fA = c_n^\fA, \]
+That is, two constant symbols are equivalent if and only if they name the
+same element of $\fA$.
+
+Suppose that $\fA$ and $\fB$ are structures such that $\equiv_\fA$
+is the same as $\equiv_\fB$.
+Then two constant symbols name the same element in $\fA$ if and only if
+they name the same element in $\fB$.
+
+Let $\equiv$ be any equivalence relation on $C$.
+Then there is a structure $\fA$ for $\cL$ such that $\equiv_\fA$
+is the same relation as $\equiv$. Namely, let the universe of the structure
+be the set of equivalence classes of constant symbols, and let each
+constant symbol name its own equivalence class:
+\[ \abs{\fA} = C / \equiv, \quad \text{ and } \quad \quad c_n^\fA = [c_n]. \]
+
+The most complicated part of this is the notation.
+The relation $\equiv$ on $C$ specifies whether constants $c_n$ and $c_m$
+are to refer to the same element of a structure or to different elements.
+Therefore, as long as $\equiv$ actually is an equivalence relation,
+you can create a structure obeying those rules.
+
 % PROBLEM 1
-\setcounter{problem}{7}
+\newpage
 \input{p1}
 
 \newpage
 \input{p2}
+
+\newpage
+\input{p3}
+
+\newpage
+\input{p4}
+
+\newpage
+\input{p5}
 
 \vfill
 

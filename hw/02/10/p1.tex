@@ -1,32 +1,19 @@
-\begin{problem}[6]
-  Show that the formula $\theta$ is valid iff $\forall x \theta$ is valid.
+\begin{problem}
+  Show that if $\fA$ is any finite structure for $\cL$, there is a countable
+  structure $\fB$ such that $\fB$ is elementarily equivalent to $\fA$,
+  and in $\fB$, infinitely many elements are not named by constant symbols.
+  In other words, we have that
+  \[ \set{b \in \abs{\fB} \mid \forall n (b \ne c_n^\fB)} \] is infinite.
+  (\emph{Hint: } Use compactness.)
+
+  \crim{
+    \textbf{Compactness Theorem: } If $\Gamma \models \phi$,
+    then for some finite $\Gamma_0 \subseteq \Gamma$,
+    $\Gamma_0 \models \phi$.\\
+  (In other words, a set $\Gamma$ has a model iff every finite subset
+  has a model)
+}
 \end{problem}
 \begin{Answer}
-  $\Longrightarrow$
 
-  \step
-  Suppose $\theta$ is valid, we show that $\forall x \theta$ is also valid.
-
-  \step
-  Let $\frakA$ be a structure and $s : V \lto \abs{\frakA}$ be an assignment function.
-  Since $\theta$ is valid, $\models_{\frakA} \theta [s]$.\\
-  Then for all $a \in \abs{\frakA}$, we have that $\models_{\frakA} \forall x \theta [s (x|a)]$.
-
-  \step
-  Since $s$ and $\frakA$ are arbitrary, it must be that $\models \forall x \theta$,
-  meaning $\forall x \theta$ is valid.
-
-  \step
-  $\Longleftarrow$
-
-  \step
-  Suppose $\forall x \theta$ is valid, we show that $\theta$ is also valid.
-
-  \step
-  Let $\frakA$ be a structure and $s : V \lto \abs{\frakA}$ be an assignment function.
-  Since $\forall x \theta$ is valid, we have that $\models_{\frakA} \forall x \theta [s]$.\\
-  Then $\models_{\frakA} \theta [s(x | s(x))]$.
-
-  \step
-  But $s(x | s(x)) = s$, so $\models_{\frakA} \theta [s]$, meaning $\theta$ is valid.
 \end{Answer}
