@@ -26,3 +26,31 @@
   applying compactness.
 
 \end{problem}
+
+\begin{Answer}
+  Let $\pi$ be a new constant symbol, then 
+  we define $\fB$ to be the structure with $\abs{\fB} = \Z \cup \set{\pi}$.
+  Next, we specify that $\pi$ does not belong to $P^\fB$
+  by adding a sentence to the language saying:
+  \[ \forall p \; \lnot P^\fB \; \pi p. \]
+  Then $\fB$ is not connected, since the new constant $\pi$
+  does not have a path of length $1$ to any other element of $\abs{\fB}$,
+  and the existence of a path of higher length depends on the existence
+  of a path of a lower length.
+  We can specify this formally with an extra set of sentences saying that
+  there does not exist any path of any length from a point $p$ to the constant
+  $\pi$:
+  \[ 
+    \set{
+      \forall d \forall p_1 \forall p_2 \ldots \forall p_n
+      \lnot ((P^\fB d p_1) \land (P^\fB \; p_1 p_2) \land (P^\fB \; p_2 p_3) 
+      \land \ldots \land (P^\fB \; p_{n-1} p_n) \land (P^\fB \; p_n \pi))
+      \mid d \in \abs{\fB}, n \in \Z
+    }
+  \]
+
+  \step
+  However, $\fB$ is elementarily equivalent to $\fA$
+  since whenever $\fA \models P^\fA p_i p_j$ then
+  $\fB \models P^\fB p_i p_j$ and vice versa. 
+\end{Answer}

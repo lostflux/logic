@@ -8,8 +8,80 @@
     like $\lnot \forall x x = x$.
     (Similarly, the soundness theorem is equivalent to the statement
     that every satisfiable set of formulas is consistent.)
+    \begin{blockcolor}
+      \textbf{Completeness Theorem: }
+      \begin{enumalph}
+        \item If $\Gamma \models \phi$, then $\Gamma \deduces \phi$.
+        \item Any consistent set of formulas is satisfiable.
+      \end{enumalph}
+    \end{blockcolor}
 \end{problem}
 
 \begin{Answer}
+  We shall prove this in two parts: (i) that (a) implies (b),
+  and (ii) that (b) implies (a).
+
+  \bigskip
+  Suppose $\Gamma$ is a set of formulas such that (a) holds,
+  then we claim that $\Gamma$ is consistent if and only if it is satisfiable.
+
+  \step
+  Assume $\Gamma$ is not satisfiable, then there exists some formula
+  $\alpha$ such that $\Gamma \models \alpha$ and $\Gamma \models \lnot \alpha$.
+  By part (a) of the completeness theorem, this implies that
+  $\Gamma \deduces \alpha$ and $\Gamma \deduces \lnot \alpha$.
+  But deductions are finite, so there must exist some finite subset
+  $\Gamma_0 \subseteq \Gamma$ such that $\Gamma_0 \deduces \alpha$,
+  and there must exist some finite subset $\Gamma_1 \subseteq \Gamma$
+  such that $\Gamma_1 \deduces \lnot \alpha$.
+  Therefore:
+  \begin{itemize}
+    \item Either $\Gamma_0$ deduces a sentence that says $\alpha$,
+      or $\Gamma_0$ or deduces two sentences $\gamma_1$ and $\gamma_2$
+      where $\gamma_1$ says $\gamma_2 \lto \alpha$.
+    \item Either $\Gamma_1$ deduces a sentence that says $\lnot \alpha$,
+      or $\Gamma_0$ deduces two sentences $\gamma_3$ and $\gamma_4$
+      where $\gamma_3$ says $\gamma_4 \lto \lnot \alpha$.
+  \end{itemize}
+    Since $\Gamma \supset \Gamma_0 \cup \Gamma_1$, $\Gamma$
+      deduces each of $\gamma_1, \gamma_2, \gamma_3$, and $\gamma_4$, so
+      $\Gamma$ deduces both $\alpha$ and $\lnot \alpha$, so it must not
+      be consistent.
+
+  \step
+  \crim{Therefore, given that if $\Gamma \models \phi$ then $\Gamma \deduces \phi$,
+    for $\Gamma$ to be consistent it must be satisfiable.}
+
+  \bigskip
+  Next, suppose $\Gamma$ is a consistent set of wffs and (b) holds ---
+  that is, $\Gamma$ is consistent and satisfiable.
+  We show that whenever $\Gamma \models \phi$, then $\Gamma \deduces \phi$.
+
+  \step
+  Let $\phi$ be a wff and $\Gamma \models \phi$.
+  Then $\Gamma \cup \set{\lnot \phi}$ is unsatisfiable,
+  meaning there exists a deduction of $\phi$ from
+  $\Gamma \cup \set{\lnot \phi}$,
+  and there also exists a deduction of $\lnot \phi$ from
+  $\Gamma \cup \set{\lnot \phi}$.
+  Deductions are finite, so there must exist some finite subset
+  $\Gamma_0 \subseteq \Gamma \cup \set{ \lnot \phi }$ so that
+  $\Gamma_0 \deduces \phi$ and there must exist some finite subseteq
+  $\Gamma_1 \subseteq \Gamma \cup \set{ \lnot \phi }$ so that
+  $\Gamma_1 \deduces \lnot \phi$.
+  
+  But since the original set $\Gamma$ is consistent
+  (therefore has no contradicting deductions):
+  It must be the addition of $\lnot \phi$ to $\Gamma$
+  that causes the contradiction. But $\set{\lnot \phi}$ deduces
+  $\lnot \phi$, so $\Gamma$ must have had no deduction of $\lnot \phi$.
+  Additionally, $\lnot \phi \notin \Gamma_0$, since
+  $\Gamma_0 \deduces \phi$ and $\Gamma_0 \not \deduces \lnot \phi$.
+  Since $\Gamma_0 \subseteq \Gamma \cup \set{ \lnot \phi }$
+  and $\lnot \phi \notin \Gamma_0$, $\Gamma_0 \subseteq \Gamma$.
+  Therefore, $\Gamma \deduces \phi$ (since its subset deduces $\phi$).
+
+  \crim{ Therefore, given that any consistent set of formulas is satisfiable,
+    if $\Gamma \models \phi$ then $\Gamma \deduces \phi$.}
 
 \end{Answer}
