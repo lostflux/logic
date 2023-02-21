@@ -5,10 +5,73 @@
     given on the bottom of page 83 and the top of page 84 in the textbook.
     In particular, this problem  is about logical validity, and not about deductions.
   },
-  that the sentence $$ \forall x\,  Pxfc \rightarrow \exists x Pxfx$$
+  that the sentence \[\forall x\,  Pxfc \rightarrow \exists x Pxfx \]
   (where $c$ is a constant symbol, $f$ is a one-place function symbol,
   and $P$ is a two-place predicate symbol) is logically valid.
 \end{problem}
 \begin{Answer}
+  \begin{blockcolor}
+    \textbf{Formal definition of satisfaction:}
 
+    \step
+    $\models_\fA \phi \; [s]$ if and only if the translation of $\phi$
+    determined by $\fA$ is true.
+
+    \begin{itemize}
+      \item Terms.
+        \begin{enumroman}
+          \item For each variable $x$, $\sbar(x) = s(x)$.
+          \item For each constant $c$, $\sbar(c) = c^\fA$.
+          \item If $t_1, \ldots, t_n$ are terms and $f$ is an $n$-place
+            function symbol, then $\sbar(f t_1 \cdots t_n) = f^\fA(\sbar(t_1), \ldots, \sbar(t_n))$.
+        \end{enumroman}
+      \item Atomic formulas.
+        \begin{enumroman}
+          \item $\models_\fA = t_1 t_2$ iff $\sbar(t_1) = \sbar(t_2)$.
+          \item For an $n$-place predicate parameter $P$,
+            $\models_\fA P t_1 \cdots t_n$ iff
+            $\vector{\sbar(t_1), \ldots, \sbar(t_n)} \in P^\fA$.
+        \end{enumroman}
+      \item Other wffs
+        \begin{enumroman}
+          \item Atomic formulas as defined above.
+          \item $\models_\fA \lnot \phi \; [s]$ iff $\not \models_\fA \phi \; [s]$.
+          \item $\models_\fA (\phi \lto \psi)\; [s]$ iff either
+            $\not \models_\fA \phi [s]$ or $\models_\fA \psi [s]$,
+              or both.
+          \item $\models_\fA \forall x \; \phi \; [s]$ iff for every
+            $d \in \abs{\fA}$, we have
+            $\models_\fA \phi \; [s(x \mid d)]$.
+        \end{enumroman}
+    \end{itemize}
+  \end{blockcolor}
+
+  \bigskip
+
+  \step
+  Let $\fA$ be a structure and $s$ a variable assignment.\\
+  Let $\gamma_1 = \forall x\,  Pxfc$ and $\gamma_2 = \exists x Pxfx$,
+  such that the given sentence is equivalent to
+  $(\gamma_1 \lto \gamma_2)$.
+  Then the sentence is valid iff either $\gamma_1$ is not valid,
+  or $\gamma_2$ is valid (or both).
+
+  \step
+  When $\gamma_1$ is not valid, it follows from the definition of the
+  ``$\lto$'' connective that $(\gamma_1 \lto \gamma_2)$ is valid.
+  
+  \step
+  Suppose $\gamma_1$ is valid, i.e. $\forall x\,  Pxfc = T$,
+  we show that $\gamma_2$ must also be valid.\\
+  By definition of satisfaction, $\forall x\,  Pxfc$ is valid iff
+  for every $d \in \abs{\fA}$, we have $\models_\fA Pxfc \; [s(x \mid d)]$.\\
+  This means that $\sbar(Pxfc) = P^\fA s(x) f^\fA c^\fA = T$ whenever
+  $s(x) = d$ for some $d \in \abs{\fA}$.
+  By definition of satisfaction, $\sbar(c) = c^\fA$, the translation of $c$
+  into an element in $\abs{\fA}$.
+  When we map $x$ to $c^\fA$, we get that $(Pxfc)^x_{c^{\fA}}$ is valid
+  (since $(P x fc)^x_d$ is valid for all $d \in \abs{\fA}$).
+  This evaluates to $P^\fA c^\fA f^\fA c^\fA = \sbar(Pcfc)$,
+  so $Pcfc$ must also be valid, and
+  $\exists x Pxfx$ is valid, particularly when $x = c$.
 \end{Answer}

@@ -18,7 +18,18 @@
       $(T \deduces \sigma \;\implies\; \sigma \in T)$.)
     
     \begin{Answer}
-
+      Let $\sigma$ be a sentence such that $T_1 \cap T_2 \deduces \sigma$,
+      for $T_1 \cap T_2$ to be a theory, then $\sigma \in T_1 \cap T_2$.
+      
+      If $T_1 \cap T_2 \deduces \sigma$, then $T_1 \deduces \sigma$
+      (since $T_1 \cap T_2 \subseteq T_1$) and $T_2 \deduces \sigma$
+      (since $T_1 \cap T_2 \subseteq T_2$).
+      However, if $T_1 \deduces \sigma$, then $\sigma \in T_1$ (since $T_1$
+      is a theory), and if $T_2 \deduces \sigma$, then $\sigma \in T_2$
+      (since $T_2$ is a theory). It follows that $\sigma \in T_1 \cap T_2$.
+      
+      Therefore, $T_1 \cap T_2 \deduces \sigma$, iff
+      $\sigma \in T_1 \cap T_2$, so $T_1 \cap T_2$ is a theory.
     \end{Answer}
 
     \item Suppose that $T_1$ and $T_2$ are both 
@@ -31,15 +42,61 @@
       \begin{enumroman}
         \item $T_1 \cap T_2$ is consistent.
           \begin{Answer}
+            True.
 
+            Since $T_1$ is a theory for $\calL$, every sentence in $T_1$
+            is true in $\calL$. Therefore, every sentence in $T_1 \cap T_2$
+            must be true in $\calL$ since $(T_1 \cap T_2) \subseteq T_1$.
+            $T_2$ is also a theory for $\calL$, so every sentence in $T_2$
+            is true in $\calL$ and the same argument can be made using $T_2$.
+
+            Therefore, every deduction from $T_1 \cap T_2$ is also deduced
+            by $T_1$ and $T_2$. Since $T_1$ and $T_2$ are consistent,
+            $T_1 \cap T_2$ must also consistent.
+
+            \step
+            If $T_1 \cap T_2$ were inconsistent, then it would deduce
+            --- hence contain --- some sentence $\sigma$ and its negation,
+            $\lnot \sigma$, which would mean $T_1$ and $T_2$ would both
+            contain $\sigma$ and $\lnot \sigma$, thus contradicting
+            the consistency of $T_1$ and $T_2$.
           \end{Answer}
         \item $T_1 \cap T_2$ is complete.
           \begin{Answer}
+            True.
 
+            Since $T_1$ is complete, for every sentence $\sigma$,
+            either $\sigma \in T_1$ or $(\lnot \sigma) \in T_1$.
+            Likewise, since $T_2$ is complete, for every sentence $\sigma$,
+            either $\sigma \in T_2$ or $(\lnot \sigma) \in T_2$.
+
+            Since both $T_1$ and $T_2$ are theories for $\cL$,
+            we cannot have $\sigma \in T_1$ and $(\lnot \sigma) \in T_2$
+            (since all sentences in each of the theories have to be true in $\cL$,
+            and both theories are consistent).
+            Therefore, if $\sigma$ is a valid sentence in $\cL$,
+            it must be in $T_1$ \emph{and} it must be in $T_2$,
+            so it must be in $T_1 \cap T_2$.
+            On the other hand, if $\sigma$ is not a valid sentence in $\cL$,
+            then $\lnot \sigma$ must be in $T_1$ \emph{and}
+            $\lnot \sigma$ must be in $T_2$, so $\lnot \sigma$ must be in
+            $T_1 \cap T_2$.
+
+            Therefore, $T_1 \cap T_2$ is also complete.
           \end{Answer}
+        \newpage
         \item $T_1 \cap T_2$ is decidable.
           \begin{Answer}
+            False.
 
+            That the language $\cL$ is reasonable means we can effectively enumerate
+            the set of valid sentences in $\cL$.
+            However, this set is not necessarily decidable
+            so, given any formula $\gamma$, we may not readily determine
+            if it is valid or not valid in $\cL$. Therefore,
+            we may not be able to determine if $\gamma \in T_1 \cap T_2$
+            or $\lnot \gamma \in T_1 \cap T_2$,
+            so $T_1 \cap T_2$ may not be decidable.
           \end{Answer}
       \end{enumroman}
   \end{enumalph}

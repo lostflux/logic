@@ -1,10 +1,10 @@
 \begin{problem}
 
 In each case, either show without using the Completeness Theorem that
-$\varphi \deduces \psi$, or else show that $\varphi \not\models \psi$.
+$\phi \deduces \psi$, or else show that $\phi \not\models \psi$.
 Here $P$ and $Q$ are one-place predicate symbols.
 
-To show $\varphi \deduces \psi$, you may use any of the metatheorems of Section 2.4.  You do not need to give an actual deduction.
+To show $\phi \deduces \psi$, you may use any of the metatheorems of Section 2.4.  You do not need to give an actual deduction.
 
 For this problem, if you want to give an example of a structure and variable
 assignment satisfying some particular formula $\gamma$,
@@ -12,19 +12,74 @@ it is enough to specify the structure and variable assignment.
 You do not have to formally prove that $\gamma$ is satisfied.
 
 \begin{enumroman}
-  \item $\varphi$ is $\forall x \, (Px \lor Qx)$, 
+  \item $\phi$ is $\forall x \, (Px \lor Qx)$, 
     and $\psi$ is $\forall x \, Px \lor \forall x \, Qx$.
     \begin{Answer}
+      In this case, $\phi \not\models \psi$.
 
+      \step
+      Let $\fA$ be a structure with $\abs{\fA} = \set{p, q}$ such that
+      $P^\fA = \set{p}$ and $Q^\fA = \set{q}$.
+      Let $s$ be a variable assignment.\\
+      Then the sentence $\forall x \, (Px \lor Qx)$ is satisfied by $s$ since
+      $\models_{\fA}(Px \lor Qx)[s(x \mid p)]$ and
+      $\models_{\fA}(Px \lor Qx)[s(x \mid q)]$.\\
+      However, $\forall x \, Px$ is not satisfied by $s$ since
+      $\not \models_{\fA} Px[s(x \mid q)]$ because $q \notin P^\fA$.
+      Likewise, $\forall x \, Qx$ is not satisfied by $s$ since
+      $\not \models_{\fA} Qx[s(x \mid p)]$ because $p \notin Q^\fA$.\\
+      Therefore, $\forall x \, Px \lor \forall x \, Qx$ is not satisfied,
+      so $\phi \not\models \psi$.
     \end{Answer}
-  \item $\varphi$ is $\forall x \, Px \lor \forall x \, Qx$,
+  \item $\phi$ is $\forall x \, Px \lor \forall x \, Qx$,
     and $\psi$ is $\forall x \, (Px \lor Qx)$.
     \begin{Answer}
+      In this case, $\phi \deduces \psi$.
 
+      \step
+      Let $\fA$ be a structure and $s$ a variable assignment such that
+      $\models_{\fA} (\forall x\, Px \lor \forall x\, Qx)[s]$.\\
+      Since $\sbar(\forall x\, Px \lor \forall x\, Qx)
+      = \sbar(\forall x\, Px) \lor \sbar(\forall x\, Qx)$,
+      either $\models_\fA \forall x\, Px[s]$ or $\models_\fA \forall x\, Qx[s]$.
+
+      \begin{enumroman}
+        \item When $\models_\fA \forall x\, Px[s]$ is satisfied,
+          then $\models_\fA Px [s(x \mid d)]$ for every $d \in \abs{\fA}$.\\
+          Therefore, $\models_\fA Px \lor Qx [s(x \mid d)]$ for every $d \in \abs{\fA}$,
+          meaning $\forall x\, Px \lor Qx$ is also satisfied by $s$.
+        \item When $\models_\fA \forall x\, Qx[s]$ is satisfied,
+          then $\models_\fA Qx [s(x \mid d)]$ for every $d \in \abs{\fA}$.\\
+          Therefore, $\models_\fA Px \lor Qx [s(x \mid d)]$ for every $d \in \abs{\fA}$,
+          meaning $\forall x\, Px \lor Qx$ is also satisfied by $s$.
+      \end{enumroman}
+      in the first case, $\models_\fA \forall x\, Px[s]$, so
+      $\fA$ satisfies $\forall x\, Px$.
     \end{Answer}
-  \item $\varphi$ is $\forall x \, (Px \lor Qy)$,
+  \item $\phi$ is $\forall x \, (Px \lor Qy)$,
     and $\psi$ is $\forall x\, Px \lor \forall x \, Qy$.
     \begin{Answer}
+      In this case, $\phi \deduces \psi$.
+
+      \step
+      % For example, take $\fA$ as a structure and $\abs{\fA} = \set{p, q}$
+      % as a set of sentences.
+      % Further, suppose $P^\fA = \set{p}$ and $Q^\fA = \set{q}$.
+
+      \step
+      Since $y$ occurs free, $\forall x \, (Px \lor Qy)$ is satisfied by $s$ iff
+      $\models_{\fA} \forall x Px [s]$ or $\models_{\fA} Qy [s]$
+      (by the generalization theorem, if $\fA \models\forall x Qy$
+      then $\fA \models Qy$).
+
+      \step
+      In the first case, $\models_{\fA} \forall x Px$ deduces that that
+      $\forall x Px$ is satisfied by $s$, which
+      tautologically implies that $\forall x\, (Px \lor Qy)$ is satisfied by $s$.
+
+      \step
+      In the second case, $\models_{\fA} Qy$ deduces that that
+      $\forall x\, (Px \lor Qy)$ is satisfied by $s$.
 
     \end{Answer}
 \end{enumroman}
