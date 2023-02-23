@@ -1,0 +1,29 @@
+\begin{problem}[7]
+  Consider a language with a two-place predicate symbol $<$,
+  and let $\fN = (\N; <)$ be the structure consisting of the natural numbers
+  with their usual ordering. Show that there is some $\fA$ elementarily
+  equivalent to $\fN$ such that $<^\fA$ has a descending chain.
+  That is, there must be $a_0, a_1, \ldots$ such that
+  $\vector{a_{i+1}, a_i} \in <^\fA$ for all $i$.
+
+  \step
+  \emph{Hint: } Apply the compactness theorem.
+\end{problem}
+\begin{Answer}
+  Let $\fA = (\N; <, c)$ be a structure consisting of the natural numbers
+  under their usual ordering, with an additional
+  constant symbol $c \notin \N$.
+  Let
+  \[ \Gamma = \set{x < c \mid x \in \N} = \set{0^\fA < c, 1^\fA < c, 2^\fA < c, \ldots}.\]
+  For any finite subset of some size $k$,
+  Mapping $x^\fA \mapsto x^\fN$ for all $x \in \N$, $x < k$
+  and mapping $c^\fA \mapsto k^\fN$ gives a model of $\Gamma$
+  that contains a descending chain of length $k$.
+
+  Since every such finite subset of $\Gamma \cup \Th \fN$
+  has a model, then by the compactness theorem
+  $\Gamma \cup \Th \fN$ also has a model.
+  But since the size of $\N$ is infinite,
+  there exists a descending chain in $\fA$, starting with $c$, that
+  has infinite length.
+\end{Answer}

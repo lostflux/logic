@@ -1,0 +1,93 @@
+\begin{problem}[3]
+  Establish the following facts;
+  \begin{enumalph}
+    \item $\Sigma_1 \subseteq \Sigma_2 \To
+      \Mod \Sigma_1 \subseteq \Mod \Sigma_2$.
+      \\
+      $\cK_1 \subseteq \cK_2 \To \Th \cK_1 \subseteq \Th \cK_2$.
+      \begin{Answer}
+        Given $\fA$ is a model of $\Sigma_2$, then each sentence in
+        $\Sigma_2$ is true in $\fA$. However, since $\Sigma_1 \subseteq \Sigma_2$,
+        then each sentence in $\Sigma_1$ is also true in $\fA$,
+        so $\fA$ must also be a model for $\Sigma_1$.
+        On the other hand, every model of $\Sigma_1$
+        satisfies a subset of $\Sigma_2$, so there exists some extension
+        that makes it a model of $\Sigma_2$.
+
+        \step
+        Therefore, if $\Sigma_1$ is a subset of (or equal to) $\Sigma_2$
+        then every model of $\Sigma_1$ is some subset of (or equal to)
+        some model of $\Sigma_2$.
+
+        \bigskip
+        \step
+        The same argument applies to $\cK_1 \subseteq \cK_2$:
+        Suppose $T_2$ is a theory for $\cK_2$, then $T_2$
+        contains every sentence that is true in $K_2$.
+        Since $\cK_1 \subseteq \cK_2$, then $T_2$ also contains
+        every sentence that is true in $K_1$.
+        
+        \step
+        On the other hand, every theory for $\cK_1$ contains some subset
+        of the sentences that are true in $\cK_2$, so it can be extended
+        to a theory for $\cK_2$.
+        Therefore, every theory for $\cK_1$ is a subset of (or equal to)
+        some theory for $\cK_2$.
+      \end{Answer}
+    \item $\Sigma \subseteq \Th \Mod \Sigma$ and $\cK \subseteq \Mod \Th \cK$.
+    \begin{Answer}
+      Let $\fA$ be a model of $\Sigma$.
+      Then every sentence in $\Sigma$ is true in $\fA$.
+      Since $\Th \fA$ contains every sentence that is true in $\fA$,
+      then $\Th \fA$ must contain every sentence in $\Sigma$,
+      so $\Sigma \subseteq \Th \fA$.
+      But $\fA = \Mod \Sigma$, so $\Sigma \subseteq \Th \Mod \Sigma$.
+
+      \bigskip
+      \step
+      Let $\Gamma$ be a theory for $\cK$.
+      Then $\Gamma$ contains every wff that is true in $\cK$.
+      Let $\fA$ be a model for $\Gamma$, then every sentence in $\Gamma$
+      s true in $\fA$, so every sentence true in $\cK$ is true in $\fA$.
+      Therefore, $\cK \subseteq \Mod \Th \cK$.
+
+    \end{Answer}
+    \item $\Mod \Sigma = \Mod \Th \Mod \Sigma$ and $\Th \cK = \Th \Mod \Th \cK$.\\
+    \textit{Hint:} Part (c) follows from (a) and (b).
+    \begin{Answer}
+      By (b), $\Sigma \subseteq \Th \Mod \Sigma$, so,
+      by (a), $\Mod \Sigma \subseteq \Mod \Th \Mod \Sigma$. \\
+      $\Mod \Th \Mod \Sigma$ is a model for $\Th \Mod \Sigma$,
+      so every sentence true in $\Mod \Th \Mod \Sigma$ is tautologically
+      implied by (or... deducible from) $\Th \Mod \Sigma$.
+      But $\Th \Mod \Sigma$ is a theory, so any such deduction $\sigma$
+      from $\Th \Mod \Sigma$ must be contained in $\Th \Mod \Sigma$,
+      so it must also be true in $\mod \Sigma$.
+      Therefore, any sentence true in $\Mod \Th \Mod \Sigma$ must also
+      be true in $\Mod \Sigma$, so
+      $\Mod \Th \Mod \Sigma \subseteq \Mod \Sigma$.
+
+      \step
+      Therefore, $\Mod \Sigma \subseteq \Mod \Th \Mod \Sigma$ and
+      $\Mod \Th \Mod \Sigma \subseteq \Mod \Sigma$,
+      so $\Mod \Sigma = \Mod \Th \Mod \Sigma$.
+
+
+      \bigskip
+      \step
+      By (b), $\cK \subseteq \Mod \Th \cK$, so,
+      by (a), $\Th \cK \subseteq \Th \Mod \Th \cK$. \\
+      $\Th \Mod \Th \cK$ contains all the wffs true
+      in $\Mod \Th \cK$. But $\Mod \Th \cK$ is a model for $\Th \cK$,
+      meaning sentences true in $\Mod \Th \cK$ are tautologically implied by
+      (or... deducible from) $\Th \cK$. But $\cK$ is a theory (for $\cK$),
+      meaning any such deduction $\sigma$ must be in $\Th \cK$.
+
+      \step
+      Therefore, $\Th \Mod \Th \cK \subseteq \Th \cK$
+      and $\Th \cK \subseteq \Th \Mod \Th \cK$,
+      meaning $\Th \cK = \Th \Mod \Th \cK$.
+
+    \end{Answer}
+  \end{enumalph}
+\end{problem}
