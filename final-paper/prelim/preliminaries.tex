@@ -1,0 +1,91 @@
+\section{Preliminary Questions}~\label{sec:prelims}
+
+For this problem, we will start with the following definitions.
+An element $g$ of a group $G$ has order $n$ if $n$ is the smallest
+positive natural number such that
+\[ n g = \underbrace{g + \ldots + g}_{\text{$n$ times}} = 0. \]
+For example, $g$ has order $2$ if $g \neq 0$ and $g + g = 0$. \\
+An element is said to be \emph{torsion free} if it does not have order $n$
+for any $n \in \N$ with $n > 0$. A group is said to be \emph{torsion free}
+if each of its elements, other than the identity, is torsion free. \\
+Lastly, we say that a group $G$ is divisible if for each $g \in G$
+and $n \in \N$ with $n > 0$, there exists $h \in G$ such that
+\[ nh = \underbrace{h + \ldots + h}_{\text{$n$ times}} = g. \]
+
+\subsection{Axiomatizing Abelian Groups}~\label{sec:axiomatizing-abelian-groups}
+
+\zaff{
+  Define a language $\cL$ and a set of axioms $\Sigma$ such that any model
+  that satisfies $\Sigma$ is an abelian group.\\ Next, define a set of axioms
+  $T$ such that any model which satisfies $\Sigma \cup T$ is a
+  divisible torsion free abelian group.
+}
+
+Using additive notation for groups, we define $\cL$ to specify
+group operation ($+$) and the group identity, $0$.
+We also define element equality in the group as a two-place predicate.
+Precisely, two elements $g$ and $h$ in the group are considered equal
+if and only if $g + x = h + x$ for every other element $x$ in the group. \\
+Thus, if $\fA$ is a model for $\cL$, then
+\[
+  (=^\fA) \, = \set{ (g, h) \mid \forall x (g + x = h + x)}.
+\]
+For convenience, we also define the two-place predicate symbol ``$\neq$''
+to be an abbreviation such that:
+\[
+  (x \neq y) = \lnot (x = y).
+\]
+
+\step
+We define $\cL$ to contain the following symbols:
+\begin{align}
+  \cL &= \vector{ 0, +, = }
+\end{align}
+
+We define $\Sigma$ to contain the following axioms:
+\begin{align}
+  \forall g &( (g + 0) = g) &\text{($0$ as the group identity)}\\
+  \forall g\, \forall h\, &( (g + h) = (h + g) ) &\text{(commutativity)} \\
+  \forall g\, \forall h\, \forall i\, &( (g + (h + i)) = ((g + h) + i) ) &\text{(associativity)} \\
+  \forall g\, \exists h\, &( (g + h) = 0) &\text{(existence of inverses)}
+\end{align}
+
+We define $T$ to contain the following axioms, which my must be satisfied \emph{in addition to}
+the axioms in $\Sigma$ for any model to be a divisible torsion-free abelian group:
+\begin{align}
+  \forall g\, \forall n\, &( (g \neq 0) \land (0 < n) \lto (ng \neq 0)) &\text{(torsion-free)} \\
+  \forall g\, \forall n\, \exists h,\, &((n \neq 0) \lto (g = nh)) &\text{(divisibility)}
+\end{align}
+
+\bigskip
+
+\subsection{Existence of \texorpdfstring{$\Q$}{Q}-vector space structures}~\label{sec:q-vector-space}
+
+\zaff{
+  Show that any divisible torsion free abelian group
+  has a $\Q$-vector space structure. \\
+  \emph{Hint:} Show that if G is such a group, $n \in \N$ with $n > 0$
+  and $g \in G$ then there is a unique $h \in G$ such that $nh = g$.
+  Note that to show there is a $\Q$-vector space structure,
+  you must define scalar multiplication (and prove it is well-defined).
+}
+
+\subsubsection{Definition of Scalar Multiplication}~\label{subsec:scalar-multiplication}
+
+For any group element $h \in G$ and a scalar $n \in \N$, we define
+the scalar multiplication of $h$ by $n$ to be the unique element $g \in G$
+such that \[ g = \underbrace{h + \ldots + h}_{\text{$n$ times}}. \]
+
+
+\bigskip
+
+\subsection{Axiomatizing Abelian Groups Wherein Each Element Other Than the Identity
+Has Order 2}~\label{sec:axiomatizing-abelian-groups-order-two}
+
+\zaff{
+  Define a set of axioms $S$ such that any model that satisfies $\sigma \cup S$
+  is an abelian group in which each element other than the identity has order two.
+  Can we give a model for $\Sigma \cup S$ a vector space structure? \\
+  \emph{Hint:} Be creative in your choice of the scalar field.
+}
+
