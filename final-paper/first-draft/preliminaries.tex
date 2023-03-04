@@ -1,0 +1,201 @@
+\section{Preliminary Questions}~\label{sec:prelims}
+
+For this problem, we will start with the following definitions.
+An element $g$ of a group $G$ has order $n$ if $n$ is the smallest
+positive natural number such that
+\[ n g = \underbrace{g + \ldots + g}_{\text{$n$ times}} = 0. \]
+For example, $g$ has order $2$ if $g \neq 0$ and $g + g = 0$. \\
+An element is said to be \emph{torsion free} if it does not have order $n$
+for any $n \in \N$ with $n > 0$. A group is said to be \emph{torsion free}
+if each of its elements, other than the identity, is torsion free. \\
+Lastly, we say that a group $G$ is divisible if for each $g \in G$
+and $n \in \N$ with $n > 0$, there exists $h \in G$ such that
+\[ nh = \underbrace{h + \ldots + h}_{\text{$n$ times}} = g. \]
+
+\subsection{Definitions}~\label{sec:definitions}
+
+For convenience, we define the following shorthands used in the rest of the writing:
+\begin{enumroman}
+  \item $\Np = \N \setminus \{0\}$.
+  \item $(x \neq y)$ is shorthand for $\lnot (x = y)$.
+\end{enumroman}
+
+\subsection{Axiomatizing Abelian Groups}~\label{sec:axiomatizing-abelian-groups}
+
+\zaff{
+  Define a language $\cL$ and a set of axioms $\Sigma$ such that any model
+  that satisfies $\Sigma$ is an abelian group.\\ Next, define a set of axioms
+  $T$ such that any model which satisfies $\Sigma \cup T$ is a
+  divisible torsion free abelian group.
+}
+
+Using additive notation for groups, we define $\cL$ to specify
+group operation ($+$) and the group identity, $0$.
+We also define element equality in the group as a two-place predicate.
+Precisely, two elements $g$ and $h$ in the group are considered equal
+if and only if $g + x = h + x$ for every other element $x$ in the group. \\
+Thus, if $\fA$ is a model for $\cL$, then
+\[
+  (=^\fA) \, = \set{ (g, h) \mid \forall x (g + x = h + x)}.
+\]
+
+\step
+We specify $\cL$ as follows:
+\begin{align}
+  \cL &= \vector{ 0, +, = }
+\end{align}
+
+For any structure to be abelian, it needs to satisfy the group axioms
+(closure, associativity, identity, and inversion) and commutativity $\Sigma$ to contain the following axioms:
+\begin{align}
+  \forall g\, \forall h\, \exists i\, &( (g + h) = i) &\text{(closure)} \\
+  \forall g\, \forall h\, \forall i\, &( (g + (h + i)) = ((g + h) + i) ) &\text{(associativity)} \\
+  \exists h\, \forall g &( (g + h) = h) &\text{(group identity element $h$, equivalent to $0$)} \\
+  \forall g\, \exists h\, &( (g + h) = 0) &\text{(existence of inverses)} \\
+  \forall g\, \forall h\, &( ((g + h) = i) \iff  ((h + g) = i) ) &\text{(commutativity)}
+\end{align}
+
+We define an extra set of conditions, $T$,
+to contain the following axioms, which must be satisfied
+(in addition to those in $\Sigma$) for a structure to be a divisible torsion-free abelian group.
+$T$ contains the following axioms:
+\begin{align}
+  \forall g\, \forall n\, &( ((g \neq 0) \land (0 < n)) \lto (ng \neq 0)) &\text{(torsion-free)} \\
+  \forall g\, \forall n\, \exists h,\, &((n \neq 0) \lto (g = nh)) &\text{(divisibility)}
+\end{align}
+
+\bigskip
+
+\subsection{Existence of \texorpdfstring{$\Q$}{Q}-vector space structures}~\label{sec:q-vector-space}
+
+\zaff{
+  Show that any divisible torsion free abelian group
+  has a $\Q$-vector space structure. \\
+  \emph{Hint:} Show that if G is such a group, $n \in \N$ with $n > 0$
+  and $g \in G$ then there is a unique $h \in G$ such that $nh = g$.
+  Note that to show there is a $\Q$-vector space structure,
+  you must define scalar multiplication (and prove it is well-defined).
+}
+
+\subsubsection{Scalar Multiplication (Definition)}~\label{subsec:scalar-multiplication}
+
+For any group element $h \in G$ and a scalar $n \in \Np$, we define
+the scalar multiplication of $h$ by $n$ to be the unique element $g \in G$
+such that \[ g = \underbrace{h + \ldots + h}_{\text{$n$ times}}. \]
+Let $f$ be the function that maps every such element $h \in G$ and
+scalar $n \in \N$ to the scalar product $g$. That is;
+\begin{align*}
+  f \colon G \times \Np &\to G \\
+  (h, n) &\mapsto g \quad \text{ where } \quad g = \underbrace{h + \ldots + h}_{\text{$n$ times}}
+\end{align*}
+
+\newpage
+\begin{claim}~\label{claim:scalar-multiplication}
+  $f$ is well-defined.
+
+  \begin{proof}
+
+    \step
+    \begin{enumroman}
+    \item Suppose $h \in G$ and $m, n \in \N$ such that $f(h, m) = g$ and $f(h, n) = g$.
+    Then
+      \[
+        \underbrace{h + \ldots + h}_{\text{$m$ times}}
+        = \underbrace{h + \ldots + h}_{\text{$n$ times}} = g.
+      \]
+    Let $k = \max(m, n)$ and $l = \min(m, n)$, then $k - l \geq 0$, and:
+    \begin{align*}
+      kh - lh &= g - g = 0 \\
+      \Therefore (k - l)\, h &= 0 \\
+      \Therefore k - l &= 0 &\text{(since $G$ is torsion-free)} \\
+      \Therefore n &= m
+    \end{align*}
+
+    \item Suppose $h_1, h_2 \in G$  and $n \in \Np$ such that
+    $f(h_1, n) = g$ and $f(h_2, n) = g$.
+    Then
+    \begin{align*}
+        \underbrace{h_1 + \ldots + h_1}_{\text{$n$ times}}
+        &= \underbrace{h_2 + \ldots + h_2}_{\text{$n$ times}} = g \\
+      \Therefore \parens{\underbrace{h_1 + \ldots + h_1}_{\text{$n$ times}}}
+      - \parens{\underbrace{h_2 + \ldots + h_2}_{\text{$n$ times}}} &= g - g = 0 \\
+      \Therefore \underbrace{(h_1 - h_2) + \ldots + (h_1 - h_2)}_{\text{$n$ times}} &= 0
+    \end{align*}
+    Since $G$ is torsion-free, $ng \neq 0$ for any $g \in G$ given $g \neq 0$.
+    Therefore, if $n(h_1 - h_2) = 0$, it follows that $h_1 -h_2 = 0$,
+    so $h_1 = h_2$.
+  \end{enumroman}
+  \step
+  Therefore, scalar multiplication is well-defined.
+  \end{proof}
+
+\end{claim}
+
+\subsection{Any divisible torsion-free abelian group has a
+\texorpdfstring{$\Q$}{Q}-vector space structure}~\label{sec:torsion-free-q-vector-space}
+
+As seen in the proof to \ref{claim:scalar-multiplication}, if a group $G$
+is divisible and torsion-free, then scalar multiplication is well-defined.
+Since $G$ is divisible, then for every $g \in G$ and $n \in \Np$
+there is a unique $h \in G$ such that $nh = g$.
+As seen in the proof to \ref{claim:scalar-multiplication},
+for fixed $n$, any such $h$ must be unique
+(likewise, for fixed $h$, any such $n$ must be unique).
+Therefore, $G$ has a $\Q$-vector space structure.
+
+
+\bigskip
+
+\subsection{Axiomatizing Abelian Groups Wherein Each Element Other Than the Identity
+Has Order 2}~\label{sec:axiomatizing-abelian-groups-order-two}
+
+\zaff{
+  Define a set of axioms $S$ such that any model that satisfies $\Sigma \cup S$
+  is an abelian group in which each element other than the identity has order two.
+  Can we give a model for $\Sigma \cup S$ a vector space structure? \\
+  \emph{Hint:} Be creative in your choice of the scalar field.
+}
+
+We define $S$ to contain the following axioms:
+\begin{align}
+  \forall g\, ( (g \neq 0) \lto ((g + g) &= 0) ) &\text{(every element has order 2)}
+\end{align}
+
+\bigskip
+For examples of models of $\Sigma \cup S$;
+first, let's consider finite abelian groups in which every non-identity
+element has order 2.
+The smallest such group is the cyclic group of order $2$:
+\begin{align*}
+  C_2 &= \parens{ \set{0, 1}, + }
+\end{align*}
+
+To generate larger groups where every non-identity element has order 2,
+we can take the direct product of $C_2$ with itself.
+For instance, the Klein-Four group $V_4$ is isomorphic to $C_2 \times C_2$.
+For an infinite such group, take an infinite sequence of direct products of $C_2$:
+\begin{align*}
+  C_2^{\infty} &= C_2 \times C_2 \times C_2 \times \ldots
+\end{align*}
+% Then the group has infinite elements, and every non-identity element $g$ has order $2$.
+
+Take $g \in C_2^{\infty}$ such that $g$ is not the identity.
+For $C_2^\infty$ to have a $\Q$-vector space structure,
+
+Since $g$ has order $2$, we have that $3g = 2g + g = 0 + g = g$,
+and, more generally, for all $n \in \Np$, $ng = k g$ where $n \equiv k \mod 2$.
+Therefore, $G$ cannot have a $\Q$-vector space structure under scalar multiplication
+with elements of $\Np$.
+
+To specify a model for $\Sigma \cup S$, such that the group is a scalar field,
+we have to limit our choice of scalars to the Galois field of $2$ elements
+\[ \F_2 = \parens{\set{0, 1}, \times}. \]
+
+Therefore, by defining $G = C_2^{\infty}$ and limiting the scalar multiplication
+function $f: G \times \F_2 \to G$, we can construct a model for $\Sigma \cup S$
+that has a $\Q$-vector space structure.
+
+% \crim{
+%   I was not entirely sure if my interpretation of what I was supposed to show for this part
+%   was entirely correct.
+% }
