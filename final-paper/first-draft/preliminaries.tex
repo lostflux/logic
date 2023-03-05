@@ -1,233 +1,297 @@
-\section{Preliminary Questions}~\label{sec:prelims}
+\section{Introduction}~\label{sec:prelims}
+Mathematical logic is interesting in itself, but
+its ability to effectively model and describe other
+fields in mathematics is, perhaps, even more intriguing
+and what makes the study of logic so useful to the regular
+mathematician.
+For instance, using logic one may model aspects of
+analysis, algebra, calculus, probability, geometry,
+and even game theory.
+This offers disparate and often insightful perspectives into these other fields,
+letting one apply the laws of logic to their study of the structures
+of other fields in mathematics and the resulting consequences.
+More importantly, modeling other structures is useful in the study of logic
+itself as it lets one interrogate the rules of logic from other perspectives.
 
-For this problem, we will start with the following definitions.
-An element $g$ of a group $G$ has order $n$ if $n$ is the smallest
-positive natural number such that
-\[ n g = \underbrace{g + \ldots + g}_{\text{$n$ times}} = 0. \]
-For example, $g$ has order $2$ if $g \neq 0$ and $g + g = 0$. \\
-An element is said to be \emph{torsion free} if it does not have order $n$
-for any $n \in \N$ with $n > 0$. A group is said to be \emph{torsion free}
-if each of its elements, other than the identity, is torsion free. \\
-Lastly, we say that a group $G$ is divisible if for each $g \in G$
-and $n \in \N$ with $n > 0$, there exists $h \in G$ such that
-\[ nh = \underbrace{h + \ldots + h}_{\text{$n$ times}} = g. \]
+In this paper, we will model the structure of abelian groups using
+first-order logic. We will then narrow down our study to groups that
+are \emph{abelian}, \emph{divisible}, and \emph{torsion-free}.
+We will then study groups in this category as vector-spaces
+over the rational numbers, $\Q$, and study how the structure of these
+vector spaces can tell us about logic.
 
-\subsection{Definitions}~\label{sec:definitions}
-
-For convenience, we define the following shorthands used in the rest of the writing:
-\begin{enumroman}
-  \item $\Np = \N \setminus \{0\}$.
-  \item $(x \neq y)$ is shorthand for $\lnot (x = y)$.
-\end{enumroman}
-
-\subsection{Axiomatizing Abelian Groups}~\label{sec:axiomatizing-abelian-groups}
-
-\zaff{
-  Define a language $\cL$ and a set of axioms $\Sigma$ such that any model
-  that satisfies $\Sigma$ is an abelian group.\\ Next, define a set of axioms
-  $T$ such that any model which satisfies $\Sigma \cup T$ is a
-  divisible torsion free abelian group.
+\section{Definitions}~\label{sec:definitions}
+\emph{
+  Note: This section is included mostly as a prelude for the
+  non-experienced mathematician, and may be skipped by readers
+  well-versed in
+  \textbf{Group Theory},
+  \textbf{Abstract Vector Spaces},
+  and \textbf{First-Order Logic}.
 }
 
-Using additive notation for groups, we define $\cL$ to specify
-group operation ($+$) and the group identity, $0$.
+\subsection{Groups}~\label{sec:def-groups}
 
-\step
-We specify $\cL$ as follows:
+A group $G = (S, \ast)$ is a set $S$ paired with a binary operation,
+$\ast : S \to S$, satisfying the following axioms:
+\begin{enumroman}
+  \item Closure: $x \ast y \in S$ for any two elements $x, y \in S$.
+  \item Associativity: $(x \ast y) \ast z = x \ast (y \ast z)$
+    for any three elements $x, y, z \in S$.
+  \item Identity: there exists an element $\eps \in S$ such that
+    for any $x \in S$, $x \ast e = e \ast x = x$.
+  \item Inversion: for any $x \in S$, there exists an element
+    $x^{-1} \in S$ such that $x \ast x^{-1} = x^{-1} \ast x = \eps$.
+\end{enumroman}
+There are two common notations for groups:
+\begin{enumroman}
+  \item Additive notation: $G = (S, +, 0)$, where $0$ is the identity
+    element and $+$ is the binary operation.
+    For any element $g$, we denote the inverse of $g$ as $-g$.
+  \item Multiplicative notation: $G = (S, \cdot, 1)$, where $1$ is the
+    identity element and $\cdot$ is the binary operation.
+    For any element $g$, we denote the inverse of $g$ as $g^{-1}$.
+\end{enumroman}
+
+Indeed, some groups with numerical elements use modified versions of
+addition and multiplication as their binary operations.
+For instance, the group of integers modulo a positive integer $n$
+is denoted as $\Z/n\Z$, where $a + b$ in the group is equivalent
+to $a + b \mod n$.
+Multiplicative groups can also be formed this way, but require
+more attention since not every element less than some integer $n$
+necessarily has an inverse. We denote such groups as $(\Z/n\Z)^\times$
+and usually include only the elements co-prime to $n$ ---
+for instance, $(\Z/12\Z)^\times$ contains the elements $1, 5, 7$, and $11$,
+with each element being its own inverse.
+
+In this paper, we will use additive notation for groups.
+
+\subsection{Fields}~\label{sec:def-fields}
+
+A field $F = (S; 0, 1, +, \times)$ is a set $S$ with two binary operations, $+$ and $\cdot$,
+such that the pairing $(S, +)$ is an \emph{abelian} group
+and the pairing $(S \setminus \set{ 0 }, \cdot)$ is a 
+group (not necessarily abelian). Some of the most common examples of a field
+is the real numbers $R = (\R, 0, 1, +, \cdot)$, the rational numbers $Q = (\Q, 0, 1, +, \cdot)$,
+and the complex numbers $C = (\C, (0, 0), (1, 0), +, \cdot)$ under their standard addition and multiplication
+operations.
+
+
+\subsection{Vector Spaces over Fields}~\label{sec:def-vector-spaces}
+
+A vector space $V = (S, +)$ over a field $F$ is an \emph{abelian group}
+such that multiplication of elements of $V$ by elements of the field $F$
+is defined and satisfies the following axioms:
+\begin{enumroman}
+  \item $0 x = 0$ for any $x \in S$ and the additive identity $0 \in F$.
+  \item $1 x = x$ for any $x \in S$ and the multiplicative identity $1 \in F$.
+  \item $n x = \underbrace{x + \ldots + x}_{\text{$n$ times}}$
+    for any $x \in S$ and any $n \in F$.
+  \item $(-n) x = \underbrace{-x + \ldots + -x}_{\text{$n$ times}}$
+    for any $x \in S$ and any $n \in F$.
+  \item $n^{-1} x = y$ where $y$ is the element in the field
+    such that $n y = x$.
+\end{enumroman}
+
+\subsection{Divisible and Torsion Free Groups}~\label{sec:def-div-groups}
+
+The order of any element $g$ in a group $G$ is the smallest positive
+integer $n$ such that $n g = 0$.
+For instance, if $g + g + g = 0$, then $g$ has order $3$.
+
+\begin{enumarabic}
+  \item A group $G$ is \emph{divisible} if for any $g \in G$
+    and any $n \in \N$ with $n > 0$, there exists an element $h \in G$
+    such that $n h = g$.
+  \item An element $g \in G$ is \emph{torsion free} if $ng \neq 0$
+    for any positive integer $n > 0$,
+    and a group is \emph{torsion free} if every non-identity element is
+    torsion free.
+\end{enumarabic}
+
+
+
+% For this problem, we will start with the following definitions.
+% An element $g$ of a group $G$ has order $n$ if $n$ is the smallest
+% positive natural number such that
+% \[ n g = \underbrace{g + \ldots + g}_{\text{$n$ times}} = 0. \]
+% For example, $g$ has order $2$ if $g \neq 0$ and $g + g = 0$. \\
+% An element is said to be \emph{torsion free} if it does not have order $n$
+% for any $n \in \N$ with $n > 0$. A group is said to be \emph{torsion free}
+% if each of its elements, other than the identity, is torsion free. \\
+% Lastly, we say that a group $G$ is divisible if for each $g \in G$
+% and $n \in \N$ with $n > 0$, there exists $h \in G$ such that
+% \[ nh = \underbrace{h + \ldots + h}_{\text{$n$ times}} = g. \]
+
+% % \subsection{Definitions}~\label{sec:definitions}
+
+% For convenience, we define the following shorthands used in the rest of the writing:
+% \begin{enumroman}
+%   \item $\Np = \N \setminus \{0\}$.
+%   \item $(x \neq y)$ is shorthand for $\lnot (x = y)$.
+% \end{enumroman}
+
+\newpage
+\section{Axiomatizing Groups}~\label{sec:axiomatizing-abelian-groups}
+To model groups using logic, we need to specify a sufficiently capable
+language. The language dictates which symbols are valid in sentences/formulas
+we use to describe groups. We will use the following language:
 \begin{align}
   \cL &= \vector{ 0, +, -, = }
 \end{align}
 
-For any structure to be abelian, it needs to satisfy the group axioms
-(closure, associativity, identity, and inversion) and commutativity.
-We $\Sigma$ to contain the following axioms:
+\subsection{Abelian Groups}~\label{sec:axiom-abelian-groups}
 
-For any structure to be abelian, it needs to satisfy the following
-group axioms:
-\begin{enumroman}
-  \item Closure. This does not need to be specified explicitly,
-    since $n$-ary functions in first-order logic are always
-    translated as $n$-ary functions from $\abs{\fA}^n$
-    to a subset $S \subseteq \abs{\fA}$.
-  \item Associativity:
-    \begin{align}
-      \forall g\, \forall h\, \forall i\, ( (g + (h + i)) = ((g + h) + i) ).
-    \end{align}
-  \item Existence of an identity element:
-    \begin{align} \exists \eps\, \forall g ( g + \eps = g). \end{align}
-    Using additive notation, we denote the identity element as $0$.
-  \item Existence of inverses:
-    \begin{align} \forall g\, \exists h\, (g + h = 0). \end{align}
-    Using additive notation, we denote the inverse of $g$ as $-g$.
+For any structure to be an abelian group, it needs to satisfy the group axioms
+(closure, associativity, identity, and inversion) and commutativity
+(see section~\ref{sec:def-groups} for reference).
+We define the set $\Sigma$ to contain the following abelian group axioms:
+\begin{align}
+  \forall g\, \forall h\, &(g + h = h + g) &\text{ (commutativity)} \\
+  \forall g\, \forall h\, \forall i\, &( (g + (h + i)) = ((g + h) + i) )
+    &\text{ (associativity)} \\
+  \exists \eps\, \forall g &( g + \eps = g) &\text{ (group identity)} \\
+  \forall g\, \exists h\, &(g + h = 0) &\text{ (group inversion)}
+\end{align}
+Since $n$-ary functions in a structure $\fA$ in first-order logic always assume
+the domain $\abs{\fA}^n$, and the range $\abs{\fA}$, we do not need to
+explicitly specify an axiom for closure.
 
-  \item For any structure to be abelian, it must be commutative.
-    For this, we need an extra axiom:
-    \begin{align} \forall g\, \forall h\, (g + h = h + g). \end{align}
-\end{enumroman}
 
-\subsection{Scalar Multiplication}~\label{sec:scalar-multiplication}
+\subsection{Divisible, Torsion Free Abelian Groups}~\label{sec:axioms-div}
 
-Let $n \in \Q$ be any rational number.
-For any group element $h$, we define the multiplication of $h$ by $n$
-as follows.
-\begin{enumarabic}
-  \item~\label{def:mult1} When $n$ is a natural number:
-    \begin{enumroman}
-      \item If $n > 0$, then $nh$ is the unique element
-        \[ g = \underbrace{h + \ldots + h}_{\text{$n$ times}}. \]
-      \item if $n = 0$, then $nh = 0g = 0$.
-      \item If $n < 0$, then $nh$ is the unique element
-        \[ g = \underbrace{(-h) + \ldots + (-h)}_{\text{$\abs{q}$ times}}. \]
-    \end{enumroman}
-  \item ~\label{def:mult2} When $n$ is not a natural number,
-    write $n = \frac{a}{b}$, $a \in \N$ and $b \in \Np$
-    (Since $n$ is rational, we can always do this).
-    Then;
-      \[ nh = \frac{a}{b} h = \frac{1}{b} (ah). \]
-    First, note the multiplication $ah$ yields a unique element in the group
-    by the definition of multiplication in~\ref{def:mult1} above.
-    Call this element $h'$.
-    We then define the multiplication of $h'$ by $\frac{1}{n}$ to be the
-    element $g$ such that $ng = h'$.
-    
-    \begin{claim}
-      If $nh_1 = nh_2 = g$, then $h_1 = h_2$.
+We define an extra set of conditions
+which must be satisfied (in addition to those in $\Sigma$)
+for a structure to be a divisible torsion-free abelian group.
+Recall that a group $G$ is \emph{divisible} if for any $g \in G$
+and any $n \in \N$ with $n > 0$, there exists an element $h \in G$
+such that $n h = g$.
+We can represent this using an infinite set of axioms
+\[ T_1 = \set{ \forall g\, \exists h,\, (g = nh) \mid n = 1, 2, 3, \ldots }. \]
 
-      \begin{proof}
-        Take $n, h_1, h_2$, and $g$ as in the claim.
-        Then; 
-        \begin{align*}
-          nh_1 = nh_2 &= g \\
-          \underbrace{h_1 + \ldots + h_1}_{\text{$n$ times}}
-            = \underbrace{h_2 + \ldots + h_2}_{\text{$n$ times}} &= g \\
-          \Therefore \parens{\underbrace{h_1 + \ldots + h_1}_{\text{$n$ times}}}
-            - \parens{\underbrace{h_2 + \ldots + h_2}_{\text{$n$ times}}} = g - g &= 0 \\
-          \Therefore \underbrace{(h_1 - h_2) + \ldots + (h_1 - h_2)}_{\text{$n$ times}} &= 0
-        \end{align*}
+Recall that a group $G$ is \emph{torsion free} if every non-identity element
+is torsion free. That is, if $g \neq 0$ then $ng \neq 0$ for any positive
+integer $n > 0$. We can represent this using an infinite set of axioms
+\[ T_2 = \set{ \forall g\, (g \neq 0 \lto ng \neq 0) \mid n = 1, 2, 3, \ldots }. \]
 
-        Since $G$ is torsion-free, we know that $ng \neq 0$ for any scalar
-        $n \neq 0$ given $g \neq 0$.
-        Therefore, it must be that $h_1 - h_2 = 0$.
-        From the definition and axiomatizing of the group
-        (section \ref{sec:axiomatizing-abelian-groups}),
-        we know that we can deduce that $-h_2$ is equivalent to the unique element
-        $-h_1$ such that $h_1 + (-h_1) = 0$,
-        but if the inverse of $h_1$ and the inverse of $h_2$ are equivalent
-        then $h_1$ and $h_2$ must be equivalent.
+Let $T = T_1 \cup T_2$, then any model satisfying $\Sigma \cup T$
+is a divisible, torsion free abelian group.
 
-      \end{proof}
-    \end{claim}
 
-\end{enumarabic}
 
-\newpage
-\begin{claim}~\label{claim:scalar-multiplication}
-  Scalar multiplication is well-defined.
+\subsection{Abelian Groups Wherein Each Element Other Than the Identity
+Has Order 2}~\label{sec:axiom-order-two}
 
+To specify that each element in an abelian group has order $2$,
+define the set
+\[ S = \set{\forall g\, ( g \neq 0 \lto (g + g = 0) ) }, \]
+then any model satisfying $\Sigma \cup S$ is an abelian group
+wherein each element other than the identity has order $2$.
+
+
+\section{Vector Space Structures}~\label{sec:vec-space-structures}
+A group $G$ has a \emph{vector space structure} over some field $F$
+if multiplication of elements of $G$ by scalars in $F$ is defined
+
+\subsection{Divisible, Torsion Free Abelian Groups}
+~\label{sec:adiv-torsion-free-abelian-groups}
+
+\begin{claim}~\label{claim:mult}
+  The scalar multiplication of elements of a divisible, torsion free
+  abelian group $G$ by elements of the field $\Q$ is well-defined.
+  
   \begin{proof}
-    
-    Let $f : G \times \Q \to G$ be the function
-    \[ f(h, n) = nh. \]
-    That is, $f$ takes a group element $g \in G$ and a rational number $n \in \Q$
-    and yields the element equivalent to the scalar multiplication
-    of $g$ by $n$.\\
-    $f$ is clearly well-defined for $n \in \N \subset \Q$,
-    since the element $g = \underbrace{h + \ldots + h}_{\text{$n$ times}}$
-    is unique for any $n \in \N$.
-
-    Suppose $n$ is not a natural number.
-    Since $n$ is rational, write $n = \frac{a}{b}$ and apply multiplication
-    as defined in 
-    \begin{enumroman}
-    \item Suppose $h \in G$ and $m, n \in \N$ such that $f(h, m) = g$ and $f(h, n) = g$.
-    Then
-      \[
-        \underbrace{h + \ldots + h}_{\text{$m$ times}}
-        = \underbrace{h + \ldots + h}_{\text{$n$ times}} = g.
-      \]
-    Let $k = \max(m, n)$ and $l = \min(m, n)$, then $k - l \geq 0$, and:
+    The proof for integer multiplication is trivial since
+    the sum $\underbrace{x + \ldots + x}_{\text{$n$ times}}$
+    always names a unique element in the vector space
+    (and in the equivalent abelian group).
+    Consider multiplication by non-integer rational numbers.
+    Take $n \in \Q$ and $h_1, h_2, g \in G$ such that $nh_1 = nh_2 = g$,
+    then;
     \begin{align*}
-      kh - lh &= g - g = 0 \\
-      \Therefore (k - l)\, h &= 0 \\
-      \Therefore k - l &= 0 &\text{(since $G$ is torsion-free)} \\
-      \Therefore n &= m
-    \end{align*}
-
-    \item Suppose $h_1, h_2 \in G$  and $n \in \Np$ such that
-    $f(h_1, n) = g$ and $f(h_2, n) = g$.
-    Then
-    \begin{align*}
-        \underbrace{h_1 + \ldots + h_1}_{\text{$n$ times}}
-        &= \underbrace{h_2 + \ldots + h_2}_{\text{$n$ times}} = g \\
+      nh_1 = nh_2 &= g \\
+      \underbrace{h_1 + \ldots + h_1}_{\text{$n$ times}}
+        = \underbrace{h_2 + \ldots + h_2}_{\text{$n$ times}} &= g \\
       \Therefore \parens{\underbrace{h_1 + \ldots + h_1}_{\text{$n$ times}}}
-      - \parens{\underbrace{h_2 + \ldots + h_2}_{\text{$n$ times}}} &= g - g = 0 \\
+        - \parens{\underbrace{h_2 + \ldots + h_2}_{\text{$n$ times}}} = g - g &= 0 \\
       \Therefore \underbrace{(h_1 - h_2) + \ldots + (h_1 - h_2)}_{\text{$n$ times}} &= 0
     \end{align*}
-    Since $G$ is torsion-free, $ng \neq 0$ for any $g \in G$ given $g \neq 0$.
-    Therefore, if $n(h_1 - h_2) = 0$, it follows that $h_1 -h_2 = 0$,
-    so $h_1 = h_2$.
-  \end{enumroman}
-  \step
-  Therefore, scalar multiplication is well-defined.
+    But $G$ is torsion-free, meaning $ng \neq 0$ for any scalar $n \neq 0$
+    given $g \neq 0$. so $h_1 - h_2$ must be equivalent to $0$.
+    Group inverses are unique, so this means that $-h_1$ and $-h_2$ are
+    the same element since $h_1 - h_2 = 0$.
+    It then follows that $h_1$ and $h_2$ are equivalent.
   \end{proof}
-
 \end{claim}
-\subsection{Divisibility and Torsion-Free~ness}~\label{sec:div-torsion-free}
 
-We define an extra set of conditions, $T$,
-which must be satisfied (in addition to those in $\Sigma$)
-for a structure to be a divisible torsion-free abelian group:
+\begin{claim}~\label{claim:div-vec-space}
+  Any divisible torsion-free abelian group has a $\Q$-vector space structure
 
-\begin{align}
-  T_1 &= \set{ \forall g\, (g \neq 0 \lto ng \neq 0) \mid n = 1, 2, 3, \ldots } \\
-  T_2 &= \set{ \forall g\, \exists h,\, (g = nh) \mid n = 1, 2, 3, \ldots } \\
-  T &= T_1 \cup T_2
-\end{align}
+  \begin{proof}
+    Let $G$ be a divisible, torsion-free abelian group,
+    and let $g \in G$.
+    By definition, since $G$ is divisible, then for every $n \in \N$
+    such that $n > 0$, there exists some element $h \in G$ such that
+    $nh = g$. Furthermore, as seen in the proof to \ref{claim:mult},
+    if $nh_1 = g$ and $nh_2 = g$ then $h_1 = h_2$
+    --- hence, for any $g \in G, n \in \N, n > 0$, not only does the
+    element $h$ exist such that $nh = g$, but the element $h$
+    is also unique.
+  \end{proof}
+\end{claim}
+Therefore, any divisible, torsion free abelian group
+forms a vector space over multiplication by rational numbers
+(i.e. has a $\Q$-vector space structure).
+
+\begin{claim}
+  $\Sigma \cup T$ is categorical over the cardinality of the reals.
+
+  \begin{proof}
+    Any model $\fA$ of $\Sigma \cup T$ is a divisible,
+    torsion free abelian group.
+    As shown in the proof to \ref{claim:div-vec-space},
+    any such abelian group has a $\Q$-vector space structure.
+    Define an isomorphism $\phi$ by: $\phi : \R \to \abs{\fA}$ by
+    \begin{align*}
+      \phi : \R &\to \abs{\fA} \\
+      0 &\mapsto 0^\fA \\
+      1 &\mapsto 1^\fA \\
+      n &\mapsto n^\fA \text{ for } n \in \N \\
+      \frac{p}{q} &\mapsto \frac{1}{q} \cdot p^\fA \text{ for } p, q \in \N
+    \end{align*}
+    $\phi$ must be a bijection since every element in $G$ has infinite order
+    and every element in $G$ is divisible by every rational number in $\Q$,
+    hence the cardinality of $\abs{\fA} = \abs{\R}$.
+
+    Therefore, there is, up to isomorphism, a unique model such model
+    $\fA$ of $\Sigma \cup T$ that has the size of $\abs{\R}$.
+  \end{proof}
+\end{claim}
+
+\begin{claim}
+  $\Sigma \cup T$ is not countably categorical.
+
+  \begin{proof}
+    Let $\fA$ be a model for $\Sigma \cup T$.
+    Then $\fA$ is a divisible, $\abs{\fA}$ cannot have a countable
+    cardinality. Supposing it was, then every element has a successor.
+    Let $x$ be the successor of $0$, and take $n > 1$ then there exists
+    an element $y$ such that $ny = x$, which implies that there exists
+    an element between $0$ and $x$, contradicting the
+    assumption that $x$ is the successor of $0$.
+  \end{proof}
+\end{claim}
+
 
 \bigskip
 
-\subsection{Existence of \texorpdfstring{$\Q$}{Q}-vector space structures}~\label{sec:q-vector-space}
-
-\zaff{
-  Show that any divisible torsion free abelian group
-  has a $\Q$-vector space structure. \\
-  \emph{Hint:} Show that if G is such a group, $n \in \N$ with $n > 0$
-  and $g \in G$ then there is a unique $h \in G$ such that $nh = g$.
-  Note that to show there is a $\Q$-vector space structure,
-  you must define scalar multiplication (and prove it is well-defined).
-}
-
-\subsubsection{Scalar Multiplication (Definition)}~\label{subsec:scalar-multiplication}
-
-
-\subsection{Any divisible torsion-free abelian group has a
-\texorpdfstring{$\Q$}{Q}-vector space structure}~\label{sec:torsion-free-q-vector-space}
-
-As seen in the proof to \ref{claim:scalar-multiplication}, if a group $G$
-is divisible and torsion-free, then scalar multiplication is well-defined.
-Since $G$ is divisible, then for every $g \in G$ and $n \in \Np$
-there is a unique $h \in G$ such that $nh = g$.
-As seen in the proof to \ref{claim:scalar-multiplication},
-for fixed $n$, any such $h$ must be unique
-(likewise, for fixed $h$, any such $n$ must be unique).
-Therefore, $G$ has a $\Q$-vector space structure.
-
-
-\bigskip
-
-\subsection{Axiomatizing Abelian Groups Wherein Each Element Other Than the Identity
+\subsection{Abelian Groups Wherein Each Element Other Than the Identity
 Has Order 2}~\label{sec:axiomatizing-abelian-groups-order-two}
-
-\zaff{
-  Define a set of axioms $S$ such that any model that satisfies $\Sigma \cup S$
-  is an abelian group in which each element other than the identity has order two.
-  Can we give a model for $\Sigma \cup S$ a vector space structure? \\
-  \emph{Hint:} Be creative in your choice of the scalar field.
-}
 
 We define $S$ to contain the following axioms:
 \begin{align}
-  \forall g\, ( (g \neq 0) \lto ((g + g) &= 0) ) &\text{(every element has order 2)}
+  \forall g\, ( (g \neq 0) \lto (g + g &= 0) ) &\text{(every element has order 2)}
 \end{align}
 
 \bigskip
@@ -236,7 +300,7 @@ first, let's consider finite abelian groups in which every non-identity
 element has order 2.
 The smallest such group is the cyclic group of order $2$:
 \begin{align*}
-  C_2 &= \parens{ \set{0, 1}, + }
+  C_2 &= \parens{ \set{0, 1}, 0, + }
 \end{align*}
 
 To generate larger groups where every non-identity element has order 2,
@@ -257,3 +321,9 @@ such as $\F_2$.
 Under multiplication with elements of $\F_2$, we have that
 $\forall g (0g = 0)$ and $\forall g (1g = g)$, thus we have a
 $\Q$-vector space structure.
+
+\section{Conclusions}~\label{sec:conclusions}
+
+These are all the conclusions.
+
+
