@@ -45,12 +45,12 @@ $\ast : S \to S$, satisfying the following axioms:
 \end{enumroman}
 There are two common notations for groups:
 \begin{enumroman}
-  \item Additive notation: $G = (S, +, 0)$, where $0$ is the identity
+  \item Additive notation: $G = (S, 0, +)$, where $0$ is the identity
     element and $+$ is the binary operation.
     For any element $g$, we denote the inverse of $g$ as $-g$.
-  \item Multiplicative notation: $G = (S, \cdot, 1)$, where $1$ is the
+  \item Multiplicative notation: $G = (S, 1, \cdot)$, where $1$ is the
     identity element and $\cdot$ is the binary operation.
-    For any element $g$, we denote the inverse of $g$ as $g^{-1}$.
+    For any element $g$, the inverse of $g$ is denoted as $g^{-1}$.
 \end{enumroman}
 
 Indeed, some groups with numerical elements use modified versions of
@@ -74,7 +74,8 @@ such that the pairing $(S, +)$ is an \emph{abelian} group
 and the pairing $(S \setminus \set{ 0 }, \cdot)$ is a 
 group (not necessarily abelian). Some of the most common examples of a field
 is the real numbers $R = (\R, 0, 1, +, \cdot)$, the rational numbers $Q = (\Q, 0, 1, +, \cdot)$,
-and the complex numbers $C = (\C, (0, 0), (1, 0), +, \cdot)$ under their standard addition and multiplication
+and the complex numbers $C = (\C, (0, 0), (1, 0), +, \cdot)$
+under their standard addition and multiplication
 operations.
 
 
@@ -194,7 +195,7 @@ wherein each element other than the identity has order $2$.
 A group $G$ has a \emph{vector space structure} over some field $F$
 if multiplication of elements of $G$ by scalars in $F$ is defined
 
-\subsection{Divisible, Torsion Free Abelian Groups}
+\subsection{Divisible, Torsion Free Abelian Groups over \texorpdfstring{$\Q$}{Q}}
 ~\label{sec:adiv-torsion-free-abelian-groups}
 
 \begin{claim}~\label{claim:mult}
@@ -272,14 +273,20 @@ forms a vector space over multiplication by rational numbers
 \begin{claim}
   $\Sigma \cup T$ is not countably categorical.
 
+  \crim{
+    I struggled a bit with this proof and I'm not sure if
+    it is correct. I would appreciate any help.
+  }
+
   \begin{proof}
     Let $\fA$ be a model for $\Sigma \cup T$.
-    Then $\fA$ is a divisible, $\abs{\fA}$ cannot have a countable
-    cardinality. Supposing it was, then every element has a successor.
-    Let $x$ be the successor of $0$, and take $n > 1$ then there exists
-    an element $y$ such that $ny = x$, which implies that there exists
-    an element between $0$ and $x$, contradicting the
-    assumption that $x$ is the successor of $0$.
+    Then $\fA$ must be a divisible, torsion free abelian group.
+    Suppose $\fA$ has a countable cardinality, then there exists an immediate successor
+    of the element $0$ in $\fA$. Let $x$ be such an element.
+    Since $\fA$ is divisible, there exists some element $y_i \in \abs{\fA}$
+    for each corresponding integer $i \in \N_{> 1}$ such that $i y_i = x$.
+    But since $\fA$ is torsion free, all these elements must be between
+    $0$ and $x$, contradicting the assumption that $x$ is the successor of $0$.
   \end{proof}
 \end{claim}
 
@@ -295,21 +302,49 @@ We define $S$ to contain the following axioms:
 \end{align}
 
 \bigskip
-For examples of models of $\Sigma \cup S$;
-first, let's consider finite abelian groups in which every non-identity
-element has order 2.
-The smallest such group is the cyclic group of order $2$:
+The easiest way to construct an infinite model for $\Sigma \cup S$ is to take
+direct products of a group in which every non-identity element has order 2,
+such as $C_2$.
+For instance, the Klein-Four group $V_4$ is a four-element group
+in which every non-identity element has order 2,
+and it is isomorphic to the direct product of $C_2$ with itself.
 \begin{align*}
-  C_2 &= \parens{ \set{0, 1}, 0, + }
+  C_2 &= \parens{ \set{0, 1}, 0, + } \\
+  V_4 &= \parens{ \set{(0, 0), (0, 1), (1, 0), (1, 1)}, (0, 0), + }
 \end{align*}
-
-To generate larger groups where every non-identity element has order 2,
-we can take the direct product of $C_2$ with itself.
-For instance, the Klein-Four group $V_4$ is isomorphic to $C_2 \times C_2$.
-For an infinite such group, take an infinite sequence of direct products of $C_2$:
+For reference, let $C_2^{n}$ be the direct product of $C_2$ with itself
+that yields a group with $n$ elements. Clearly, the only possible values
+for $n$ are powers of $2$, but we can also generate a group with infinite
+elements by taking infinite number of direct products of $C_2$ with itself:
 \begin{align*}
   C_2^{\infty} &= C_2 \times C_2 \times C_2 \times \ldots
 \end{align*}
+
+\begin{claim}
+  $C^{\infty}_2$ is countably categorical as a vector-space structure.
+
+  \begin{proof}
+    For any $n = 2^k$ for some $k \in \N$, every non-identity element in
+    $C^{n}_2$ has order 2, so multiplication is only well-defined
+    when the scalar field is limited to a two-element field, such as the field
+    \[ \F_2 = \parens{\set{0, 1}; 0, 1, +, \cdot}, \]
+    with scalar multiplication defined as $\forall g (0g = 0)$ and $\forall g (1g = g)$.
+
+    This means there is a unique model of $\Sigma \cup S$ of cardinality $n$
+    up to isomorphism (since every such direct product of $C_2$ containing $n$
+    is clearly isomorphic to $C^{n}_2$), and it every corresponding $2$-element
+    field has to be isomorphic to $\F_2$.
+    Therefore, $\Sigma \cup S$ is countably categorical.
+
+    \crim{
+      I think I have to explicitly show here that all the vector-space
+      models are isomorphic for different values of $n$,
+      but I am not entirely sure how to go about it.
+      I would appreciate any guidance or suggestions.
+    }
+  \end{proof}
+\end{claim}
+
 Take any element $g \in C_2^{\infty}$ such that $g$ is not the identity.
 Since $g$ has order $2$, we have that $3g = 2g + g = 0 + g = g$,
 and, more generally, for all $n \in \Np$, $ng = k g$ where $n \equiv k \mod 2$.
@@ -324,6 +359,9 @@ $\Q$-vector space structure.
 
 \section{Conclusions}~\label{sec:conclusions}
 
-These are all the conclusions.
+\crim{
+  I did not have enough time to work on the conclusions
+  so if okay I would like to submit this section in the second draft (Friday).
+}
 
 
