@@ -1,0 +1,641 @@
+\section{Introduction}~\label{sec:prelims}
+Mathematical logic is interesting in itself, but
+its ability to effectively model and describe other
+fields in mathematics is, perhaps, even more intriguing
+and what makes the study of logic so useful to the regular
+mathematician.
+For instance, using logic one may model aspects of
+analysis, algebra, calculus, probability, geometry,
+and even game theory.
+This offers disparate and often insightful perspectives into these other fields,
+letting one apply the laws of logic to their study of the structures
+of other fields in mathematics and the resulting consequences.
+More importantly, modeling other structures is useful in the study of logic
+itself as it lets one interrogate the rules of logic from other perspectives.
+
+In this paper, we will model the structure of abelian groups using
+first-order logic. We will then narrow down our study to groups that
+are emph{abelian}, \emph{divisible}, and \emph{torsion-free}.
+We will then study groups in this category as vector-spaces
+over the rational numbers, $\Q$, and study what the structure of these
+vector spaces can tell us about logic.
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Preliminaries}~\label{sec:preliminaries}
+\emph{
+  Note: This section is included mostly as a prelude for the
+  non-experienced mathematician, and may be skipped by readers
+  well-versed in
+  \textbf{Group Theory},
+  \textbf{Abstract Vector Spaces},
+  and \textbf{First-Order Logic}.
+}
+
+\subsection{Groups}~\label{sec:def-groups}
+
+\begin{definition}
+  A group $G = (S, \ast)$ is a set $S$ paired with a binary operation,
+  $\ast : S \to S$, satisfying the following axioms:
+  \begin{enumroman}
+    \item Closure: $x \ast y \in S$ for any two elements $x, y \in S$.
+    \item Associativity: $(x \ast y) \ast z = x \ast (y \ast z)$
+      for any three elements $x, y, z \in S$.
+    \item Identity: there exists an element $\eps \in S$ such that
+      for any $x \in S$, $x \ast e = e \ast x = x$.
+    \item Inversion: for any $x \in S$, there exists an element
+      $x^{-1} \in S$ such that $x \ast x^{-1} = x^{-1} \ast x = \eps$.
+  \end{enumroman}
+  There are two common notations for groups:
+  \begin{enumroman}
+    \item Additive notation: $G = (S, 0, +)$, where $0$ is the identity
+      element and $+$ is the binary operation.
+      For any element $g$, we denote the inverse of $g$ as $-g$.
+    \item Multiplicative notation: $G = (S, 1, \cdot)$, where $1$ is the
+      identity element and $\cdot$ is the binary operation.
+      For any element $g$, the inverse of $g$ is denoted as $g^{-1}$.
+  \end{enumroman}
+
+  However, the group operation need not be normal addition or multiplication.
+  For instance, the group of integers modulo a positive integer $n$,
+  denoted $\Z/n\Z$, defines its binary operation on any two elements $a$ and $b$
+  as $(a + b) \mod n$ --- so, for instance, $5 + 7 = 0$ in $\Z/12\Z$.
+  More absurd operations can be defined in some groups, including
+  rotations and reflections.\\
+  \emph{Henceforth, we will use additive notation for groups.}
+\end{definition}
+
+\begin{definition}
+  A group $G$ is \emph{abelian} if $x + y = y + x$ for any two
+  elements $x, y \in G$.
+\end{definition}
+
+\begin{definition}
+  The order of any element $g$ in a group $G$ is the smallest positive
+  integer $n$ such that $n g = 0$.
+  For instance, if $g + g + g = 0$, then $g$ has order $3$.
+\end{definition}
+
+
+\subsection{Fields}~\label{sec:def-fields}
+
+A field $F = (S; 0, 1, +, \times)$ is a set $S$ with two binary operations, $+$ and $\cdot$,
+such that the pairing $(S, +)$ is an \emph{abelian} group
+and the pairing $(S \setminus \set{ 0 }, \cdot)$ is also an abelian group.
+Some common examples of fields are the real numbers $\fR = (\R, 0, 1, +, \cdot)$,
+the rational numbers $\fQ = (\Q, 0, 1, +, \cdot)$,
+and the complex numbers $\fC = (\C, (0, 0), (1, 0), +, \cdot)$.
+
+
+\subsection{Vector Spaces over Fields}~\label{sec:def-vector-spaces}
+
+A vector space $V$ over a field $F$ is an \emph{abelian group}
+whose elements can be multiplied by elements in the field.
+We refer to the elements of the vector space as \emph{vectors}
+and the elements of the field as \emph{scalars}.
+The multiplication of a vector by a scalar is called \emph{scaling}.
+For any vector space $V$ over a field $F$, the scaling operation
+has to satisfy the following axioms:
+\begin{enumroman}
+  \item $1 x = x$ for any $x \in V$, where $1$ is the multiplicative identity in $F$.
+  \item $a(bx) = (ab)x$ for any vector $x \in V$ and any two scalars $a, b \in F$.
+  \item $(a+b)x = ax + bx$ for any vector $x \in V$ and any two scalars $a, b \in F$.
+  \item $a(x+y) = ax + ay$ for any two vectors $x, y \in V$ and any scalar $a \in F$.
+  % \item 
+  % \item $0 x = 0$ for any $x \in S$ and the additive identity $0 \in F$.
+  % \item $n x = \underbrace{x + \ldots + x}_{\text{$n$ times}}$
+  %   for any $x \in S$ and any $n \in F$.
+  % \item $(-n) x = \underbrace{-x + \ldots + -x}_{\text{$n$ times}}$
+  %   for any $x \in S$ and any $n \in F$.
+  % \item $n^{-1} x = y$ where $y$ is the element in the field
+  %   such that $n y = x$.
+\end{enumroman}
+
+% \newpage
+\begin{claim}~\label{claim:scale-neg-1}
+  Scaling any vector by $-1$ yields the additive inverse of that vector.
+  Equivalently, $-1 x = -x$ for any $x \in V$.
+
+  \begin{proof}
+    By definition, $-1$ is the additive inverse of $1$ in $F$,
+    where $1$ is the multiplicative identity.
+    Thus, \[ -1 x = -(1 x) = -(x) = -x. \]
+  \end{proof}
+
+  \begin{corollary}
+    Scaling any vector by $-n$ yields the same result as scaling the inverse
+    of that vector by $n$.
+    Equivalently, $(-n) x = n (-x)$ for any $x \in V$ and any $n \in F$.
+
+    \begin{proof}
+      \[ (-n) x = (n \cdot (-1)) x = n \cdot (-1) (x) = n (-x). \]
+    \end{proof}
+  \end{corollary}
+
+  \begin{corollary}
+    Scaling any vector $x \in V$ by $-n$ yields the additive inverse to the result
+    of scaling the same vector by $n$.
+
+    \begin{proof}
+      By definition of scalar multiplication of vectors;
+      \[
+        (-n) x = (-1 \cdot n) x = (-1) (n x) = - (nx)
+      \]
+    \end{proof}
+  \end{corollary}
+
+  \begin{corollary}
+  Scaling any vector by $0$ yields the zero vector.
+  Equivalently, $0x = 0$ for any $x \in V$.
+
+  \begin{proof}
+    By writing $0x = (a + (-a))x$ for any element $a \in F$, we have:
+    \begin{align*}
+      0x &= (a + (-a))x
+        = ax + (-ax)
+        = 0 
+    \end{align*}
+  \end{proof}
+  \end{corollary}
+\end{claim}
+
+\newpage
+\subsection{Divisible and Torsion Free Groups}~\label{sec:def-div-groups}
+
+\begin{definition}
+  Where $F$ is a field with numeric elements and $V$ is a vector space over $F$,
+  define scalar multiplication in accordance with the vector space axioms
+  as follows:
+  
+  \begin{align}
+    nx &= \begin{cases}~\label{def:scalar-multiplication}
+      0 & \text{if $n = 0$.} \\
+      \underbrace{x + \ldots + x}_{\text{$n$ times}} & \text{if $n$ is an integer and $n > 0$.} \\
+      \underbrace{-x + \ldots + -x}_{\text{$n$ times}} & \text{if $n$ is an integer and $n < 0$.} \\
+      y \quad \text{ where } x = qy \quad & \text{if $n = q^{-1}$ for some integers $q \in F$.} \\
+      p \parens{q^{-1} \cdot x} &\text{if $n = pq^{-1}$ with $q \neq 0$ amd $q \nmid p$.}
+    \end{cases}
+  \end{align}
+\end{definition}
+
+A dangling question from the above definition is whether for any value of $n$
+we can always express an element $g$ as $nh$ for some other element $h$.
+\begin{definition}
+  We say a group $G$ is \emph{divisible} if for any $g \in G$
+  and any $n \in \N$ with $n > 0$, there exists an element $h \in G$
+  such that $n h = g$.
+\end{definition}
+\begin{definition}
+  An element $g \in G$ is \emph{torsion free} if $ng \neq 0$
+    for any positive integer $n > 0$,
+    and a group is \emph{torsion free} if every non-identity element is
+    torsion free.
+\end{definition}
+
+\newpage
+\section{Analysis of some Vector Space Structures}~\label{sec:analysis-vec-space-structures}
+Recall that for any arbitrary structure $\fA$ to be a vector space over a field $F$,
+$\fA$ must be an \emph{abelian} group, and the multiplication of elements of $\fA$
+by elements of $F$ must be well-defined and satisfy the vector space axioms.
+When both of these conditions are satisfied,
+we say that $\fA$ has a vector space structure over $F$.
+In this section, we shall see two examples of abelian groups that have a vector space
+structure over some field and look at why they do not have a vector space structure
+over some other fields.
+
+\subsection{Divisible, Torsion Free Abelian Groups over \texorpdfstring{$\Q$}{Q}}
+~\label{sec:div-torsion-free-abelian-groups}
+
+Recall that an abelian group $G$ is divisible if for every $n \in \N_{>0}$,
+every element $g \in G$ element can be written as $nh$ for some other element $h \in G$.
+Furthermore, a group $G$ is torsion free if every non-identity element is torsion free
+--- that is, if $g$ is not the identity element, then scaling it by any non-zero
+factor $n \in \N_{>0}$ yields a non-zero element.
+
+Note that in the field $\Q$, the additive inverse of any element $g$
+is the element $-g$ and the multiplicative inverse of any element $g$ is the element $1/g$
+ --- for example, the additive inverse inverse of $7$ is $-7$,
+and the multiplicative inverse of $7$ is $1/7$.
+
+\begin{claim}~\label{claim:torsion-free-mult}
+  The scalar multiplication of elements of a divisible, torsion free
+  abelian group $G$ by elements of the field $\Q$ is well-defined.
+  \begin{proof}
+    Using the definition of multiplication(~\ref{def:scalar-multiplication}):
+    \begin{enumarabic}
+      \item The proof for multiplication by positive integers is straightforward since
+        the sum $\underbrace{x + \ldots + x}_{\text{$n$ times}}$
+        always names a unique element in the group.
+      \item The proof for multiplication by negative integers is also straightforward
+        since the sum $\underbrace{-x + \ldots + -x}_{\text{$n$ times}}$
+        always names a unique element in the group.
+      \item The proof for multiplication by $0$ is trivial;
+        $0 \cdot x$ always evaluates to $0$.
+      \item For multiplication by a rational number $n = p/q$,
+        we have $nh = (p/q)h = p(\frac{1}{q} \cdot h)$.
+        $p$ is an integer, so the multiplication by $p$ is well-defined as above.
+        For multiplication by $\frac{1}{q}$, we define $\frac{1}{q}\cdot g
+        = h$ such that $g = qh$. For multiplication to be well-defined, we must show that
+        any such element $h$ is unique, i.e. if $qh_1 = qh_2$ then we necessarily have that
+        $h_1 = h_2$.
+        \begin{align*}
+          qh_1 = qh_2 &= g \\
+          \underbrace{h_1 + \ldots + h_1}_{\text{$q$ times}}
+            = \underbrace{h_2 + \ldots + h_2}_{\text{$q$ times}} &= g \\
+          \Therefore \parens{\underbrace{h_1 + \ldots + h_1}_{\text{$q$ times}}}
+            - \parens{\underbrace{h_2 + \ldots + h_2}_{\text{$q$ times}}} = g - g &= 0 \\
+          \Therefore \underbrace{(h_1 - h_2) + \ldots + (h_1 - h_2)}_{\text{$q$ times}} &= 0 \\
+          \Therefore h_1 - h_2 &= 0 &\text{ (since $G$ is torsion free)} \\
+          \Therefore h_1 &= h_2
+        \end{align*}
+    \end{enumarabic}
+  \end{proof}
+\end{claim}
+
+\begin{corollary}
+  Any divisible, torsion free abelian group has a vector space structure over $\Q$.
+
+  \begin{proof}
+    This follows from the proof to claim ~\ref{claim:torsion-free-mult}
+  \end{proof}
+\end{corollary}
+
+
+
+
+
+
+
+
+
+
+\subsection{Abelian Groups Wherein Each Non-Identity Element Has Order 2}
+~\label{sec:abelian-groups-order-two}
+
+\begin{claim}~\label{claim:abelian-order-two-finite-isomorphic}
+  Any two abelian groups of the same finite order $n$ in which all non-identity elements
+  have order $2$ are isomorphic.
+
+  \begin{proof}
+    Let $G$ and $H$ be two such groups.
+    Since $G$ and $H$ have the same order $n$, they each have exactly $n-1$ elements
+    of order $2$.
+    To construct an isomorphism between $G$ and $H$, map the identity element in $G$
+    to the identity element in $H$, and map each non-identity element $g \in G$
+    to some nonidentity element $h \in H$ such that no two elements are mapped to the same element.
+    This isomorphism is always constructible since there's exactly $n-1$ such elements
+    in each of $G$ and $H$.
+
+    If every element in a group has order $2$, and the group has finite order,
+    then the group must have an order that is a power of $2$
+    (\zaff{Lagrange/Sylow theorems in~\cite{DummitFoote}})
+    However, any such group or order $2^k$ is isomorphic to the direct
+    product of $k$ copies of $C_2$,
+    where $C_2$ is the cyclic group of order $2$, \[ C_2 = \parens{ \set{0, 1}, 0, + } \].
+    For instance, the Klein-Four group, $V_4$, is an abelian group of order $4$
+    where every non-identity element has order $2$.
+    We can construct an isomorphism from $V_4$ to $C_2 \times C_2$ as follows:
+    \begin{align*}
+      V_4 &= \parens{ \set{1, a, b, ab}, 1, \cdot } \\
+      C_2 \times c_2 &= \parens{ \set{(0, 0), (0, 1), (1, 0), (1, 1)}, (0, 0), + }\\ \\
+      \psi : V_4 &\to C_2 \times C_2 \\
+      1 &\mapsto (0, 0) \\
+      a &\mapsto (0, 1) \\
+      b &\mapsto (1, 0) \\
+      ab &\mapsto (1, 1) \\
+    \end{align*}
+    Therefore, since both $G$ and $H$ are isomorphic to a sequence of direct products of $C_2$
+    with itself, so they are isomorphic to each other. 
+  \end{proof}
+\end{claim}
+
+\begin{claim}~\label{claim:abelian-order-two-infinite-isomorphic}
+  Any two groups $G$ and $H$ of infinite order such that every non-identity element
+  has order $2$ are isomorphic.
+
+  \begin{proof}
+    First, note that $G$ and $H$ are each countably infinite sets since every element
+    has order $2$.
+    Construct a countably infinite group where every non-identity element has order $2$
+    by taking the direct product of $C_2$ with itself an infinite number of times,
+    \[
+      C_2^{\infty} = C_2 \times C_2 \times C_2 \times \ldots 
+    \]
+    We can then construct isomorphisms from each of $G$ and $H$ to $C_2^{\infty}$,
+    so $G$ and $H$ are also isomorphic to each other.
+  \end{proof}
+\end{claim}
+
+Let $G$ be an abelian group in which every non-identity element has order $2$.
+This means that $g = g = 0$, or equivalently $2g = 0$ for all $g \in G$.
+As a result, $ng = 0$ for all $n \in 2\Z$ (multiples of $2$), so $G$ cannot have
+a vector space structure over $Q$.
+To define a vector space structure for $G$, we must limit the scalars to a
+two-element field such as $\F_2$.
+\[ \F_2 = \parens{\set{0, 1}, +, \times}. \]
+
+\begin{claim}
+  Any group $G$ in which every non-identity element has
+  a vector space structure over the Galois field of two elements,
+  $\F_2$.
+
+  \begin{proof}
+    Define multiplication as follows:
+    \begin{align*}
+      n g &= \begin{cases}
+        0 & \text{if $n = 0$} \\
+        g & \text{if $n = 1$} \\
+      \end{cases} 
+    \end{align*}
+    Then all teh vector space axioms are satisfied. Particularly;
+    \begin{enumarabic}
+      \item $0g = 0$ for all $g \in G$.
+      \item $1g = g$ for all $g \in G$.
+      \item $a(bx) = (ab)x$ for any vector $x \in V$ and any two scalars $a, b \in F$.
+        \begin{enumroman}
+          \item $0(0g) = (0 \cdot 0)g = 0g = 0$.
+          \item $1(0g) = (1 \cdot 0)g = 0g = 0$.
+          \item $0(1g) = (0 \cdot 1)g = 0g = 0$.
+          \item $1(1g) = (1 \cdot 1)g = 1g = g$.
+        \end{enumroman}
+      \item $(a+b)g = ag + bg$ for any vector $xg \in G$ and any two scalars $a, b \in F$.
+        \begin{enumroman}
+          \item $(0+0)g = 0g + 0g = 0$.
+          \item $(0+1)g = 0g + 1g = 0 + g = g$.
+          \item $(1+0)g = 1g + 0g = g$.
+          \item $(1+1)g = 1g + 1g = 1g + 1g = 2g = 0$.
+        \end{enumroman}
+      \item $a(g+h) = ag + ah$ for any two vectors $x, y \in V$ and any scalar $a \in F$.
+        \begin{enumroman}
+          \item $1(g+h) = 1g + 1h = g + h$.
+          \item $0(g+h) = 0g + 0h = 0$.
+        \end{enumroman}
+    \end{enumarabic}
+  \end{proof}
+\end{claim}
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Axiomatizing Groups}~\label{sec:axiomatizing-abelian-groups}
+In the previous section, we derived two vector space structures over two distinct fields,
+$\Q$ and $\F_2$. In this section, we will officially model those two structures
+using first-order logic.
+First, we specify the following language:
+\begin{align}
+  \cL &= \vector{ 0, +, -, = }
+\end{align}
+The language dictates which symbols are permitted in well-formed axioms
+for our structures.
+
+\subsection{Axioms Defining Abelian Groups}~\label{sec:axioms-abelian-groups}
+
+For any structure to be an abelian group, it needs to satisfy the group axioms
+(closure, associativity, identity, and inversion) and commutativity
+(see section~\ref{sec:def-groups} for reference).
+We define the set $\Sigma$ to contain the following abelian group axioms:
+\begin{align}
+  \forall g\, \forall h\, &(g + h = h + g) &\text{ (commutativity)} \\
+  \forall g\, \forall h\, \forall i\, &( (g + (h + i)) = ((g + h) + i) )
+    &\text{ (associativity)} \\
+  \forall g &( g + 0 = g) &\text{ ($0$ is the group identity element)} \\
+  \forall g\, \exists h\, &(g + h = 0) &\text{ (group inversion)}
+\end{align}
+In first-order logic, $n$-ary functions are always defined to map elements
+from $\abs{\fA}^n$ back to $\abs{\fA}$, so we do not need an explicit axiom
+for closure.
+
+\emph{Any structure satisfying $\Sigma$ is an abelian group.}
+
+
+\subsection{Axioms Defining Divisible, Torsion Free Abelian Groups}~\label{sec:axioms-div-torsion-free}
+Any abelian group needs additional restrictions to be divisible and torsion free.
+
+\begin{enumarabic}
+  \item Recall that a group $G$ is \emph{divisible} if for any $g \in G$
+    and any $n \in \N$ with $n > 0$, there exists an element $h \in G$
+    such that $n h = g$.
+    We represent this condition using an infinite set of axioms
+    specifying that, for each possible positive integer,
+    there exists such sn element $h$ for each element $g$ in the structure:
+    \[ T_1 = \set{ \forall g\, \exists h,\, (g = nh) \mid n = 1, 2, 3, \ldots }. \]
+    
+  \item Recall that a group $G$ is \emph{torsion free} if every non-identity element
+    is torsion free. That is, if $g \neq 0$ then $ng \neq 0$ for any positive
+    integer $n > 0$.
+    We can represent this condition using an infinite set of elements
+    specifying that, for each possible positive integer $n$,
+    the product $ng$ is non-zero for each non-zero element in $G$:
+    \[ T_2 = \set{ \forall g\, (g \neq 0 \lto ng \neq 0) \mid n = 1, 2, 3, \ldots }. \]
+    
+\end{enumarabic}
+
+Let $T = T_1 \cup T_2$, then any model satisfying $\Sigma \cup T$
+is a divisible, torsion free abelian group.
+
+
+
+\subsection{Axioms Defining Abelian Groups Wherein Each Element Other Than the Identity
+Has Order 2}~\label{sec:axioms-order-two-elements}
+
+To specify that each element in an abelian group has order $2$,
+define the set
+\[ S = \set{\forall g\, ( g \neq 0 \lto (g + g = 0) ) }, \]
+then any model satisfying $\Sigma \cup S$ is an abelian group
+wherein each element other than the identity has order $2$.
+
+
+% \newpage
+\section{Categorical Analysis of the Structures}~\label{sec:categorical-analysis}
+In this section, we will define some properties of the specific sets of axioms
+based on what we have established about the corresponding structures.
+
+\begin{claim}
+  The set $(\Sigma \cup T)$ is not countably categorical.
+
+  \begin{proof}
+    By definition of $\Sigma$ and $T$, any structure satisfying $\Sigma \cup T$
+    is a divisible, torsion free abelian group.
+    Let $\fA$ be such a structure.
+    As we established in the previous section, $\fA$ has a vector space structure over $\Q$.
+    Since all finite-dimensional vector spaces over $\Q$ are countable and
+    no two vector spaces of different dimensions can be isomorphic,
+    there are more multiple countable models of $\Sigma \cup T$
+    so $\Sigma \cup T$ is not countably categorical.
+  \end{proof}
+\end{claim}
+\begin{claim}
+  The set $(\Sigma \cup T)$ is categorical in the cardinality of $\R$.
+
+  \begin{proof}
+    Suppose $\fA$ and $\fB$ are two models of $\Sigma \cup T$,
+    each having the cardinality of $\R$.
+    Then \[ \dim(\fA) = \dim(\fB) = \abs{\R} \].
+    Since any two vector spaces of the same dimension are isomorphic,
+    $\fA$ and $\fB$ are isomorphic as vector spaces, hence
+    isomorphic as groups.
+    Therefore, $\Sigma \cup T$ has a single model in the cardinality $\R$
+    up to isomorphism, hence is categorical in the cardinality of $\R$.
+  \end{proof}
+\end{claim}
+
+\begin{claim}
+  The set $(\Sigma \cup S)$ is countably categorical.
+
+  \begin{proof}
+    By definition of $\Sigma$ and $S$, any structure satisfying $\Sigma \cup S$
+    is an abelian group wherein each element other than the identity has order $2$.
+    Let $\fB$ be such a structure.
+    Then $\fB$ has a vector space structure over $\F_2$.
+    As shown in claim~\ref{claim:abelian-order-two-finite-isomorphic},
+    any two such structures of the same finite order are isomorphic.
+    Likewise, as shown in claim~\ref{claim:abelian-order-two-infinite-isomorphic},
+    any two such structures of infinite order are countable, therefore isomorphic.
+    Thus, for any fixed $n$, if there exists a model of $\Sigma \cup S$ of order $n$,
+    then it is unique up to isomorphism, so $\Sigma \cup S$ is countably categorical.
+  \end{proof}
+\end{claim}
+
+
+
+
+\newpage
+\section{Conclusions}~\label{sec:conclusions}
+
+\begin{claim}
+  $\Cn \Sigma$ is not complete.
+
+  \begin{proof}
+    For an easy example, consider the fact that any model for $\Sigma \cup T$
+    is a model for $\Sigma$ (or any divisible, torsion free abelian group is an abelian group).
+    Now, there are sentences in $\cL$ that are true in $\Mod (\Sigma \cup T)$
+    but are not in $\Cn \Sigma$. For instance, take the sentence saying that
+    no element in a model of $\Sigma \cup T$ has order $2$:
+    \[ \forall g\, (g \neq 0 \lto (g + g \neq 0)). \]
+    This sentence is not deducible from $\Sigma$ --- and neither
+    is its negation. In fact, it is entirely okay for elements in a model of $\Sigma$
+    to have order $2$! Take $C_2$, the cyclic group of order $2$,
+    for example, wherein the element $1$ has order $2$.
+  \end{proof}
+
+\end{claim}
+
+\begin{claim}
+  $\Cn (\Sigma \cup T)$ is complete.
+
+  \begin{proof}
+    As we established in the previous section, $\Sigma \cup T$ has no finite models.
+    We also established that $\Sigma \cup T$ is categorical in the cardinality of the
+    reals, but not countably categorical.
+    First, note that $\Th \Mod (\Sigma \cup T) = \Cn (\Sigma \cup T)$,
+    since $\Th \Mod (\Sigma \cup T)$ is the set of all sentences true in all models
+    of $\Sigma \cup T$, and each sentence true in all models of $\Sigma \cup T$
+    is in $\Cn (\Sigma \cup T)$.
+
+    \step
+    By Los-Vaught Test (cite)
+    \begin{quotation}
+      \crim{
+        If a theory with no finite models is $\kappa$-categorical
+        for some infinite cardinal $\kappa$, then the model is complete.
+      }
+    \end{quotation}
+    \zaff{
+      I found this result in book~\cite{ModelTheory}, am I allowed to use it
+      (with proper citation), or should I be deriving this property myself?
+    }
+  \end{proof}
+\end{claim}
+
+\begin{corollary}
+  $\Cn (\Sigma \cup T)$ is decidable.
+
+  \begin{proof}
+    We've seen that $\Cn (\Sigma \cup T) = \Th \Mod (\Sigma \cup T)$.
+    This means that for any sentence $\sigma$ definable in $\cL$,
+    if $\Cn (\Sigma \cup T) \models \sigma$ then 
+    $\sigma \in \Cn (\Sigma \cup T)$.
+    
+    Furthermore, $\Cn (\Sigma \cup T)$ is complete,
+    so for any sentence $\sigma$ definable in $\cL$,
+    either $\Cn (\Sigma \cup T) \models \sigma$ or
+    $\Cn (\Sigma \cup T) \models \neg \sigma$.
+
+    Given an arbitrary sentence $\phi$, we can determine if $\phi \in \Cn (\Sigma \cup T)$
+    by checking if $\Cn (\Sigma \cup T) \models \phi$ or $\Cn (\Sigma \cup T) \models \neg \phi$.
+    In the first case, $\phi \in \Cn (\Sigma \cup T)$, and in the second case,
+    $\phi \notin \Cn (\Sigma \cup T)$.
+  \end{proof}
+\end{corollary}
+
+\newpage
+\begin{claim}
+  $\Cn \Sigma \cup S$ is not complete.
+
+  \begin{proof}
+    As shown in claim~\ref{claim:abelian-order-two-finite-isomorphic},
+    every finite model of order $2^k$ for some integer $k > 0$ is isomorphic to
+    the direct product of $k$ copies of $C_2$.
+    Now, take any two finite models $\fA$ and $\fB$ of different orders, say $2^a$ and $2^b$.
+    Define the sentence $\sigma_a$ to say that the structure has exactly $2^a$ elements,
+    and the sentence $\sigma_b$ to say that the structure has exactly $2^b$ elements.
+    \begin{align*}
+      \sigma_a &= \forall g_1 \exists g_2 \exists \ldots \exists g_{2^a}
+      ((g_1 \neq g_2) \land (g_1 \neq g_3) \land \ldots \land (g_2 \neq g_3) \land(g_2 \neq g_4) \land \ldots \land g_{2^a-1} \neq (g_{2^a})) \\
+      \sigma_b &= \forall g_1 \exists g_2 \exists \ldots \exists g_{2^b}
+      ((g_1 \neq g_2) \land (g_1 \neq g_3) \land \ldots \land (g_2 \neq g_3) \land(g_2 \neq g_4) \land \ldots \land g_{2^b-1} \neq (g_{2^b})) \\
+    \end{align*}
+    Then, $\sigma_a$ is true in $\fA$ but not in $\fB$, and $\sigma_b$ is true in $\fB$ but not in $\fA$.
+    However;
+    \begin{align*}
+      \Cn (\Sigma \cup S) &\not\models \sigma_a \\
+      \Cn (\Sigma \cup S) &\not\models (\neg \sigma_a) \\
+      \Cn (\Sigma \cup S) &\not\models \sigma_b \\
+      \Cn (\Sigma \cup S) &\not\models (\neg \sigma_b)
+    \end{align*}
+    Consequently, $\Cn \Sigma \cup S$ is not complete.
+  \end{proof}
+\end{claim}
+
+For $\Cn \Sigma \cup S$, we must specify that no model is finite,
+thus limiting the cardinality to infinite models.
+
+To do this, we define a new set $R$ specifying that, for each possible finite cardinality
+$n$, there exists more than $n$ elements in the structure.
+
+
+Let $R$ be the set of all sentences of the form
+\[ \set{ \exists g_1\, \exists g_2, \exists \ldots \exists g_n
+((g_1 \neq g_2) \land (g_1 \neq g_3) \land \ldots \land (g_1 \neq g_n) \land (g_2 \neq g_3)
+\land \ldots 
+\land (g_2 \neq g_n) \land \ldots \land )} \]
+
+\[
+  R = \set{ \exists g_1\, \exists g_2\, \exists \ldots \exists g_n
+    \bigwedge_{i=1}^{n-1} \bigwedge_{j=i+1}^{n} (g_i \neq g_j)
+    \mid n = 1, 2, 3, \ldots }
+\]
+
+
+\bigskip
+\crim{
+  Still working on other conclusions and Item $5$.
+}
