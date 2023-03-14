@@ -15,7 +15,7 @@ itself as it lets one interrogate the rules of logic from other perspectives.
 
 In this paper, we will model the structure of abelian groups using
 first-order logic. We will then narrow down our study to groups that
-are emph{abelian}, \emph{divisible}, and \emph{torsion-free}.
+are \emph{abelian}, \emph{divisible}, and \emph{torsion-free}.
 We will then study groups in this category as vector-spaces
 over the rational numbers, $\Q$, and study what the structure of these
 vector spaces can tell us about logic.
@@ -81,19 +81,26 @@ vector spaces can tell us about logic.
 
 \begin{definition}
   The order of any element $g$ in a group $G$ is the smallest positive
-  integer $n$ such that $n g = 0$.
-  For instance, if $g + g + g = 0$, then $g$ has order $3$.
+  integer $n$ such that $\underbrace{ g + \ldots + g}_{\text{$n$ times}} = 0$.
+  For instance, if an element $\gamma$ is such that  $\gamma + \gamma + \gamma = 0$,
+  then $\gamma$ has order $3$.
 \end{definition}
 
 
+\newpage
 \subsection{Fields}~\label{sec:def-fields}
 
 A field $F = (S; 0, 1, +, \times)$ is a set $S$ with two binary operations, $+$ and $\cdot$,
-such that the pairing $(S, +)$ is an \emph{abelian} group
+such that the pairing $(S, +)$ is an abelian group
 and the pairing $(S \setminus \set{ 0 }, \cdot)$ is also an abelian group.
-Some common examples of fields are the real numbers $\fR = (\R, 0, 1, +, \cdot)$,
-the rational numbers $\fQ = (\Q, 0, 1, +, \cdot)$,
-and the complex numbers $\fC = (\C, (0, 0), (1, 0), +, \cdot)$.
+The $\cdot$ operation is distributive over over $+$, meaning
+\[ a \cdot (b + c) = a \cdot b + a \cdot c. \]
+Some common examples of fields are the real numbers $\bR = (\R, 0, 1, +, \cdot)$,
+the rational numbers $\bQ = (\Q, 0, 1, +, \cdot)$,
+and the complex numbers $\bC = (\C, (0, 0), (1, 0), +, \cdot)$.
+The $\cdot$ operation is often referred to as \emph{multiplication}
+while the $+$ operation is often referred to as \emph{addition},
+since they correspond to multiplication and addition in many fields with numerical elements.
 
 
 \subsection{Vector Spaces over Fields}~\label{sec:def-vector-spaces}
@@ -110,96 +117,142 @@ has to satisfy the following axioms:
   \item $a(bx) = (ab)x$ for any vector $x \in V$ and any two scalars $a, b \in F$.
   \item $(a+b)x = ax + bx$ for any vector $x \in V$ and any two scalars $a, b \in F$.
   \item $a(x+y) = ax + ay$ for any two vectors $x, y \in V$ and any scalar $a \in F$.
-  % \item 
-  % \item $0 x = 0$ for any $x \in S$ and the additive identity $0 \in F$.
-  % \item $n x = \underbrace{x + \ldots + x}_{\text{$n$ times}}$
-  %   for any $x \in S$ and any $n \in F$.
-  % \item $(-n) x = \underbrace{-x + \ldots + -x}_{\text{$n$ times}}$
-  %   for any $x \in S$ and any $n \in F$.
-  % \item $n^{-1} x = y$ where $y$ is the element in the field
-  %   such that $n y = x$.
 \end{enumroman}
 
-% \newpage
-\begin{claim}~\label{claim:scale-neg-1}
-  Scaling any vector by $-1$ yields the additive inverse of that vector.
-  Equivalently, $-1 x = -x$ for any $x \in V$.
-
-  \begin{proof}
-    By definition, $-1$ is the additive inverse of $1$ in $F$,
-    where $1$ is the multiplicative identity.
-    Thus, \[ -1 x = -(1 x) = -(x) = -x. \]
-  \end{proof}
-
-  \begin{corollary}
-    Scaling any vector by $-n$ yields the same result as scaling the inverse
-    of that vector by $n$.
-    Equivalently, $(-n) x = n (-x)$ for any $x \in V$ and any $n \in F$.
-
-    \begin{proof}
-      \[ (-n) x = (n \cdot (-1)) x = n \cdot (-1) (x) = n (-x). \]
-    \end{proof}
-  \end{corollary}
-
-  \begin{corollary}
-    Scaling any vector $x \in V$ by $-n$ yields the additive inverse to the result
-    of scaling the same vector by $n$.
-
-    \begin{proof}
-      By definition of scalar multiplication of vectors;
-      \[
-        (-n) x = (-1 \cdot n) x = (-1) (n x) = - (nx)
-      \]
-    \end{proof}
-  \end{corollary}
-
-  \begin{corollary}
+\begin{corollary}
   Scaling any vector by $0$ yields the zero vector.
   Equivalently, $0x = 0$ for any $x \in V$.
 
   \begin{proof}
-    By writing $0x = (a + (-a))x$ for any element $a \in F$, we have:
-    \begin{align*}
-      0x &= (a + (-a))x
-        = ax + (-ax)
-        = 0 
-    \end{align*}
+    Let $x \in V$, then $0x + x = (0 + 1)x = x$.
+    Therefore, $0x$ must be the identity in the vector space
+    (the zero vector).
   \end{proof}
-  \end{corollary}
-\end{claim}
+\end{corollary}
 
-\newpage
-\subsection{Divisible and Torsion Free Groups}~\label{sec:def-div-groups}
+% \newpage
+\begin{corollary}~\label{claim:scale-neg-1}
+  Scaling any vector by $-1$ yields the additive inverse of that vector.
+  Equivalently, $(-1) x = -x$.
+
+  \begin{proof}
+    For any $x \in V$, $(1) x + x = (-1) x + 1x = (-1 + 1) x = 0$. \\
+    Therefore, $(-1) x$ must be the additive inverse of $x$.
+  \end{proof}
+\end{corollary}
+
+\begin{corollary}
+  Scaling any vector by $-n$ yields the same result as scaling the inverse
+  of that vector by $n$.
+  Equivalently, $(-n) x = n (-x)$ for any $x \in V$ and any $n \in F$.
+
+  \begin{proof}
+    \[ (-n) x = (n \cdot (-1)) x = n \cdot (-1) (x) = n (-x). \]
+  \end{proof}
+\end{corollary}
+
+\begin{corollary}
+  Scaling any vector $x \in V$ by $-n$ yields the additive inverse to the result
+  of scaling the same vector by $n$.
+
+  \begin{proof}
+    For any $x \in V$ and any $n \in F$,
+    \[ (-n) x = (-1 \cdot n) x = (-1) (n x). \]
+    By corollary~\ref{claim:scale-neg-1}, $(-1) nx$ is equivalent to the additive inverse of $nx$.
+  \end{proof}
+\end{corollary}
 
 \begin{definition}
-  Where $F$ is a field with numeric elements and $V$ is a vector space over $F$,
-  define scalar multiplication in accordance with the vector space axioms
-  as follows:
-  
-  \begin{align}
-    nx &= \begin{cases}~\label{def:scalar-multiplication}
-      0 & \text{if $n = 0$.} \\
-      \underbrace{x + \ldots + x}_{\text{$n$ times}} & \text{if $n$ is an integer and $n > 0$.} \\
-      \underbrace{-x + \ldots + -x}_{\text{$n$ times}} & \text{if $n$ is an integer and $n < 0$.} \\
-      y \quad \text{ where } x = qy \quad & \text{if $n = q^{-1}$ for some integers $q \in F$.} \\
-      p \parens{q^{-1} \cdot x} &\text{if $n = pq^{-1}$ with $q \neq 0$ amd $q \nmid p$.}
-    \end{cases}
-  \end{align}
+  A \emph{linear combination} of vectors in a set $S \subseteq V$ where $V$ is a vector space defined
+  over a field $F$ is a sum \[ \sum_{v \in S} k_v v \] where each $k_v \in F$.
 \end{definition}
 
-A dangling question from the above definition is whether for any value of $n$
-we can always express an element $g$ as $nh$ for some other element $h$.
+\begin{definition}
+  A \emph{basis} of a vector space $V$ over a field $F$ is a minimal set of vectors in $V$
+  that spans $V$. This means that;
+  \begin{enumroman}
+    \item Every vector in $V$ can be written as a linear combination of vectors in the basis.
+    \item No vector in in the basis can be written as a linear combination of any
+      other vectors in the basis (except itself).
+  \end{enumroman}
+\end{definition}
+
+\begin{definition}
+  The \emph{dimension} of a vector space $V$ (written $\dim(V))$ over a field $F$
+  is the cardinality of a basis of $V$.
+  While a vector space may have multiple subsets that are bases of $V,$ all such bases
+  must have the same cardinality.
+\end{definition}
+
+\begin{claim}
+  Two finite-dimensional vector spaces of the same dimension, defined over the same field,
+  are isomorphic.
+
+  \begin{proof}
+    Let $U$ and $V$ be two finite-dimensional vector spaces of the same dimension
+    defined over the same field, and let $(u_1, \ldots, u_k)$ be a basis of $U$
+    and $(v_1, \ldots, v_k)$ be a basis of $V$.
+    Then there exists an isomorphism from $U$ to $V$ that maps $u_i$ to $v_i$ for each $i$.
+  \end{proof}
+\end{claim}
+
+
+
+
+
+
+
+
+
+\newpage
+\subsection{Divisible and Torsion Free Abelian Groups}~\label{sec:def-div-groups}
+
 \begin{definition}
   We say a group $G$ is \emph{divisible} if for any $g \in G$
   and any $n \in \N$ with $n > 0$, there exists an element $h \in G$
-  such that $n h = g$.
+  such that $\underbrace{h + \ldots + h}_{\text{$n$ times}} = g$.
 \end{definition}
 \begin{definition}
-  An element $g \in G$ is \emph{torsion free} if $ng \neq 0$
-    for any positive integer $n > 0$,
-    and a group is \emph{torsion free} if every non-identity element is
-    torsion free.
+  An element $g \in G$ is \emph{torsion free} if
+  $\underbrace{h + \ldots + h}_{\text{$n$ times}} \neq 0$
+  for any positive integer $n > 0$.
+  A group is \emph{torsion free} if every non-identity element is
+  torsion free.
 \end{definition}
+
+\begin{lemma}
+  Where $F$ is a field with numeric elements and $G$ is a group,
+  define scalar multiplication of an element $x \in G$ and a scalar $n \in F$
+  as follows:
+  
+  \begin{numcases}{nx =}~\label{def:scalar-multiplication}
+    0 & \text{if $n = 0$.} \\ 
+    \underbrace{x + \ldots + x}_{\text{$n$ times}} & \text{if $n$ is an integer and $n > 0$.} \\
+    \underbrace{-x + \ldots + -x}_{\text{$n$ times}} & \text{if $n$ is an integer and $n < 0$.} \\
+    y \quad \text{ where } x = qy \quad & \text{if $n = q^{-1}$ for some integer $q \in F$.} \\
+    p \parens{q^{-1} \cdot x} &\text{if $n = pq^{-1}$ with $q \neq 0$.}
+  \end{numcases}
+\end{lemma}
+
+\step
+For scalar multiplication (per our definition) to be well-defined:
+\begin{enumarabic}
+  \item For every element $g \in G$ and every positive integer $n > 0$,
+    definable in $F$, the multiplication of $n^{-1}$ by $g$ must be well-defined.
+    Therefore, so there must exist an element $h \in G$ such that
+    $n h = g$. By our definition of scalar multiplication of an element in the group
+    by integer scalars, $n h = \underbrace{h + \ldots + h}_{\text{$n$ times}}$,
+    hence this condition is satisfied for every positive integer if the group is divisible.
+  \item If $pq^{-1} = mn^{-1}$, then the scalar multiplication of
+    any group element $x$ by $pq^{-1}$ should equal the scalar multiplication of $x$ by $mn^{-1}$.
+    Since $pq^{-1} = mn^{-1}$, $pq^{-1} - mn^{-1} = 0.$
+    Therefore, $(pq^{-1} - mn^{-1})x = 0x = 0$.
+    Since multiplication is distributive,
+    \[ (pq^{-1} - mn^{-1})x = pq^{-1}x - mn^{-1}x = 0. \]
+    Therefore, $pq^{-1}x$ and $-mn^{-1}x$ are additive inverses, which can only happen
+    if $pq^{-1}x$ and $mn^{-1}x$ are equivalent.
+\end{enumarabic}
+
 
 \newpage
 \section{Analysis of some Vector Space Structures}~\label{sec:analysis-vec-space-structures}
@@ -417,7 +470,7 @@ We define the set $\Sigma$ to contain the following abelian group axioms:
   \forall g\, \forall h\, \forall i\, &( (g + (h + i)) = ((g + h) + i) )
     &\text{ (associativity)} \\
   \forall g &( g + 0 = g) &\text{ ($0$ is the group identity element)} \\
-  \forall g\, \exists h\, &(g + h = 0) &\text{ (group inversion)}
+  \forall g\, &(g + (-g) = 0) &\text{ (group inversion)}
 \end{align}
 In first-order logic, $n$-ary functions are always defined to map elements
 from $\abs{\fA}^n$ back to $\abs{\fA}$, so we do not need an explicit axiom
@@ -436,7 +489,7 @@ Any abelian group needs additional restrictions to be divisible and torsion free
     We represent this condition using an infinite set of axioms
     specifying that, for each possible positive integer,
     there exists such sn element $h$ for each element $g$ in the structure:
-    \[ T_1 = \set{ \forall g\, \exists h,\, (g = nh) \mid n = 1, 2, 3, \ldots }. \]
+    \[ T_1 = \set{ \forall g\, \exists h,\, (g = \underbrace{h + \ldots + h}_{\text{$n$ times}}) \mid n = 1, 2, 3, \ldots }. \]
     
   \item Recall that a group $G$ is \emph{torsion free} if every non-identity element
     is torsion free. That is, if $g \neq 0$ then $ng \neq 0$ for any positive
@@ -444,7 +497,7 @@ Any abelian group needs additional restrictions to be divisible and torsion free
     We can represent this condition using an infinite set of elements
     specifying that, for each possible positive integer $n$,
     the product $ng$ is non-zero for each non-zero element in $G$:
-    \[ T_2 = \set{ \forall g\, (g \neq 0 \lto ng \neq 0) \mid n = 1, 2, 3, \ldots }. \]
+    \[ T_2 = \set{ \forall g\, ( (g \neq 0) \lto (\underbrace{g + \ldots + g}_{\text{$n$ times}} \neq 0)) \mid n = 1, 2, 3, \ldots }. \]
     
 \end{enumarabic}
 
@@ -469,7 +522,7 @@ In this section, we will define some properties of the specific sets of axioms
 based on what we have established about the corresponding structures.
 
 \begin{claim}
-  The set $(\Sigma \cup T)$ is not countably categorical.
+  $(\Sigma \cup T)$ is not countably categorical.
 
   \begin{proof}
     By definition of $\Sigma$ and $T$, any structure satisfying $\Sigma \cup T$
@@ -478,39 +531,41 @@ based on what we have established about the corresponding structures.
     As we established in the previous section, $\fA$ has a vector space structure over $\Q$.
     Since all finite-dimensional vector spaces over $\Q$ are countable and
     no two vector spaces of different dimensions can be isomorphic,
-    there are more multiple countable models of $\Sigma \cup T$
+    there are multiple countable models of $\Sigma \cup T$
     so $\Sigma \cup T$ is not countably categorical.
   \end{proof}
 \end{claim}
 \begin{claim}
-  The set $(\Sigma \cup T)$ is categorical in the cardinality of $\R$.
+  $(\Sigma \cup T)$ is categorical in the cardinality of $\R$.
 
   \begin{proof}
     Suppose $\fA$ and $\fB$ are two models of $\Sigma \cup T$,
     each having the cardinality of $\R$.
-    Then \[ \dim(\fA) = \dim(\fB) = \abs{\R} \].
+    By considering these two models as vector spaces over $\F_2$
+    with multiplication defined by $0g = 0$ and $1g = g$,
+    then every basis of $\fA$ must contain all non-zero vectors in $\fA$,
+    and every basis of $\fB$ must contain all non-zero vectors in $\fB$.
+    Therefore, \[ \dim(\fA) = \dim(\fB) = \abs{\R} \].
     Since any two vector spaces of the same dimension are isomorphic,
-    $\fA$ and $\fB$ are isomorphic as vector spaces, hence
-    isomorphic as groups.
+    $\fA$ and $\fB$ are isomorphic as vector spaces hence isomorphic as groups.
     Therefore, $\Sigma \cup T$ has a single model in the cardinality $\R$
-    up to isomorphism, hence is categorical in the cardinality of $\R$.
+    up to isomorphism and is therefore categorical in the cardinality of $\R$.
   \end{proof}
 \end{claim}
 
 \begin{claim}
-  The set $(\Sigma \cup S)$ is countably categorical.
+  $(\Sigma \cup S)$ is countably categorical.
 
   \begin{proof}
     By definition of $\Sigma$ and $S$, any structure satisfying $\Sigma \cup S$
     is an abelian group wherein each element other than the identity has order $2$.
-    Let $\fB$ be such a structure.
-    Then $\fB$ has a vector space structure over $\F_2$.
-    As shown in claim~\ref{claim:abelian-order-two-finite-isomorphic},
-    any two such structures of the same finite order are isomorphic.
-    Likewise, as shown in claim~\ref{claim:abelian-order-two-infinite-isomorphic},
-    any two such structures of infinite order are countable, therefore isomorphic.
-    Thus, for any fixed $n$, if there exists a model of $\Sigma \cup S$ of order $n$,
-    then it is unique up to isomorphism, so $\Sigma \cup S$ is countably categorical.
+    Let $\fA$ and $\fB$ be two such structures with the same cardinality $n$.
+    As we saw earlier, $\fA$ and $\fB$ can only have a vector space structure over $\F_2$,
+    with multiplication defined by $0g = 0$ and $1g = g$.
+    Therefore, any basis for $\fA$ must contain all non-zero elements in $\fA$,
+    and any basis for $\fB$ must contain all non-zero elements in $\fB$.
+    Therefore, \[ \dim(\fA) = \dim(\fB), \]
+    hence $\fA$ and $\fB$ are isomorphic as vector spaces.
   \end{proof}
 \end{claim}
 
@@ -542,31 +597,24 @@ based on what we have established about the corresponding structures.
   $\Cn (\Sigma \cup T)$ is complete.
 
   \begin{proof}
-    As we established in the previous section, $\Sigma \cup T$ has no finite models.
-    We also established that $\Sigma \cup T$ is categorical in the cardinality of the
-    reals, but not countably categorical.
+    As we established in the previous section, $\Sigma \cup T$ has no
+    finite models except the trivial vector space.
+    Additionally, $\Sigma \cup T$ is categorical
+    in the cardinality of the reals but not countably categorical.
     First, note that $\Th \Mod (\Sigma \cup T) = \Cn (\Sigma \cup T)$,
     since $\Th \Mod (\Sigma \cup T)$ is the set of all sentences true in all models
     of $\Sigma \cup T$, and each sentence true in all models of $\Sigma \cup T$
     is in $\Cn (\Sigma \cup T)$.
 
     \step
-    By Los-Vaught Test (cite)
-    \begin{quotation}
-      \crim{
-        If a theory with no finite models is $\kappa$-categorical
-        for some infinite cardinal $\kappa$, then the model is complete.
-      }
-    \end{quotation}
-    \zaff{
-      I found this result in book~\cite{ModelTheory}, am I allowed to use it
-      (with proper citation), or should I be deriving this property myself?
-    }
+    By the Los-Vaught Test~\cite{ModelTheory},
+    any theory with no finite models that is $\kappa$-categorical
+    for some infinite cardinal $\kappa$ is complete.
   \end{proof}
 \end{claim}
 
 \begin{corollary}
-  $\Cn (\Sigma \cup T)$ is decidable.
+  $\Cn (\Sigma \cup T)$ is not decidable.
 
   \begin{proof}
     We've seen that $\Cn (\Sigma \cup T) = \Th \Mod (\Sigma \cup T)$.
@@ -579,10 +627,12 @@ based on what we have established about the corresponding structures.
     either $\Cn (\Sigma \cup T) \models \sigma$ or
     $\Cn (\Sigma \cup T) \models \neg \sigma$.
 
-    Given an arbitrary sentence $\phi$, we can determine if $\phi \in \Cn (\Sigma \cup T)$
-    by checking if $\Cn (\Sigma \cup T) \models \phi$ or $\Cn (\Sigma \cup T) \models \neg \phi$.
+    Given an arbitrary sentence $\phi$, one thought would be to determine if
+    $\phi \in \Cn (\Sigma \cup T)$ by checking if $\Cn (\Sigma \cup T) \models \phi$ or $\Cn (\Sigma \cup T) \models \neg \phi$.
     In the first case, $\phi \in \Cn (\Sigma \cup T)$, and in the second case,
     $\phi \notin \Cn (\Sigma \cup T)$.
+    However, this is not necessarily possible since $\Cn (\Sigma \cup T)$ can be infinite
+    especially when the model has an infinite cardinal.
   \end{proof}
 \end{corollary}
 
@@ -617,25 +667,13 @@ based on what we have established about the corresponding structures.
 
 For $\Cn \Sigma \cup S$, we must specify that no model is finite,
 thus limiting the cardinality to infinite models.
-
-To do this, we define a new set $R$ specifying that, for each possible finite cardinality
+Define a new set $R$ specifying that, for each possible finite cardinality
 $n$, there exists more than $n$ elements in the structure.
-
-
-Let $R$ be the set of all sentences of the form
-\[ \set{ \exists g_1\, \exists g_2, \exists \ldots \exists g_n
-((g_1 \neq g_2) \land (g_1 \neq g_3) \land \ldots \land (g_1 \neq g_n) \land (g_2 \neq g_3)
-\land \ldots 
-\land (g_2 \neq g_n) \land \ldots \land )} \]
 
 \[
   R = \set{ \exists g_1\, \exists g_2\, \exists \ldots \exists g_n
-    \bigwedge_{i=1}^{n-1} \bigwedge_{j=i+1}^{n} (g_i \neq g_j)
+    \bigwedge_{i=1}^{n} \bigwedge_{j=i+1}^{n+1} (g_i \neq g_j)
     \mid n = 1, 2, 3, \ldots }
 \]
 
 
-\bigskip
-\crim{
-  Still working on other conclusions and Item $5$.
-}
